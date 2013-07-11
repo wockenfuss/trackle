@@ -1,0 +1,25 @@
+<div id="city">
+	<h2><%= @city.name %></h2>
+	<% if @tasks.any? %>
+	<ul>
+		<% @tasks.each do |task| %>
+		<li>
+			<%= task.name %>
+		</li>	
+		<% end %>
+	</ul>
+	<% end %>
+</div>
+
+<div id="usersList">
+	<% if @users.any? %>
+	<div id="usersContainer">
+		<% @users.each do |user| %>
+			<div class="userBox">
+				<%= user.name %>			
+			</div>
+		<% end %>		
+	</div>
+	<% end %>
+</div>
+	

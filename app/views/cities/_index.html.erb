@@ -1,0 +1,12 @@
+<% if @cities.any? %>
+	<% @cities.each do |city| %>
+	<ul>
+		<li>
+			<%= city.name %>
+			<%= link_to "delete", city_path(city), :method => :delete, :confirm => "Are you sure you want to clone all of this models?" %>
+		</li>
+	</ul>
+	<% end %>
+<% else %>
+	<p><%= "No cities yet." %></p>
+<% end %>

@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 	def index
 		@task = Task.new
 		@tasks = Task.all
+		respond_with @tasks, @task
 	end
 
 	def create
@@ -12,6 +13,13 @@ class TasksController < ApplicationController
 			redirect_to tasks_path, :notice => "Task created"
 		else
 			render @tasks, :error => "Something went wrong"
+		end
+	end
+
+	def destroy
+		@task = Task.find(params[:id])
+		if @task.destroy
+			redirect_to tasks_path, :notice => "Task deleted"
 		end
 	end
 
