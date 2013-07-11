@@ -1,0 +1,12 @@
+<% if @tasks.any? %>
+	<% @tasks.each do |task| %>
+	<ul>
+		<li>
+			<%= task.name %>
+			<%= link_to "delete", task_path(task), :method => :delete, :confirm => "Are you sure you want to clone all of this models?" %>
+		</li>
+	</ul>
+	<% end %>
+<% else %>
+	<p><%= "No tasks yet." %></p>
+<% end %>

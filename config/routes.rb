@@ -1,7 +1,9 @@
 Trackle::Application.routes.draw do
 
+  resources :users
+  resources :cities
   resources :tasks
-  root :to => 'tasks#index'
+  root :to => 'schedules#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
