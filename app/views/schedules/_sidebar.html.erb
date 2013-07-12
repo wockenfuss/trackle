@@ -2,7 +2,7 @@
 	<%= link_to @city.name, "#" %>
 	<ul class="dropdownMenu">
 		<% @cities.each do |city| %>
-			<li data-color="#<%= city.color %>"><%= link_to city.name, root_path(:city_id => city.id), :remote => true %></li>
+			<li data-color="<%= city.color %>"><%= link_to city.name, root_path(:city_id => city.id), :remote => true %></li>
 		<% end %>
 	</ul>
 </div>

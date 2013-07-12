@@ -14,7 +14,8 @@
 end
 
 5.times do 
-	City.create(:name => Faker::Address.city)
+	color = "##{'%06x' % (rand * 0xffffff)}"
+	City.create(:name => Faker::Address.city, :color => color)
 end
 
 10.times do |i|

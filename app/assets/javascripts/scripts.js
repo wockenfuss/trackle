@@ -4,6 +4,8 @@
 	});
 
 	var bind = function() {
+		$('.colorPicker').minicolors();
+
 		myApp.setCityColor();
 
 		$('#flash_alert, #flash_error, #flash_notice').fadeIn('normal', function() {
@@ -98,7 +100,7 @@
 		//city name bar color
 		var $city = $('.cityName');
 		var color = $city.attr('data-color');
-		$city.css('background-color', '#' + color);
+		$city.css('background-color', color);
 
 		//dropdown colors
 		$.each($('.cityName li'), function( index, value ) {
@@ -126,7 +128,7 @@
           $( this ).dialog( "close" );
         }, 
         "Assign Task": function() {
-
+        	$( this ).dialog( "close" );
         }
       },
       close: function() {

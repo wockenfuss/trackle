@@ -5,6 +5,19 @@ class CitiesController < ApplicationController
 		@city = City.new
 	end
 
+	def edit
+		@city = City.find(params[:id])
+	end
+
+	def update
+		@city = City.find(params[:id])
+		if @city.update_attributes(params[:city])
+			redirect_to root_path, :notice => "City updated"
+		else 
+			render "city#edit", :error => "Something went wrong"
+		end
+	end
+
 	def create
 		@city = City.create(params[:city])
 		if @city.save

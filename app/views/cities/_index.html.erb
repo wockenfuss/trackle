@@ -3,6 +3,9 @@
 	<ul>
 		<li>
 			<%= city.name %>
+			|
+			<%= link_to "edit", edit_city_path(city) %>
+			|
 			<%= link_to "delete", city_path(city), :method => :delete, :confirm => "Are you sure you want to clone all of this models?" %>
 		</li>
 	</ul>
