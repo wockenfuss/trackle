@@ -1,0 +1,6 @@
+<div class="taskBox draggable" data-task="<%= task.id %>" data-city="<%= city.id %>">
+	<%= task.name %>
+	<div class="taskProgress">
+		<%= task_progress_bar(task, city) %>
+	</div>
+</div>
