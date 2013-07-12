@@ -1,0 +1,11 @@
+// console.log('<%= @city.name %>');
+$('#city').html('').append('<%= j render :partial => "sidebar" %>');
+	$('.dropdown a[href="#"]').on('click', function(e) {
+		e.preventDefault();
+	});
+
+$('.dropdown a').on('mouseenter', myApp.dropdown); 
+$( ".draggable" ).draggable({
+  appendTo: "body",
+  helper: "clone"
+});

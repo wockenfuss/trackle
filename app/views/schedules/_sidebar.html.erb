@@ -1,0 +1,16 @@
+<div class="dropdown cityName">
+	<%= link_to @city.name, "#" %>
+	<ul class="dropdownMenu">
+		<% @cities.each do |city| %>
+			<li><%= link_to city.name, root_path(:city_id => city.id), :remote => true %></li>
+		<% end %>
+	</ul>
+</div>
+
+<% if @tasks.any? %>
+<div>
+	<% @tasks.each do |task| %>
+	<%= render :partial => 'tasks/show', :locals => { :task => task, :city => @city } %>
+	<% end %>
+</div>
+<% end %>
