@@ -4,6 +4,8 @@
 	});
 
 	var bind = function() {
+		myApp.setCityColor();
+
 		$('#flash_alert, #flash_error, #flash_notice').fadeIn('normal', function() {
 			$(this).delay(2500).fadeOut('slow');
 		});
@@ -76,9 +78,9 @@
 			var position = $trigger.position().left + $trigger.width() - $menu.width() + parseInt($trigger.css('margin-right'), 10) - 10;
 			$menu.css('left', position);
 		} else {
-			var top = $dropdown.position().top + $dropdown.height() - 3;
+			var top = $dropdown.position().top + $dropdown.height() + 10;
 			var left = $dropdown.position().left + 10;
-			$menu.css('width', $dropdown.width() - 30);
+			$menu.css('width', $dropdown.width());
 			$menu.css('top', top);
 			$menu.css('left', left);
 		}
@@ -90,6 +92,25 @@
 			$dropdown.off('mouseleave');
 			$('.dropdown a').on('mouseenter', myApp.dropdown);
 		})
+	};
+
+	myApp.setCityColor = function() {
+		//city name bar color
+		var $city = $('.cityName');
+		var color = $city.attr('data-color');
+		$city.css('background-color', '#' + color);
+
+		//dropdown colors
+		$.each($('.cityName li'), function( index, value ) {
+			var color = $(value).attr('data-color');
+			$(value).css('background-color', color);
+		});
+
+		//user colors
+		$.each($('.userBox'), function(index, value) {
+			var boxColor = $(value).attr('data-color');
+			$(value).css('background-color', boxColor);
+		});
 	};
 
 	myApp.taskModal = function() {
@@ -105,7 +126,7 @@
           $( this ).dialog( "close" );
         }, 
         "Assign Task": function() {
-        	
+
         }
       },
       close: function() {

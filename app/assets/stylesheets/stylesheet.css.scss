@@ -103,7 +103,7 @@ a {
 	.cityName {
 		margin: 5%;
 		text-align: center;
-		background-color: #da5;
+		/*background-color: #519a69;*/
 		&:hover {
 			cursor: hand; cursor: pointer;
 		}
@@ -112,11 +112,17 @@ a {
 			font-size: 1.5em;
 		}
 		.dropdownMenu {
+			margin: 0;
+			padding: 0;
 			text-align: left;
 			a {
 				font-size: 1em;
 
 			}
+		}
+		li {
+			margin: 0;
+			padding: 3%;
 		}
 	}
 	.taskBox {
@@ -188,7 +194,7 @@ a {
 }
 
 .occupied {
-	background-color: red;
+	/*background-color: red;*/
 	color: #fff;
 }
 

@@ -1,4 +1,4 @@
-<div class="<%= user.assignments.any? ? 'userBox droppable occupied' : 'userBox droppable available'%>" data-user="<%= user.id %>">
+<div class="userBox droppable" data-user="<%= user.id %>" data-color="<%= user.current_color %>">
 
 	<% if user.assignments.any? %>
 		<div class="assignments">

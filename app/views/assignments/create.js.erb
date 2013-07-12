@@ -15,6 +15,7 @@ var userId = '<%= @assignment.user.id %>';
 var $userDiv = $('div[data-user="' + userId + '"]');
 var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @assignment.user } %>';
 $userDiv.replaceWith(userHtml);
+$('div[data-user="' + userId + '"]').css('background-color', '#' + '<%= @assignment.city.color %>');
 
 //make div droppable
 $('div[data-user="' + userId + '"]').droppable({
