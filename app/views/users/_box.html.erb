@@ -1,0 +1,14 @@
+<div class="<%= user.assignments.any? ? 'userBox droppable occupied' : 'userBox droppable available'%>" data-user="<%= user.id %>">
+
+	<% if user.assignments.any? %>
+		<div class="assignments">
+			<p><%= "Current: #{user.assignments.first.city.name} " %></p>
+			<p><%= user.assignments.first.task.name %></p>
+
+		</div>
+			
+	<% end %>
+	<p class="userName"><%= user.name %></p>
+</div>
+
+	
