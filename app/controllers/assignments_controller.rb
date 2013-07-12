@@ -3,7 +3,7 @@ class AssignmentsController < ApplicationController
 	def create
 		@assignment = Assignment.new(params[:assignment])
 		if @assignment.save
-			@color = @assignment.user.current_color
+			@color = @assignment.user.current_city_color
 			respond_with(@assignment, @color)
 		else
 			respond_with( {:error => "error"}, :location => nil)

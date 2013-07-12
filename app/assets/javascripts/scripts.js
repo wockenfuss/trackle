@@ -108,11 +108,22 @@
 			$(value).css('background-color', color);
 		});
 
-		//user colors
+		//user border colors
 		$.each($('.userBox'), function(index, value) {
+			var interiorColor = $(value).attr('data-taskColor');
 			var boxColor = $(value).attr('data-color');
-			$(value).css('background-color', boxColor);
+			$(value).css('border-color', boxColor);
+			$(value).css('background-color', interiorColor);
 		});
+
+
+		//task box colors
+		$.each($('.taskBox'), function(index, value) {
+			var color = $(value).attr('data-taskColor');
+			$(value).css('background-color', color);
+		});
+
+
 	};
 
 	myApp.taskModal = function() {

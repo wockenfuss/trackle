@@ -4,9 +4,17 @@ class User < ActiveRecord::Base
 	validates :name, :presence => true
   attr_accessible :absent, :available, :email, :name
 
-  def current_color
+  def current_city_color
   	if self.assignments.any?
-			return "##{self.assignments.first.city.color}"
+			return "#{self.assignments.first.city.color}"
+		else 
+			return 'lightgreen'
+		end
+  end
+
+  def task_color
+  	if self.assignments.any?
+			return "#{self.assignments.first.task.color}"
 		else 
 			return 'lightgreen'
 		end

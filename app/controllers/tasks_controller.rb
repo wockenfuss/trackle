@@ -16,6 +16,19 @@ class TasksController < ApplicationController
 		end
 	end
 
+	def edit
+		@task = Task.find(params[:id])
+	end
+
+	def update
+		@task = Task.find(params[:id])
+		if @task.update_attributes(params[:task])
+			redirect_to tasks_path, :notice => "Task updated"
+		else
+			render tasks_path, :error => "Something went wrong"
+		end
+	end
+
 	def destroy
 		@task = Task.find(params[:id])
 		if @task.destroy

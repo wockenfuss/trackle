@@ -128,10 +128,10 @@ a {
 	.taskBox {
 		color: #000;
 		margin: 1% 5%;
-		border: 5px #5ad solid;
+		/*border: 5px #000 solid;*/
 		/*background-color: #5ad;*/
 		text-align: center;
-		padding: 1%;
+		padding: 3%;
 		&:hover {
 			cursor: hand; cursor: pointer;
 		}
@@ -161,7 +161,8 @@ a {
 
 .userBox {
 	border-radius: 5px;
-	/*border: solid 5px #faa;*/
+	border-width: 10px;
+	border-style: solid;
 	font-size: .7em;
 	line-height: 1em;
 	color: #000;

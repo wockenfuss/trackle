@@ -19,5 +19,6 @@ end
 end
 
 10.times do |i|
-	Task.create(:name => "Task #{i}")
+	color = "##{'%06x' % (rand * 0xffffff)}"
+	Task.create(:name => "Task #{i}", :color => color)
 end
