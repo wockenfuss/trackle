@@ -12,7 +12,7 @@ class CitiesController < ApplicationController
 	def update
 		@city = City.find(params[:id])
 		if @city.update_attributes(params[:city])
-			redirect_to root_path, :notice => "City updated"
+			redirect_to cities_path, :notice => "City updated"
 		else 
 			render "city#edit", :error => "Something went wrong"
 		end
