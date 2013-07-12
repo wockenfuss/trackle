@@ -1,7 +1,8 @@
 class SchedulesController < ApplicationController
 
 	def show
-		@city = City.order('deadline').first
+		@cities = City.order('deadline')
+		@city = params[:city_id] ? City.find(params[:city_id]) : @cities.first
 		@tasks = Task.all
 		@users = User.all
 	end
