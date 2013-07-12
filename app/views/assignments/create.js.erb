@@ -1,0 +1,11 @@
+var taskId = '<%= @assignment.task.id %>';
+//refresh div of task
+var $div = $('div[data-task="' + taskId + '"]');
+var html = '<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>';
+$div.replaceWith(html);
+
+//refresh div of user
+var userId = '<%= @assignment.user.id %>';
+var $userDiv = $('div[data-user="' + userId + '"]');
+var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @assignment.user } %>';
+$userDiv.replaceWith(userHtml);
