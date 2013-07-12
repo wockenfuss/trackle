@@ -1,0 +1,103 @@
+$standard: "Pontano Sans";
+$buttonColor: #bf3030;
+@mixin button {
+	font-family: $standard;
+	background-color: $buttonColor;
+	outline: none;
+	border: none;
+	padding: 10px;	
+	color: #fff;
+	border-radius: 5px;
+	&:hover {
+		background-color: lighten($buttonColor, 15%);
+		cursor: hand; cursor: pointer;
+	}
+}
+
+/*----- Modal window settings-----*/
+.ui-dialog {
+	position: relative;
+	z-index: 15;
+	overflow: auto;
+	/*border: 10px solid #ffc273;*/
+}
+
+.ui-dialog-titlebar, .ui-dialog-buttonpane {
+	color: #000;
+	span {
+		font-family: $standard;
+	}
+	background-color: #dbcfbc;
+	padding: 5%;
+}
+
+.ui-dialog-buttonpane {
+	button {
+		@include button;
+	}
+	.ui-button {
+		margin: 0 3%;
+	}
+}
+
+
+button.ui-dialog-titlebar-close {
+	color: #dbcfbc;
+	width: 10%;
+	height: 10%;
+	background-color: $buttonColor;
+	float: right;
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	&:hover {
+		cursor: hand; cursor: pointer;
+		color: #fff;
+		background-color: lighten($buttonColor, 15%);
+	}
+}
+
+.ui-widget-overlay.ui-front {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: .6;
+	background-color: black;
+}
+
+.ui-front {
+	z-index: 100;
+}
+
+.ui-dialog-content {
+	p {
+		font-family: $standard;
+	}
+	background-color: #b9af9a;	
+	padding: 5%;
+	min-height: 0;
+}
+
+#dialog-form {
+	overflow: auto;
+	font-family: $standard;
+	/*background-color: #b9af9a;*/
+	form {
+		padding-bottom: 0;
+		input { 
+			border: 5px solid #b78d78;
+			outline: none;
+		}
+		textarea {
+			height: 100px;
+		}
+	}
+  input.text { margin-bottom:12px; width:95%; padding: .4em; }
+  h1 { font-size: 1.2em; margin: .6em 0; }
+  .ui-dialog .ui-state-error { padding: .3em; }
+  .validateTips { border: 1px solid transparent; padding: 0.3em; }
+  /*padding: 5%;*/
+}
+	
