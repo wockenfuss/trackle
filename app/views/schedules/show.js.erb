@@ -7,5 +7,6 @@ $('#city').html('').append('<%= j render :partial => "sidebar" %>');
 $('.dropdown a').on('mouseenter', myApp.dropdown); 
 $( ".draggable" ).draggable({
   appendTo: "body",
+  cursorAt: {top: 0, left: 0},
   helper: "clone"
 });

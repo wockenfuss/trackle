@@ -12,3 +12,11 @@
 	email = Faker::Internet.email
 	User.create(:name => "#{first_name} #{last_name}", :email => email)
 end
+
+5.times do 
+	City.create(:name => Faker::Address.city)
+end
+
+10.times do |i|
+	Task.create(:name => "Task #{i}")
+end

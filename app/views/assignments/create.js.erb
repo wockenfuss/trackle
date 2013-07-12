@@ -3,9 +3,36 @@ var taskId = '<%= @assignment.task.id %>';
 var $div = $('div[data-task="' + taskId + '"]');
 var html = '<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>';
 $div.replaceWith(html);
+//make task draggable
+$('div[data-task="' + taskId + '"]').draggable({
+  appendTo: "body",
+  cursorAt: {top: 0, left: 0},
+  helper: "clone"
+});
 
 //refresh div of user
 var userId = '<%= @assignment.user.id %>';
 var $userDiv = $('div[data-user="' + userId + '"]');
 var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @assignment.user } %>';
 $userDiv.replaceWith(userHtml);
+
+//make div droppable
+$('div[data-user="' + userId + '"]').droppable({
+  hoverClass: "ui-state-hover",
+  tolerance: "pointer",
+  drop: myApp.drop
+})
+
+.on('click', function(e) {
+	var userId = $(this).attr('data-user');
+	$.ajax({
+		url: "/users/" + userId,
+		dataType: 'script',
+		type: 'get',
+		success: function(result) {
+			// console.log(result);	
+		}
+	});
+
+	$('#user-modal').dialog("open");
+});

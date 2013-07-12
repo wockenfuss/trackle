@@ -16,16 +16,14 @@
 
 		$( ".draggable" ).draggable({
       appendTo: "body",
+      cursorAt: {top: 0, left: 0},
       helper: "clone"
     });
 
     $('.userBox').on('click', function(e) {
     	var userId = $(this).attr('data-user');
-    	var url = "/users/" + userId;
-    	console.log(url);
-    	myApp.userModal();
     	$.ajax({
-    		url: url,
+    		url: "/users/" + userId,
 				dataType: 'script',
 				type: 'get',
 				success: function(result) {
@@ -33,41 +31,39 @@
 				}
     	});
 
-    	$('#dialog-form').dialog("open");
+    	$('#user-modal').dialog("open");
     });
 
     $( ".droppable" ).droppable({
-      // activeClass: "ui-state-default",
       hoverClass: "ui-state-hover",
-      // accept: ":not(.ui-sortable-helper)",
-      drop: function( event, ui ) {
-      	var task = ui.draggable.attr('data-task');
-      	var city = ui.draggable.attr('data-city');
-      	var user = $(event.target).attr('data-user');
-        $(this).removeClass('available')
-        				.addClass('occupied');
-        // $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
-        //ajax call to create assignment
-        var data = {
-        	assignment: {
-        		task_id: task,
-        		city_id: city,
-        		user_id: user
-        	}
-        };
-        $.ajax({
-				url: '/assignments',
-				dataType: 'script',
-				type: 'post',
-				data: data,
-				success: function(result) {
-					// console.log(result);	
-				}
-			});
-      }
-    })
+      tolerance: "pointer",
+      drop: myApp.drop
+    });
+
+    myApp.taskModal();
+   	myApp.userModal();
 	};
 
+	myApp.drop = function( event, ui ) {
+		$('#task-modal').dialog("open");
+    //ajax call to create assignment
+    var data = {
+    	assignment: {
+    		task_id: ui.draggable.attr('data-task'),
+    		city_id: ui.draggable.attr('data-city'),
+    		user_id: $(event.target).attr('data-user')
+    	}
+    };
+    $.ajax({
+			url: '/assignments',
+			dataType: 'script',
+			type: 'post',
+			data: data,
+			success: function(result) {
+				// console.log(result);	
+			}
+		});
+	};
 
 	myApp.dropdown = function(e) {
 		$trigger = $(e.target);
@@ -80,11 +76,11 @@
 			var position = $trigger.position().left + $trigger.width() - $menu.width() + parseInt($trigger.css('margin-right'), 10) - 10;
 			$menu.css('left', position);
 		} else {
-			var top = $dropdown.position().top;
-			var left = $dropdown.position().left + $dropdown.width() + 15;
+			var top = $dropdown.position().top + $dropdown.height() - 3;
+			var left = $dropdown.position().left + 10;
+			$menu.css('width', $dropdown.width() - 30);
 			$menu.css('top', top);
 			$menu.css('left', left);
-			// var position = 
 		}
 		
 		$menu.show();
@@ -96,8 +92,30 @@
 		})
 	};
 
+	myApp.taskModal = function() {
+		$( "#task-modal" ).dialog({
+			closeText: 'X',
+      autoOpen: false,
+      height: 400,
+      width: 500,
+      modal: true,
+      draggable: false,
+      buttons: {
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }, 
+        "Assign Task": function() {
+        	
+        }
+      },
+      close: function() {
+        // allFields.val( "" ).removeClass( "ui-state-error" );
+      }
+    });
+	};
+
 	myApp.userModal = function() {
-		$( "#dialog-form" ).dialog({
+		$( "#user-modal" ).dialog({
 			closeText: 'X',
       autoOpen: false,
       height: 600,
