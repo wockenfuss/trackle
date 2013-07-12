@@ -9,4 +9,12 @@ class AssignmentsController < ApplicationController
 			respond_with( {:error => "error"}, :location => nil)
 		end
 	end
+
+	def destroy 
+		@assignment = Assignment.find(params[:id])
+		@user = @assignment.user
+		if @assignment.destroy
+			respond_with @user
+		end
+	end
 end
