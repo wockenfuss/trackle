@@ -1,4 +1,15 @@
-<p><%= user.name %></p>
-<p><%= user.email %></p>
-<br>
-<p>Lots of awesome data about this user's tasks</p>
+<h2 class="inline"><%= user.name %></h2><%= "<#{user.email}>" %>
+<% if user.assignments.any? %>
+	<% user.assignments.each_with_index do |assignment, index| %>
+		<% if index == 0 %>
+			<p><%= "Current: #{assignment.city.name} - #{assignment.task.name}" %></p>
+			<%= render :partial => "assignments/show", :locals => { :assignment => assignment } %>
+		<% else %>
+			<p><%= "Queued #{index}: #{assignment.city.name} - #{assignment.task.name}" %></p>
+		<% end %>
+	<% end %>
+<% else %>
+	<p>This user currently has no assignments.</p>	
+<% end %>
+
+<%= link_to "History", "#" %>

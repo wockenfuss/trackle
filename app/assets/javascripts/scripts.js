@@ -146,7 +146,7 @@
       modal: true,
       draggable: false,
       buttons: {
-        Cancel: function() {
+        "OK": function() {
           $( this ).dialog( "close" );
         }
       },
