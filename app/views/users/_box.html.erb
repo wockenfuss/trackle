@@ -1,10 +1,13 @@
 <div class="userBox droppable" data-user="<%= user.id %>" data-color="<%= user.current_city_color %>" data-taskColor="<%= user.task_color%>">
 
-	<% if user.assignments.any? %>
-		<div class="assignments">
-			<p><%= "Current: #{user.assignments.first.city.name} " %></p>
-			<p><%= user.assignments.first.task.name %></p>
+	<% if user.assigned?%>
 
+		<div class="cityStripe">
+			<p><%= user.city_name %></p>
+		</div>
+
+		<div class="assignments">
+			<p><%= user.assignments.first.task.name %></p>
 		</div>
 			
 	<% end %>

@@ -99,8 +99,8 @@
 	myApp.setCityColor = function() {
 		//city name bar color
 		var $city = $('.cityName');
-		var color = $city.attr('data-color');
-		$city.css('background-color', color);
+		var cityColor = $city.attr('data-color');
+		$city.css('background-color', cityColor);
 
 		//dropdown colors
 		$.each($('.cityName li'), function( index, value ) {
@@ -114,8 +114,8 @@
 			var boxColor = $(value).attr('data-color');
 			$(value).css('border-color', boxColor);
 			$(value).css('background-color', interiorColor);
+			$(value).find('.cityStripe').css('background-color', boxColor);
 		});
-
 
 		//task box colors
 		$.each($('.taskBox'), function(index, value) {

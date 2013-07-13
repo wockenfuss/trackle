@@ -168,10 +168,10 @@ a {
 	color: #000;
 	text-align: center;
 	width: 100px;
-	height: 100px;
+	height: 125px;
 	float: left;
 	margin: 2%;
-	padding: 1%;
+	/*padding: 1%;*/
 	&:hover {
 		cursor: hand; cursor: pointer;
 	}
@@ -184,6 +184,16 @@ a {
 			margin: 0;
 		}
 	}
+
+	.cityStripe {
+		font-size: 1.2em;
+		margin: 0;
+		padding: 2%;
+		p {
+			margin: 0 0 5% 0;
+		}
+	}
+
 }
 
 .ui-state-hover {
