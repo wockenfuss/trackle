@@ -18,11 +18,7 @@
 
 		$('.dropdown a').on('mouseenter', myApp.dropdown); 
 
-		$( ".draggable" ).draggable({
-      appendTo: "body",
-      cursorAt: {top: 0, left: 0},
-      helper: "clone"
-    });
+		myApp.draggable(".draggable");
 
     $('.userBox').on('click', function(e) {
     	var userId = $(this).attr('data-user');
@@ -48,8 +44,15 @@
    	myApp.userModal();
 	};
 
+	myApp.draggable = function( selector ) {
+		$(selector).draggable({
+      appendTo: "body",
+      cursorAt: {top: 0, left: 0},
+      helper: "clone"
+    });
+	};
+
 	myApp.drop = function( event, ui ) {
-		$('#task-modal').dialog("open");
     //ajax call to create assignment
     var data = {
     	assignment: {
@@ -59,11 +62,14 @@
     	}
     };
     $.ajax({
-			url: '/assignments',
+			url: '/assignments/new',
 			dataType: 'script',
-			type: 'post',
+			type: 'get',
 			data: data,
 			success: function(result) {
+
+				// $('#task-modal').dialog("open");
+
 				// console.log(result);	
 			}
 		});
@@ -135,12 +141,12 @@
       modal: true,
       draggable: false,
       buttons: {
-        Cancel: function() {
-          $( this ).dialog( "close" );
-        }, 
-        "Assign Task": function() {
-        	$( this ).dialog( "close" );
-        }
+      	// "Assign Task": function() {
+       //  	$( this ).dialog( "close" );
+       //  },
+        // Cancel: function() {
+        //   $( this ).dialog( "close" );
+        // }
       },
       close: function() {
         // allFields.val( "" ).removeClass( "ui-state-error" );

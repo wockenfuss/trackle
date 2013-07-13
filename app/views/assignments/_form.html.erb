@@ -1,1 +1,28 @@
-<p>Do stuff here like making comments, assigning durations, etc.</p>
+<% if @assignment %>
+	<p><%= "Assigning #{@assignment.task.name} to #{@assignment.user.name} for #{@assignment.city.name}"%></p>
+
+	<%= form_for @assignment, :remote => true do |f| %>
+	<div>
+		<%= f.label :duration %>
+		<%= f.text_field :duration %>
+	</div>
+	<div>
+		<%= f.label :deadline %>
+		<%= f.text_field :deadline %>
+	</div>
+
+	<div>
+		<%= label_tag "Add a comment" %>
+		<%= text_area_tag "Comment", nil, :placeholder => "Comments not yet enabled." %>
+	</div>
+
+	<div>
+		<%= f.submit "Assign task" %>
+	</div>
+
+	<%= f.hidden_field :user_id %>
+	<%= f.hidden_field :task_id %>
+	<%= f.hidden_field :city_id %>
+
+	<% end %>
+<% end %>
