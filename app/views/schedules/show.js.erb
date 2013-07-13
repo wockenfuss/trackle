@@ -1,13 +1,7 @@
-// console.log('<%= @city.name %>');
 $('#city').html('').append('<%= j render :partial => "sidebar" %>');
-	$('.dropdown a[href="#"]').on('click', function(e) {
-		e.preventDefault();
-	});
 
-$('.dropdown a').on('mouseenter', myApp.dropdown); 
-$( ".draggable" ).draggable({
-  appendTo: "body",
-  cursorAt: {top: 0, left: 0},
-  helper: "clone"
-});
+myApp.setDropdowns();
+
+myApp.draggable('.draggable');
+
 myApp.setCityColor();
