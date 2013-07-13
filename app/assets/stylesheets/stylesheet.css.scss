@@ -9,8 +9,9 @@ $secondary-font: "Titillium Web";
 
 body {
 	margin: 0;
-/*	background: image-url('detroit1.jpg') no-repeat top left fixed; 
-  -webkit-background-size: cover;
+	background: image-url('square_bg_2.png') top left fixed; 
+	/*background: image-url('detroit1.jpg') no-repeat top left fixed; */
+  /*-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;*/
@@ -195,7 +196,7 @@ a {
 		}
 	}
 
-	
+
 	.userName {
 		font-size: 1.3em;
 	}

@@ -14,7 +14,7 @@ class CitiesController < ApplicationController
 		if @city.update_attributes(params[:city])
 			redirect_to cities_path, :notice => "City updated"
 		else 
-			render "city#edit", :error => "Something went wrong"
+			render edit_city_path(@city), :error => "Something went wrong"
 		end
 	end
 
