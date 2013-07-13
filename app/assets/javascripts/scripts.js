@@ -163,7 +163,12 @@
         // allFields.val( "" ).removeClass( "ui-state-error" );
       }
     });
-    $('.userBox').on('click', function(e) {
+
+		myApp.bindUserModal('.userBox');
+	};
+	
+	myApp.bindUserModal = function( selector ) {
+		$(selector).on('click', function(e) {
     	var userId = $(this).attr('data-user');
     	$.ajax({
     		url: "/users/" + userId,
@@ -177,7 +182,6 @@
     	$('#user-modal').dialog("open");
     });
 	};
-		
 
 
 

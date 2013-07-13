@@ -1,38 +1,21 @@
-$( '#task-modal').dialog( "close" );
+$('#task-modal').dialog( "close" );
 
-var taskId = '<%= @assignment.task.id %>';
-//refresh div of task
-var $div = $('div[data-task="' + taskId + '"]');
-var html = '<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>';
-$div.replaceWith(html);
-//make task draggable
-myApp.draggable('div[data-task="' + taskId + '"]');
+refreshTaskBox('<%= @assignment.task.id %>');
 
 //refresh div of user
 var userId = '<%= @assignment.user.id %>';
-var $userDiv = $('div[data-user="' + userId + '"]');
+var userSelector = 'div[data-user="' + userId + '"]';
 var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @assignment.user } %>';
-$userDiv.replaceWith(userHtml);
-// $('div[data-user="' + userId + '"]').css('background-color', '<%= @color %>');
+$(userSelector).replaceWith(userHtml);
+
 myApp.setCityColor();
+myApp.droppable(userSelector);
+myApp.bindUserModal(userSelector);
 
-//make div droppable
-$('div[data-user="' + userId + '"]').droppable({
-  hoverClass: "ui-state-hover",
-  tolerance: "pointer",
-  drop: myApp.drop
-})
-
-.on('click', function(e) {
-	var userId = $(this).attr('data-user');
-	$.ajax({
-		url: "/users/" + userId,
-		dataType: 'script',
-		type: 'get',
-		success: function(result) {
-			// console.log(result);	
-		}
-	});
-
-	$('#user-modal').dialog("open");
-});
+function refreshTaskBox(taskId) {
+	var $div = $('div[data-task="' + taskId + '"]');
+	var html = '<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>';
+	$div.replaceWith(html);
+	//make task draggable
+	myApp.draggable('div[data-task="' + taskId + '"]');
+};
