@@ -1,1 +1,9 @@
 $('#user-modal').html('<%= j render :partial => "users/show", :locals => { :user => @user } %>');
+
+refreshUserBox('<%= @user.id %>');
+myApp.setCityColor();
+
+function refreshUserBox(userId) {
+	var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @user } %>';
+	$('div[data-user="' + userId + '"]').replaceWith(userHtml);
+}

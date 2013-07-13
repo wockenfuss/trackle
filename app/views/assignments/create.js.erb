@@ -5,8 +5,8 @@ refreshTaskBox('<%= @assignment.task.id %>');
 //refresh div of user
 var userId = '<%= @assignment.user.id %>';
 var userSelector = 'div[data-user="' + userId + '"]';
-var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @assignment.user } %>';
-$(userSelector).replaceWith(userHtml);
+
+refreshUserBox(userId);
 
 myApp.setCityColor();
 myApp.droppable(userSelector);
@@ -19,3 +19,8 @@ function refreshTaskBox(taskId) {
 	//make task draggable
 	myApp.draggable('div[data-task="' + taskId + '"]');
 };
+
+function refreshUserBox(userId) {
+	var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @assignment.user } %>';
+	$('div[data-user="' + userId + '"]').replaceWith(userHtml);
+}

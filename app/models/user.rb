@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   end
 
   def current_city_color
+    puts "current city running"
+    puts "assigned: #{assigned?}"
   	if assigned?
 			return current_assignment.city.color
 		else 
