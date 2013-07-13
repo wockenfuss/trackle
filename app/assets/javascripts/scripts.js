@@ -5,50 +5,42 @@
 
 	var bind = function() {
 		$('.colorPicker').minicolors();
-
 		myApp.setCityColor();
+		myApp.setFlashAlerts();
+		myApp.setDropdowns();
+		myApp.draggable(".draggable");
+		myApp.droppable('.droppable');
+    myApp.taskModal();
+   	myApp.userModal();
+	};
 
-		$('#flash_alert, #flash_error, #flash_notice').fadeIn('normal', function() {
-			$(this).delay(2500).fadeOut('slow');
-		});
-
+	myApp.setDropdowns = function() {
 		$('.dropdown a[href="#"]').on('click', function(e) {
 			e.preventDefault();
 		});
 
 		$('.dropdown a').on('mouseenter', myApp.dropdown); 
+	}
 
-		myApp.draggable(".draggable");
-
-    $('.userBox').on('click', function(e) {
-    	var userId = $(this).attr('data-user');
-    	$.ajax({
-    		url: "/users/" + userId,
-				dataType: 'script',
-				type: 'get',
-				success: function(result) {
-					// console.log(result);	
-				}
-    	});
-
-    	$('#user-modal').dialog("open");
-    });
-
-    $( ".droppable" ).droppable({
-      hoverClass: "ui-state-hover",
-      tolerance: "pointer",
-      drop: myApp.drop
-    });
-
-    myApp.taskModal();
-   	myApp.userModal();
-	};
+	myApp.setFlashAlerts = function() {
+		$('#flash_alert, #flash_error, #flash_notice').fadeIn('normal', function() {
+			$(this).delay(2500).fadeOut('slow');
+		});
+	}
 
 	myApp.draggable = function( selector ) {
 		$(selector).draggable({
       appendTo: "body",
       cursorAt: {top: 0, left: 0},
       helper: "clone"
+    });
+	};
+
+	myApp.droppable = function( selector ) {
+		$(selector).droppable({
+      hoverClass: "ui-state-hover",
+      tolerance: "pointer",
+      drop: myApp.drop
     });
 	};
 
@@ -170,6 +162,19 @@
       close: function() {
         // allFields.val( "" ).removeClass( "ui-state-error" );
       }
+    });
+    $('.userBox').on('click', function(e) {
+    	var userId = $(this).attr('data-user');
+    	$.ajax({
+    		url: "/users/" + userId,
+				dataType: 'script',
+				type: 'get',
+				success: function(result) {
+					// console.log(result);	
+				}
+    	});
+
+    	$('#user-modal').dialog("open");
     });
 	};
 		

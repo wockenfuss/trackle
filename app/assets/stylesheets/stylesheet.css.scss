@@ -168,8 +168,8 @@ a {
 	line-height: 1em;
 	color: #000;
 	text-align: center;
-	width: 100px;
-	height: 125px;
+	width: 150px;
+	height: 200px;
 	float: left;
 	margin: 2%;
 	/*padding: 1%;*/
@@ -193,6 +193,11 @@ a {
 		p {
 			margin: 0 0 5% 0;
 		}
+	}
+
+	
+	.userName {
+		font-size: 1.3em;
 	}
 
 }
