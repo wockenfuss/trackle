@@ -15,6 +15,7 @@
 		myApp.droppable('.droppable');
     myApp.taskModal();
    	myApp.userModal();
+   	myApp.taskDisplay();
 	};
 
 	myApp.setDropdowns = function() {
@@ -136,7 +137,6 @@
 		} else {
 			percentage = (taskProgress[0] / taskProgress[1]) * 100;
 		}
-		console.log(percentage);
 		$(value).find('.completeTasks').css('width', percentage + "%");
 	}
 
@@ -160,6 +160,25 @@
         // allFields.val( "" ).removeClass( "ui-state-error" );
       }
     });
+	};
+
+		myApp.taskDisplay = function() {
+		$( "#task-display" ).dialog({
+			closeText: 'X',
+      autoOpen: false,
+      height: 600,
+      width: 600,
+      modal: true,
+      draggable: false,
+      buttons: {
+
+      },
+      close: function() {
+        // allFields.val( "" ).removeClass( "ui-state-error" );
+      }
+    });
+
+    myApp.bindTaskDisplay('.taskBox');
 	};
 
 	myApp.userModal = function() {
@@ -192,12 +211,27 @@
 				type: 'get',
 				success: function(result) {
 					// console.log(result);	
+		    	$('#user-modal').dialog("open");
 				}
     	});
 
-    	$('#user-modal').dialog("open");
     });
 	};
+
+	myApp.bindTaskDisplay = function( selector ) {
+		$(selector).on('click', function(e) {
+			var taskId = $(this).attr('data-task');
+			$.ajax({
+				url: "/tasks/" + taskId,
+				dataType: 'script',
+				type: 'get',
+				success: function(result) {
+					$('#task-display').dialog("open");
+				}
+			});
+
+		});
+	}
 
 
 
