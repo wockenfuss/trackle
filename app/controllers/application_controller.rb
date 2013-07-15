@@ -13,4 +13,19 @@ class ApplicationController < ActionController::Base
 	rescue_from CanCan::AccessDenied do |exception|
     redirect_to user_path(current_user), :alert => exception.message
   end
+
+  def parse_dates(params)
+    deadline = params[:deadline] || ""
+    params[:deadline] = parsed_date(deadline) unless deadline == ""
+  end
+
+  def parsed_date(string)
+    begin
+      string = DateTime.strptime(string, '%Y-%m-%d %H:%M:%S')
+    rescue => error
+      string = DateTime.strptime(string, '%m/%d/%Y')
+    end
+    string
+  end
+
 end

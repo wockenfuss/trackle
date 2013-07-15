@@ -1,4 +1,6 @@
 class AssignmentsController < ApplicationController
+	before_filter :parse_params, :only => [:create, :update]
+
 	respond_to :js, :html, :json
 
 	def new
@@ -34,5 +36,10 @@ class AssignmentsController < ApplicationController
 		if @assignment.destroy
 			respond_with @user
 		end
+	end
+
+	private
+	def parse_params
+		parse_dates(params[:assignment]) if params[:assignment]
 	end
 end

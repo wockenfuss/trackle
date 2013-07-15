@@ -9,7 +9,7 @@ $secondary-font: "Titillium Web";
 
 body {
 	margin: 0;
-	background: image-url('square_bg_2.png') top left fixed; 
+	/*background: image-url('square_bg_2.png') top left fixed; */
 	/*background: image-url('detroit1.jpg') no-repeat top left fixed; */
   /*-webkit-background-size: cover;
   -moz-background-size: cover;
@@ -224,5 +224,21 @@ a {
 	margin-left: 10%;
 	p {
 		margin: 0;
+	}
+}
+
+/*----- datepicker -----*/
+.ui-datepicker {
+	display: none;
+	background-color: #fff;
+	padding: 10px;
+	/*border: 8px darken($backgroundColor, 10%) solid;*/
+	font-family: $secondary-font;
+	a:hover {
+		color: #aaa;
+	}
+	.ui-corner-all {
+		margin-right: 10px;
+		cursor: hand; cursor: pointer;
 	}
 }
