@@ -6,6 +6,9 @@
 	var bind = function() {
 		$('.colorPicker').minicolors();
 		myApp.setCityColor();
+		myApp.setTaskColor();
+		myApp.setTaskProgress();
+
 		myApp.setFlashAlerts();
 		myApp.setDropdowns();
 		myApp.draggable(".draggable");
@@ -115,14 +118,27 @@
 			$(value).find('.cityStripe').css('background-color', boxColor);
 		});
 
-		//task box colors
+	};
+
+	myApp.setTaskColor = function(index, value) {
 		$.each($('.taskBox'), function(index, value) {
 			var color = $(value).attr('data-taskColor');
 			$(value).css('background-color', color);
+			myApp.setTaskProgress(index, value);
 		});
-
-
 	};
+
+	myApp.setTaskProgress = function(index, value) {
+		var taskProgress = $(value).find('.taskProgress').first().text().replace(/\s+/g, '').split('/');
+		var percentage;
+		if ( taskProgress[1] === "0" ) {
+			percentage = 100;
+		} else {
+			percentage = (taskProgress[0] / taskProgress[1]) * 100;
+		}
+		console.log(percentage);
+		$(value).find('.completeTasks').css('width', percentage + "%");
+	}
 
 	myApp.taskModal = function() {
 		$( "#task-modal" ).dialog({

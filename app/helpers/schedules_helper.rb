@@ -5,8 +5,4 @@ module SchedulesHelper
 		completed_assignments = total_assignments.where('completed_at is NOT NULL')
 		return "#{completed_assignments.count}/#{total_assignments.count}"
 	end
-
-	def split_progress
-		# $('.taskProgress').first().text().replace(/\s+/g, '').split('/');
-	end
 end
