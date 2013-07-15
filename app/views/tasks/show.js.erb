@@ -1,2 +1,1 @@
-console.log('show it');
-$('#task-display').html('<%= j render :partial => "tasks/list" %>');
+$('#task-display').html('<%= j render :partial => "tasks/list", :locals => { :task => @task, :city => @city } %>');

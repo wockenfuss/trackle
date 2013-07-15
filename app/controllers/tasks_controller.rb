@@ -7,6 +7,11 @@ class TasksController < ApplicationController
 		respond_with @tasks, @task
 	end
 
+	def show
+		@task = Task.find(params[:id])
+		@city = City.find(params[:city_id])
+	end
+
 	def create
 		@task = Task.create(params[:task])
 		if @task.save

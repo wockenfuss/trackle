@@ -1,1 +1,10 @@
-info about task here
+<h2><%= "#{task.name}: #{city.name}" %></h2>
+<% if task.assignments_for_city(city).count > 0 %>
+	<ul>
+		<% task.assignments_for_city(city).each do |assignment| %>
+			<li><%= "#{assignment.user.name}: #{assignment.status}" %></li>
+		<% end %>
+	</ul>
+<% else %>
+	<p>No assignments for this task.</p>	
+<% end %>

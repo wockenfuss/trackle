@@ -221,10 +221,14 @@
 	myApp.bindTaskDisplay = function( selector ) {
 		$(selector).on('click', function(e) {
 			var taskId = $(this).attr('data-task');
+			var cityId = $(this).attr('data-city');
 			$.ajax({
 				url: "/tasks/" + taskId,
 				dataType: 'script',
 				type: 'get',
+				data: {
+					city_id: cityId
+				},
 				success: function(result) {
 					$('#task-display').dialog("open");
 				}
