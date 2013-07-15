@@ -1,1 +1,12 @@
-$('#user-modal').html('<%= j render :partial => "users/show", :locals => { :user => @user } %>');
+var target = $('.userBox')['<%= @location %>'];
+var $current = $('.userBox[data-user=' + '<%= @user.id %>' + ']');
+if ( $('#userDisplay').is(':visible') ) {
+	console.log('visible');
+	$('#userDisplay').slideToggle('slow', function() {
+    $('#userDisplay').remove();
+    $('.userBox').css('opacity', 1);
+  });
+} else {
+	$('.userBox').not($current).css('opacity', .3);
+	$(target).before('<%= j render :partial => "users/show", :locals => { :user => @user } %>');	
+}

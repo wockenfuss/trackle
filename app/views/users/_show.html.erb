@@ -1,3 +1,5 @@
+<div id="userDisplay">
+
 <h2 class="inline"><%= user.name %></h2><%= "<#{user.email}>" %>
 <% if user.assigned? %>
 	<p>
@@ -25,3 +27,5 @@
 <% end %>
 
 <%= link_to "View User", user_path(user) %>
+
+</div>

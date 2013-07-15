@@ -182,6 +182,14 @@ a {
 #usersList {
 	width: 78%;
 	float: left;
+	#userDisplay {
+		display: none;
+		background: #ccc;
+		width: 94%;
+		padding: 2%;
+		margin: 1%;
+		float: left;
+	}
 }
 
 #usersContainer {

@@ -3,6 +3,8 @@
 		bind();
 	});
 
+
+
 	var bind = function() {
 		$('.colorPicker').minicolors();
 		myApp.setCityColor();
@@ -19,7 +21,51 @@
    	$('#announcements span').on('click', function(e) {
    		$(e.target).parent().find('#announcementInterior').slideToggle();
    	})
+
+
+   	$('.userBox').on('click', function(e) {
+   		// e.stopPropagation();
+   		var userId = $(this).attr('data-user');
+   		var appendLocation = myApp.appendLocation(this);
+   		var data = {
+   			appendLocation: appendLocation
+   		};
+   		// console.log(myApp.rowSize());
+   		$.ajax({
+   			url: "/users/" + userId,
+   			type: "get",
+   			dataType: "script",
+   			data: data,
+   			success: function(result) {
+   				$('#userDisplay').slideToggle();
+   				// console.log(result);
+   			}
+   		})
+   	});
+
+
 	};
+
+	myApp.appendLocation = function(userBox) {
+		var index = $('.userBox').index(userBox);
+		var rowSize = myApp.rowSize();
+		var rowPosition = Math.floor(index / rowSize);
+		var insertIndex = rowPosition * rowSize;
+		return insertIndex;
+	};
+
+	myApp.rowSize = function() {
+    var length = 0;
+    var top = $('.userBox').first().position().top;
+    $.each($('.userBox'), function(index, value) {
+    	if ($(value).position().top !== top ) {
+    		return length;
+    	} else {
+    		length++;
+    	}
+    });
+   	return length;
+	}
 
 	myApp.setDropdowns = function() {
 		$('.dropdown a[href="#"]').on('click', function(e) {
@@ -202,7 +248,7 @@
       }
     });
 
-		myApp.bindUserModal('.userBox');
+		// myApp.bindUserModal('.userBox');
 	};
 	
 	myApp.bindUserModal = function( selector ) {

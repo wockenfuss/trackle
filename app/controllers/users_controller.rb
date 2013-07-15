@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :authenticate_user!, :except => [:create, :new]
 	load_and_authorize_resource
+	respond_to :js, :json, :html
 
 	def index
 		@users = User.all
@@ -11,6 +12,8 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@assignment = @user.current_assignment
 		@queue = @user.queued
+		@location = params[:appendLocation] if params[:appendLocation]
+		respond_with @user, @location
 	end
 
 	def create
