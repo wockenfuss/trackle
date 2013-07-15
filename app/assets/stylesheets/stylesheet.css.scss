@@ -1,5 +1,7 @@
-$primary-font: "Pompiere";
-$secondary-font: "Titillium Web";
+$primary-font: "Quicksand";
+$secondary-font: "Pontano Sans";
+/*$secondary-font: "Sintony";*/
+
 /*$tertiary-font: "Karla";*/
 
 .navbar {
@@ -9,7 +11,7 @@ $secondary-font: "Titillium Web";
 
 body {
 	margin: 0;
-	/*background: image-url('square_bg_2.png') top left fixed; */
+	background: image-url('mooning.png') top left fixed; 
 	/*background: image-url('detroit1.jpg') no-repeat top left fixed; */
   /*-webkit-background-size: cover;
   -moz-background-size: cover;
@@ -95,11 +97,12 @@ a {
 }
 
 #city {
+	border-radius: 5px;
 	color: #fff;
 	width: 20%;
 	float: left;
-	background-color: #eeb;
-	margin: 0 0 3% 0;
+	background-color: #eee;
+	margin: 2% 0 3% 2%;
 	padding-bottom: 1%;
 	.cityName {
 		margin: 5%;
@@ -129,7 +132,7 @@ a {
 	.taskBox {
 		color: #000;
 		margin: 1% 5%;
-		border-radius: 5px;
+		/*border-radius: 5px;*/
 		/*border: 5px #000 solid;*/
 		/*background-color: #5ad;*/
 		text-align: center;
@@ -156,17 +159,38 @@ a {
 	}
 }
 
+#announcements {
+	border-radius: 5px;
+	float: left;
+	width: 75%;
+	/*background-color: #ccc;*/
+	margin: 1%;
+	padding: .5%;
+	text-align: right;
+	color: #fff;
+	span {
+		cursor: pointer; cursor: hand;
+	}
+	#announcementInterior {
+		height: 200px;
+		display: none;
+		background-color: #999;
+		border-radius: 5px;
+	}
+}
+
 #usersList {
 	width: 78%;
 	float: left;
 }
 
 #usersContainer {
-	width: 100%;
-	/*background-color: #fff;*/
+	width: 83%;
+	background-color: #eee;
 	overflow: auto;
-	margin: 0 0 3% 0;
+	margin: 0 2% 3% 4%;
 	padding: 2%;
+	border-radius: 5px;
 
 }
 

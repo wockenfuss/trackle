@@ -16,6 +16,9 @@
     myApp.taskModal();
    	myApp.userModal();
    	myApp.taskDisplay();
+   	$('#announcements span').on('click', function(e) {
+   		$(e.target).parent().find('#announcementInterior').slideToggle();
+   	})
 	};
 
 	myApp.setDropdowns = function() {
