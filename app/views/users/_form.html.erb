@@ -4,6 +4,8 @@
 
 <%= f.label :email %>
 <%= f.text_field :email %>
+<%= f.label :admin %>
+<%= check_box_tag :admin, @user.id, @user.has_role?(:admin) %>
 
 <%= f.submit %>
 <% end %>

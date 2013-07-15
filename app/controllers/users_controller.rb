@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_filter :authenticate_user!, :except => [:create, :new]
+	load_and_authorize_resource
 
 	def index
 		@users = User.all
@@ -7,6 +9,8 @@ class UsersController < ApplicationController
 
 	def show 
 		@user = User.find(params[:id])
+		@assignment = @user.current_assignment
+		@queue = @user.queued
 	end
 
 	def create
@@ -16,6 +20,20 @@ class UsersController < ApplicationController
 		else
 			render users_path, :error => "Something went wrong"
 		end
+	end
+
+	def update
+		@user = User.find(params[:id])
+		@user.update_admin(params)
+		if @user.update_attributes(params[:user])
+			redirect_to users_path, :notice => "User updated"
+		else
+			render @user, :error => "Something went wrong"
+		end
+	end
+
+	def edit
+		@user = User.find(params[:id])
 	end
 
 	def destroy

@@ -1,19 +1,25 @@
 <h2 class="inline"><%= user.name %></h2><%= "<#{user.email}>" %>
-<% if user.assignments.any? %>
-	<% user.assignments.each_with_index do |assignment, index| %>
-		<% if index == 0 %>
-			<p>
-				<%= "Current: #{assignment.city.name} - #{assignment.task.name}" %>
-				<%= link_to "delete", assignment_path(assignment), :method => :delete, :confirm => "Are you sure you want to clone all of this models?", :remote => true %>
-			</p>
-			<%= render :partial => "assignments/show", :locals => { :assignment => assignment } %>
-		<% else %>
-			<p>
-				<%= "Queued #{index}: #{assignment.city.name} - #{assignment.task.name}" %>
-				<%= link_to "delete", assignment_path(assignment), :method => :delete, :confirm => "Are you sure you want to clone all of this models?", :remote => true %>
-			</p>
-		<% end %>
+<% if user.assigned? %>
+	<p>
+		<%= "Current: #{user.city_name} - #{user.current_assignment.task.name}" %> |
+		<%= link_to "delete", assignment_path(user.current_assignment), :method => :delete, :confirm => "Are you sure you want to clone all of this models?", :remote => true %>
+	</p>
+	<%= render :partial => "assignments/show", :locals => { :assignment => user.current_assignment } %>
+
+	<% if user.queued %>
+ 		<p>Queued: </p>
+	 	<ul>
+	 		<% user.queued.each do |assignment| %>
+				<li>
+					<%= "#{assignment.city.name} - #{assignment.task.name}" %> |
+					<%= link_to "delete", assignment_path(assignment), :method => :delete, :confirm => "Are you sure you want to clone all of this models?", :remote => true %>
+				</li>
+			<% end %>
+	 	</ul>
+		
 	<% end %>
+
+
 <% else %>
 	<p>This user currently has no assignments.</p>	
 <% end %>

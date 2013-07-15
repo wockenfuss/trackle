@@ -1,0 +1,21 @@
+<% if @user.assigned? %>
+
+	<div id="currentTask">
+		<%= render :partial => 'assignments/current_task', :locals => { :assignment => @assignment }  %>
+	</div>
+		
+	<!-- queued -->
+	<% if !@queue.blank? %>
+	<h3>Queue:</h3>
+	<ul>
+		<% @queue.each do |item| %>
+			<li><%= "#{item.task.name}: #{item.city.name}" %></li>
+		<% end %>
+	</ul>
+	<% end %>
+
+<% else %>
+	<p>You currently have no assignments</p>
+	<%= link_to "Get new assignment (not active yet)", "#", :remote => true %>	
+<% end %>
+

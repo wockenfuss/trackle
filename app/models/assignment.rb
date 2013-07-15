@@ -1,4 +1,6 @@
 class Assignment < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
+
 	belongs_to :user
 	belongs_to :task
 	belongs_to :city
@@ -8,5 +10,24 @@ class Assignment < ActiveRecord::Base
   def assignments_for_city(city)
   	Assignment.where(:city_id => city.id)
   end
-  
+
+  def status
+  	if completed_at
+  		return "completed"
+  	else
+  		if started_at
+	  		if !hold
+					return "in progress"  			
+	  		else
+	  			return "on hold"
+	  		end
+	  	else
+	  		return "not yet begun"
+	  	end
+  	end
+  end
+
+  def completed?
+  	return !!completed_at
+  end
 end

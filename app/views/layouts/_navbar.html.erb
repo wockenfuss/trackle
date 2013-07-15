@@ -2,19 +2,19 @@
   <nav>  
       <%= link_to "Trackle", root_path, :class => "brand" %>
 
-      <!-- <#% if user_signed_in? %> -->
+      <% if user_signed_in? %>
 
-<!--         <div class="dropdown pull-right navbar">
-          <#%= link_to current_user.email, "#" %>
-          <ul class="dropdownMenu"> -->
+        <div class="dropdown pull-right navbar">
+          <%= link_to current_user.email, "#" %>
+          <ul class="dropdownMenu">
             <!-- <li><#%= link_to "Home Page", user_root_path(current_user)%></li> -->
             <!-- <li><#%= link_to "My Settings", edit_user_registration_path(current_user)%></li> -->
-            <!-- <li class="dropdown-divider"></li> -->
-            <!-- <li><#%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li> -->
-          <!-- </ul> -->
-        <!-- </div> -->
+            <li class="dropdown-divider"></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          </ul>
+        </div>
 
-        <!-- <#% if can? :manage, :all %> -->
+        <% if can? :manage, :all %>
 
           <div class="dropdown pull-right navbar">
             <%= link_to "Manage", "#"%>
@@ -24,15 +24,12 @@
               <li><%= link_to "Cities", cities_path %></li>
             </ul>
           </div>        
-        <!-- <#% end %> -->
+        <% end %>
 
-<!--         <div class="pull-right navbar">
-          <#%= link_to "Discussions", "#" %>  
-        </div> -->
 
-<!--       <#% else %>
-        <#%= link_to "Sign in", new_user_session_path, :class => "pull-right navbar"%>
-      <#% end %> -->
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, :class => "pull-right navbar"%>
+      <% end %>
 
   </nav>
 <!-- 

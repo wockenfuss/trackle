@@ -16,6 +16,18 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	def update
+		@assignment = Assignment.find(params[:id])
+		@user = @assignment.user
+		if @assignment.update_attributes(params[:assignment])
+			@assignment = @user.current_assignment
+			@queue = @user.queued
+			respond_with @assignment, @queued
+		else
+			# handle error
+		end
+	end
+
 	def destroy 
 		@assignment = Assignment.find(params[:id])
 		@user = @assignment.user

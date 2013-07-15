@@ -1,5 +1,7 @@
 class SchedulesController < ApplicationController
-
+	before_filter :authenticate_user!
+	load_and_authorize_resource
+	
 	def show
 		@cities = City.order('deadline')
 		@city = params[:city_id] ? City.find(params[:city_id]) : @cities.first
