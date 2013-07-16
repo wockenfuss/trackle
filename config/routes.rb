@@ -12,7 +12,7 @@ Trackle::Application.routes.draw do
     root :to => "devise/sessions#new"
   end
 
-  resources :users, :only => [:index, :show, :edit, :update]
+  resources :users, :only => [:index, :show, :edit, :update, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,31 +1,19 @@
 <div id="userDisplay">
+	<div class="userHeadline">
+		<span><h2 class="inline"><%= user.name %></h2></span>
+		<span><%= "<#{user.email}>" %></span>
+		<span><%= link_to "View User", user_path(user) %></span>
+	</div>
 
-<h2 class="inline"><%= user.name %></h2><%= "<#{user.email}>" %>
-<% if user.assigned? %>
-	<p>
-		<%= "Current: #{user.city_name} - #{user.current_assignment.task.name}" %> |
-		<%= link_to "delete", assignment_path(user.current_assignment), :method => :delete, :confirm => "Are you sure you want to clone all of this models?", :remote => true %>
-	</p>
-	<%= render :partial => "assignments/show", :locals => { :assignment => user.current_assignment } %>
+	<% if user.assigned? %>
 
-	<% if user.queued %>
- 		<p>Queued: </p>
-	 	<ul>
-	 		<% user.queued.each do |assignment| %>
-				<li>
-					<%= "#{assignment.city.name} - #{assignment.task.name}" %> |
-					<%= link_to "delete", assignment_path(assignment), :method => :delete, :confirm => "Are you sure you want to clone all of this models?", :remote => true %>
-				</li>
-			<% end %>
-	 	</ul>
-		
+
+		<div class="queuedAssignments">
+			<%= render :partial => "assignments/index", :locals => { :user => user } %>
+		</div>
+
+	<% else %>
+		<p>This user currently has no assignments.</p>	
 	<% end %>
-
-
-<% else %>
-	<p>This user currently has no assignments.</p>	
-<% end %>
-
-<%= link_to "View User", user_path(user) %>
 
 </div>

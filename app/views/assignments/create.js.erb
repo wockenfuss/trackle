@@ -6,13 +6,12 @@ refreshTaskBox('<%= @assignment.task.id %>');
 var userId = '<%= @assignment.user.id %>';
 var userSelector = 'div[data-user="' + userId + '"]';
 
-refreshUserBox(userId);
+refreshUserBox(userSelector);
+myApp.Users(userSelector).refresh();
 
 myApp.setTaskColor();
 myApp.setCityColor();
-myApp.droppable(userSelector);
-// myApp.bindUserModal(userSelector);
-myApp.addUserListeners();
+
 
 function refreshTaskBox(taskId) {
 	var $div = $('div[data-task="' + taskId + '"]');
@@ -22,7 +21,7 @@ function refreshTaskBox(taskId) {
 	myApp.draggable('div[data-task="' + taskId + '"]');
 };
 
-function refreshUserBox(userId) {
+function refreshUserBox(userSelector) {
 	var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @assignment.user } %>';
-	$('div[data-user="' + userId + '"]').replaceWith(userHtml);
+	$(userSelector).replaceWith(userHtml);
 }

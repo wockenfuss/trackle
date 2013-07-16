@@ -192,6 +192,15 @@ a {
 	}
 }
 
+.userHeadline {
+	text-align: right;
+	width: 60%;
+	float: right;
+	span {
+		margin-right: 3%;
+	}
+}
+
 #usersContainer {
 	width: 83%;
 	background-color: #eee;
@@ -261,11 +270,32 @@ a {
 	opacity: .3;
 }
 
+.unselected {
+	opacity: .3;
+}
+
 .assignmentShow {
-	margin-left: 10%;
-	p {
-		margin: 0;
+	border: solid 3px #eee;
+	padding: .5%;
+	background-color: #aaa;
+	a {
+		padding: 2%;
 	}
+}
+
+.assignmentDetails {
+	display: none;
+}
+
+.currentAssignment {
+	width: 40%;
+	float: left;
+}
+
+.queuedAssignments {
+	width: 40%;
+	float: left;
+	margin-left: 2%;
 }
 
 /*----- datepicker -----*/

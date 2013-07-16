@@ -22,51 +22,18 @@
    		$(e.target).parent().find('#announcementInterior').slideToggle();
    	})
 
-   	myApp.addUserListeners();
+   	myApp.Users('.userBox').refresh();
+
+
 	};
 
-	myApp.addUserListeners = function() {
-		$('.userBox').on('click', function(e) {
-   		// e.stopPropagation();
-   		var userId = $(this).attr('data-user');
-   		var appendLocation = myApp.appendLocation(this);
-   		var data = {
-   			appendLocation: appendLocation
-   		};
-   		// console.log(myApp.rowSize());
-   		$.ajax({
-   			url: "/users/" + userId,
-   			type: "get",
-   			dataType: "script",
-   			data: data,
-   			success: function(result) {
-   				$('#userDisplay').slideToggle();
-   				// console.log(result);
-   			}
-   		})
+	myApp.addAssignmentListeners = function() {
+		$('.assignmentName').on('click', function(e) {
+   		e.preventDefault();
+   		// console.log(e.target);
+   		$(e.target).parent().find('.assignmentDetails').slideToggle();
    	});
 	};
-
-	myApp.appendLocation = function(userBox) {
-		var index = $('.userBox').index(userBox);
-		var rowSize = myApp.rowSize();
-		var rowPosition = Math.floor(index / rowSize);
-		var insertIndex = rowPosition * rowSize;
-		return insertIndex;
-	};
-
-	myApp.rowSize = function() {
-    var length = 0;
-    var top = $('.userBox').first().position().top;
-    $.each($('.userBox'), function(index, value) {
-    	if ($(value).position().top !== top ) {
-    		return length;
-    	} else {
-    		length++;
-    	}
-    });
-   	return length;
-	}
 
 	myApp.setDropdowns = function() {
 		$('.dropdown a[href="#"]').on('click', function(e) {
@@ -158,15 +125,6 @@
 		$.each($('.cityName li'), function( index, value ) {
 			var color = $(value).attr('data-color');
 			$(value).css('background-color', color);
-		});
-
-		//user border colors
-		$.each($('.userBox'), function(index, value) {
-			var interiorColor = $(value).attr('data-taskColor');
-			var boxColor = $(value).attr('data-color');
-			$(value).css('border-color', boxColor);
-			$(value).css('background-color', interiorColor);
-			$(value).find('.cityStripe').css('background-color', boxColor);
 		});
 
 	};

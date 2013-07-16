@@ -1,9 +1,14 @@
-$('#user-modal').html('<%= j render :partial => "users/show", :locals => { :user => @user } %>');
+$('.queuedAssignments').html('<%= j render :partial => "assignments/index", :locals => { :user => @user } %>');
 
-refreshUserBox('<%= @user.id %>');
+var userId = '<%= @user.id %>';
+var userSelector = 'div[data-user="' + userId + '"]';
+
+refreshUserBox(userSelector);
+myApp.Users(userSelector).refresh();
+
 myApp.setCityColor();
 
-function refreshUserBox(userId) {
+function refreshUserBox(userSelector) {
 	var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @user } %>';
-	$('div[data-user="' + userId + '"]').replaceWith(userHtml);
+	$(userSelector).replaceWith(userHtml);
 }
