@@ -11,7 +11,8 @@ refreshUserBox(userId);
 myApp.setTaskColor();
 myApp.setCityColor();
 myApp.droppable(userSelector);
-myApp.bindUserModal(userSelector);
+// myApp.bindUserModal(userSelector);
+myApp.addUserListeners();
 
 function refreshTaskBox(taskId) {
 	var $div = $('div[data-task="' + taskId + '"]');

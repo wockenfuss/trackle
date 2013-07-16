@@ -22,8 +22,11 @@
    		$(e.target).parent().find('#announcementInterior').slideToggle();
    	})
 
+   	myApp.addUserListeners();
+	};
 
-   	$('.userBox').on('click', function(e) {
+	myApp.addUserListeners = function() {
+		$('.userBox').on('click', function(e) {
    		// e.stopPropagation();
    		var userId = $(this).attr('data-user');
    		var appendLocation = myApp.appendLocation(this);
@@ -42,8 +45,6 @@
    			}
    		})
    	});
-
-
 	};
 
 	myApp.appendLocation = function(userBox) {
