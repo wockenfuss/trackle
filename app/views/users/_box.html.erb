@@ -7,12 +7,19 @@
 		</div>
 
 		<div class="assignments">
-			<p><%= user.assignments.first.task.name %></p>
+			<p><%= user.current_assignment.task.name %></p>
 		</div>
 			
 	<% end %>
 	<div class="userName">
 		<p><%= user.name %></p>
+		<p>
+			<em>
+				<%= status_bar(user) %>
+			</em>
+		</p>
+
+
 	</div>
 </div>
 
