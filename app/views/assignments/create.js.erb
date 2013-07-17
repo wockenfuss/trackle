@@ -1,27 +1,34 @@
 $('#task-modal').dialog( "close" );
-
-refreshTaskBox('<%= @assignment.task.id %>');
-
-//refresh div of user
 var userId = '<%= @assignment.user.id %>';
 var userSelector = 'div[data-user="' + userId + '"]';
 
-refreshUserBox(userSelector);
-myApp.Users(userSelector).refresh();
+var taskId = '<%= @assignment.task.id %>';
+var taskSelector = 'div[data-task="' + taskId + '"]';
 
-myApp.setTaskColor();
+renderTaskBox(taskSelector);
+renderUserBox(userSelector);
+
+myApp.Users(userSelector).refresh();
+myApp.Tasks(taskSelector).refresh();
+
+// myApp.setTaskColor();
+
 myApp.setCityColor();
 
 
-function refreshTaskBox(taskId) {
-	var $div = $('div[data-task="' + taskId + '"]');
+if ( $('#userDisplay').is(':visible') ) {
+	$('.queuedAssignments').html('<%= j render :partial => "assignments/index", :locals => {:user => @assignment.user } %>');
+}
+
+function renderTaskBox(taskSelector) {
+	var $div = $(taskSelector);
 	var html = '<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>';
 	$div.replaceWith(html);
 	//make task draggable
 	myApp.draggable('div[data-task="' + taskId + '"]');
 };
 
-function refreshUserBox(userSelector) {
+function renderUserBox(userSelector) {
 	var userHtml = '<%= j render :partial => "users/box", :locals => { :user => @assignment.user } %>';
 	$(userSelector).replaceWith(userHtml);
 }

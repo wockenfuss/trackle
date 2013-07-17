@@ -35,7 +35,9 @@
 		   			dataType: "script",
 		   			data: data,
 		   			success: function(result) {
-		   				$('#userDisplay').find('.assignmentDetails').first().show();
+		   				if ( $('#userDisplay').is(':hidden') ) {
+			   				$('#userDisplay').find('.assignmentDetails').first().show();
+		   				}
 		   				$('#userDisplay').slideToggle()
 		   			}
 		   		})
