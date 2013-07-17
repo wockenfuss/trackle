@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
-
+	load_and_authorize_resource
 	def index
 		@cities = City.all
 		@city = City.new

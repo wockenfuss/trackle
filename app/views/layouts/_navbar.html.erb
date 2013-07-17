@@ -1,6 +1,6 @@
 <div id="navBackground">
   <nav>  
-      <%= link_to "Trackle", root_path, :class => "brand" %>
+      <%= link_to "Trackle", trackle_root(current_user), :class => "brand" %>
 
       <% if user_signed_in? %>
 

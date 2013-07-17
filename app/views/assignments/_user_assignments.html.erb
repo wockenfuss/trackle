@@ -1,5 +1,6 @@
 <% if @user.assigned? %>
 
+	<h3><%= "Current Task:" %></h3>
 	<div id="currentTask">
 		<%= render :partial => 'assignments/current_task', :locals => { :assignment => @assignment }  %>
 	</div>
@@ -16,6 +17,6 @@
 
 <% else %>
 	<p>You currently have no assignments</p>
-	<%= link_to "Get new assignment (not active yet)", "#", :remote => true %>	
+	<!-- <#%= link_to "Get new assignment (not active yet)", "#", :remote => true %>	 -->
 <% end %>
 

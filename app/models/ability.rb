@@ -14,7 +14,10 @@ class Ability
       can :read, User do |this_user|
         this_user.id == user.id
       end
-      cannot :read, Schedule
+      cannot :index, User
+      cannot :all, Schedule
+      cannot :all, City
+      cannot :all, Task
     end
   end
     # Define abilities for the passed in user here. For example:

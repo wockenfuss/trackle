@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+  load_and_authorize_resource  
 	before_filter :parse_params, :only => [:create, :update]
 
 	respond_to :js, :html, :json

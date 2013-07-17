@@ -1,8 +1,9 @@
-<h3><%= "Current Task:" %></h3>
 <ul>
 	<li><%= "#{assignment.task.name}: #{assignment.city.name}" %></li>
 	<li><%= "Deadline: #{assignment.deadline}" if assignment.deadline %></li>
 	<li><%= "Scheduled Duration: #{@user.current_assignment.duration}" if assignment.duration %></li>
-	<li><%= "Status: #{assignment.status}" %></li>
-	<%= render 'assignments/status_link' %>
+	<li><em><%= assignment.status %></em></li>
+	<div id="statusLink">
+		<%= render 'assignments/status_link' %>	
+	</div>
 </ul>

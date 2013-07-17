@@ -1,7 +1,9 @@
-<h2><%= @user.name %></h2>
-<div id="userAssignments">
-	<%= render "assignments/user_assignments" %>	
-</div>
-<div id="completedAssignments">
-	<%= render "assignments/completed_assignments" %>
+<div id="userTaskBar">
+	<h2><%= @user.name %></h2>
+	<div id="userAssignments">
+		<%= render "assignments/user_assignments" %>	
+	</div>
+	<div id="completedAssignments">
+		<%= render "assignments/completed_assignments" %>
+	</div>	
 </div>
