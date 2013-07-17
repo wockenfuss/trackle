@@ -6,7 +6,9 @@ class AssignmentsController < ApplicationController
 
 	def new
 		@assignment = Assignment.new(params[:assignment])
-		respond_with @assignment
+		# @comments = Comment.new
+		@assignment.comments.build
+		respond_with @assignment, @comment
 	end
 
 	def create

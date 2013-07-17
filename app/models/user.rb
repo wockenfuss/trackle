@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 	has_many :assignments, :order => :created_at, :dependent => :destroy
 	has_many :tasks, :through => :assignments
+  has_many :comments
 	validates :name, :presence => true
   attr_accessible :absent, :available, :name, :admin
   attr_accessor :admin

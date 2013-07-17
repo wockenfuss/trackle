@@ -1,0 +1,4 @@
+<%= f.label "Add a comment" %>
+<%= f.text_area :content %>
+
+<%= f.hidden_field :user_id, :value => current_user.id %>

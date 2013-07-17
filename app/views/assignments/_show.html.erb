@@ -1,9 +1,12 @@
 <div class="assignmentShow">
 	<a href="#" class="assignmentName"><%= "#{assignment.task.name}: #{assignment.city.name}" %></a> |
-	<%= link_to "delete", assignment_path(assignment), :method => :delete, :confirm => "Are you sure you want to clone all of this models?", :remote => true %>
+	<%= link_to "delete", assignment_path(assignment), :method => :delete, :confirm => "Are you sure you want to delete this assignment?", :remote => true %>
 	<ul class="assignmentDetails">
 		<li><%= "Status: #{assignment.status}"%></li>
 		<li><%= "Deadline: #{assignment.deadline || 'None set'}" %></li>
 		<li><%= "Scheduled duration: #{ assignment.duration || 'Not set'}" %></li>
+		<% if assignment.comments.count > 0 %>
+			<li><%= "Comment: \"#{assignment.comments.first.content}\" -#{assignment.comments.first.user.name}" %></li>
+		<% end %>
 	</ul>	
 </div>

@@ -12,8 +12,10 @@
 	</div>
 
 	<div>
-		<%= label_tag "Add a comment" %>
-		<%= text_area_tag "Comment", nil, :placeholder => "Comments not yet enabled." %>
+		<%= f.fields_for :comments do |builder| %>
+	    <%= render "comments/form", :f => builder %>
+	  <% end %>
+			
 	</div>
 
 	<div>

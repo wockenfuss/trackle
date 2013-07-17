@@ -1,11 +1,13 @@
 class Assignment < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
+  has_many :comments, :dependent => :destroy
+  accepts_nested_attributes_for :comments, :allow_destroy => true
 	belongs_to :user
 	belongs_to :task
 	belongs_to :city
 
-  attr_accessible :amount_completed, :completed_at, :deadline, :duration, :hold, :paused_at, :started_at, :user_id, :task_id, :city_id
+  attr_accessible :amount_completed, :completed_at, :deadline, :duration, :hold, :paused_at, :started_at, :user_id, :task_id, :city_id, :comments_attributes
 
   def assignments_for_city(city)
   	Assignment.where(:city_id => city.id)
