@@ -137,10 +137,8 @@ a {
 		/*background-color: #5ad;*/
 		text-align: center;
 		padding: 3%;
-		&:hover {
-			cursor: hand; cursor: pointer;
-		}
 		.taskProgress {
+			margin-bottom: 3%;
 			color: #000;
 			font-size: .7em;
 			/*width: 85%;*/
@@ -155,6 +153,22 @@ a {
 /*			.incompleteTasks {
 				background-color: red;
 			}*/
+		}
+		.taskBoxName {
+			&:hover {
+				cursor: hand; cursor: pointer;
+			}
+		}
+		.taskAssignments {
+			opacity: .7;
+			display: none;
+			background-color: #eee;
+			border-radius: 5px;
+			padding: 2%;
+			text-align: left;
+			li {
+				margin: 0 -10% ;
+			}
 		}
 	}
 }

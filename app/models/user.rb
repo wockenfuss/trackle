@@ -8,11 +8,14 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-	has_many :assignments, :order => :created_at
+	has_many :assignments, :order => :created_at, :dependent => :destroy
 	has_many :tasks, :through => :assignments
 	validates :name, :presence => true
   attr_accessible :absent, :available, :name, :admin
   attr_accessor :admin
+
+  # scope :non_admin, -> { where(published: true) }
+
 
   def completed_assignments
     self.assignments.where('completed_at is NOT NULL')
@@ -66,5 +69,15 @@ class User < ActiveRecord::Base
     else
       self.remove_role :admin
     end
+  end
+
+  def self.non_admin
+    @users = []
+    User.find_each do |user|
+      if !user.has_role? :admin
+        @users << user
+      end
+    end
+    @users
   end
 end

@@ -3,26 +3,22 @@
 		bind();
 	});
 
-
-
 	var bind = function() {
 		$('.colorPicker').minicolors();
 		myApp.setCityColor();
-		myApp.setTaskColor();
-		myApp.setTaskProgress();
 
 		myApp.setFlashAlerts();
 		myApp.setDropdowns();
 		myApp.draggable(".draggable");
 		myApp.droppable('.droppable');
     myApp.taskModal();
-   	myApp.userModal();
-   	myApp.taskDisplay();
+
    	$('#announcements span').on('click', function(e) {
    		$(e.target).parent().find('#announcementInterior').slideToggle();
    	})
 
    	myApp.Users('.userBox').refresh();
+   	myApp.Tasks('.taskBox').refresh();
 
 
 	};
@@ -80,10 +76,6 @@
 			type: 'get',
 			data: data,
 			success: function(result) {
-
-				// $('#task-modal').dialog("open");
-
-				// console.log(result);	
 			}
 		});
 	};
@@ -129,25 +121,6 @@
 
 	};
 
-	myApp.setTaskColor = function(index, value) {
-		$.each($('.taskBox'), function(index, value) {
-			var color = $(value).attr('data-taskColor');
-			$(value).css('background-color', color);
-			myApp.setTaskProgress(index, value);
-		});
-	};
-
-	myApp.setTaskProgress = function(index, value) {
-		var taskProgress = $(value).find('.taskProgress').first().text().replace(/\s+/g, '').split('/');
-		var percentage;
-		if ( taskProgress[1] === "0" ) {
-			percentage = 100;
-		} else {
-			percentage = (taskProgress[0] / taskProgress[1]) * 100;
-		}
-		$(value).find('.completeTasks').css('width', percentage + "%");
-	}
-
 	myApp.taskModal = function() {
 		$( "#task-modal" ).dialog({
 			closeText: 'X',
@@ -156,96 +129,10 @@
       width: 500,
       modal: true,
       draggable: false,
-      buttons: {
-      	// "Assign Task": function() {
-       //  	$( this ).dialog( "close" );
-       //  },
-        // Cancel: function() {
-        //   $( this ).dialog( "close" );
-        // }
-      },
       close: function() {
         // allFields.val( "" ).removeClass( "ui-state-error" );
       }
     });
 	};
-
-		myApp.taskDisplay = function() {
-		$( "#task-display" ).dialog({
-			closeText: 'X',
-      autoOpen: false,
-      height: 600,
-      width: 600,
-      modal: true,
-      draggable: false,
-      buttons: {
-
-      },
-      close: function() {
-        // allFields.val( "" ).removeClass( "ui-state-error" );
-      }
-    });
-
-    myApp.bindTaskDisplay('.taskBox');
-	};
-
-	myApp.userModal = function() {
-		$( "#user-modal" ).dialog({
-			closeText: 'X',
-      autoOpen: false,
-      height: 600,
-      width: 600,
-      modal: true,
-      draggable: false,
-      buttons: {
-        "OK": function() {
-          $( this ).dialog( "close" );
-        }
-      },
-      close: function() {
-        // allFields.val( "" ).removeClass( "ui-state-error" );
-      }
-    });
-
-		// myApp.bindUserModal('.userBox');
-	};
-	
-	myApp.bindUserModal = function( selector ) {
-		$(selector).on('click', function(e) {
-    	var userId = $(this).attr('data-user');
-    	$.ajax({
-    		url: "/users/" + userId,
-				dataType: 'script',
-				type: 'get',
-				success: function(result) {
-					// console.log(result);	
-		    	$('#user-modal').dialog("open");
-				}
-    	});
-
-    });
-	};
-
-	myApp.bindTaskDisplay = function( selector ) {
-		$(selector).on('click', function(e) {
-			var taskId = $(this).attr('data-task');
-			var cityId = $(this).attr('data-city');
-			$.ajax({
-				url: "/tasks/" + taskId,
-				dataType: 'script',
-				type: 'get',
-				data: {
-					city_id: cityId
-				},
-				success: function(result) {
-					$('#task-display').dialog("open");
-				}
-			});
-
-		});
-	}
-
-
-
 
 })(window.myApp = window.myApp || {}, jQuery);

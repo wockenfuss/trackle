@@ -1,8 +1,11 @@
-<h2><%= "#{task.name}: #{city.name}" %></h2>
 <% if task.assignments_for_city(city).count > 0 %>
 	<ul>
 		<% task.assignments_for_city(city).each do |assignment| %>
-			<li><%= "#{assignment.user.name}: #{assignment.status}" %></li>
+			<% puts assignment.id %>
+			<li>
+				<%= link_to assignment.user.name, user_path(assignment.user) %>
+				<%= ": #{assignment.status}" %>
+			</li>
 		<% end %>
 	</ul>
 <% else %>

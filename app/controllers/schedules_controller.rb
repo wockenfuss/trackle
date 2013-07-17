@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
 		@cities = City.order('deadline')
 		@city = params[:city_id] ? City.find(params[:city_id]) : @cities.first
 		@tasks = Task.order('created_at')
-		@users = User.all
+		@users = User.non_admin
 	end
 	
 end

@@ -1,9 +1,10 @@
 <div class="taskBox draggable" data-task="<%= task.id %>" data-city="<%= city.id %>" data-taskColor="<%= task.color || "#ccc" %>">
-	<%= task.name %>
+	<div class="taskBoxName"><%= task.name %></div>
 	<div class="taskProgress">
 		<div class="completeTasks">		
 			<%= task_progress_bar(task, city) %>
 		</div>
-		<!-- <div class="incompleteTasks"></div> -->
 	</div>
+
+	<div class="taskAssignments"></div>
 </div>
