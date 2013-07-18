@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def assigned?
-  	self.incomplete_assignments.count > 0
+  	self.incomplete_assignments.count > 0 || self.on_hold.count > 0
   end
 
   def queued

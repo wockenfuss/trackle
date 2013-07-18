@@ -5,7 +5,7 @@
 		<li><%= "Status: #{assignment.status}"%></li>
 		<li><%= "Deadline: #{parse_time(assignment.deadline) || 'None set'}" %></li>
 		<li><%= "Scheduled duration: #{ assignment.duration || 'Not set'} hours" %></li>
-		<% if assignment.comments.count > 0 %>
+		<% if assignment.has_comment? %>
 			<li class="comment">
 				<%= "\"#{assignment.comments.first.content}\""%>
 				</br> 

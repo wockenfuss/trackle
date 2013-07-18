@@ -2,7 +2,7 @@ class Assignment < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
   has_many :comments, :dependent => :destroy
-  accepts_nested_attributes_for :comments, :allow_destroy => true
+  accepts_nested_attributes_for :comments, :allow_destroy => true, reject_if: proc { |attributes| attributes['content'].blank? }
 	belongs_to :user
 	belongs_to :task
 	belongs_to :city
@@ -31,5 +31,13 @@ class Assignment < ActiveRecord::Base
 
   def completed?
   	return !!completed_at
+  end
+
+  def has_comment?
+    result = false
+    self.comments.each do |comment|
+      result = comment.content != ""
+    end
+    result
   end
 end

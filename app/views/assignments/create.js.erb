@@ -11,14 +11,14 @@ renderUserBox(userSelector);
 myApp.Users(userSelector).refresh();
 myApp.Tasks(taskSelector).refresh();
 
-// myApp.setTaskColor();
-
 myApp.setCityColor();
 
 
 if ( $('#userDisplay').is(':visible') ) {
 	$('.queuedAssignments').html('<%= j render :partial => "assignments/index", :locals => {:user => @assignment.user } %>');
 }
+
+myApp.addAssignmentListeners();
 
 function renderTaskBox(taskSelector) {
 	var $div = $(taskSelector);

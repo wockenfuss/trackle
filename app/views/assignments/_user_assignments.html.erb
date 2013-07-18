@@ -1,9 +1,11 @@
 <% if @user.assigned? %>
 
-	<h3><%= "Current Task:" %></h3>
-	<div id="currentTask">
-		<%= render :partial => 'assignments/current_task', :locals => { :assignment => @assignment }  %>
-	</div>
+	<% if @user.current_assignment %>
+		<h3><%= "Current Task:" %></h3>
+		<div id="currentTask">
+			<%= render :partial => 'assignments/current_task', :locals => { :assignment => @assignment }  %>
+		</div>
+	<% end %>
 	
 	<% if !@on_hold.blank? %>
 		<h3>On Hold: </h3>

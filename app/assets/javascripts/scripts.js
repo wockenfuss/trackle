@@ -20,10 +20,10 @@
    	myApp.Users('.userBox').refresh();
    	myApp.Tasks('.taskBox').refresh();
 
-
 	};
 
 	myApp.addAssignmentListeners = function() {
+		$('.assignmentName').off('click');
 		$('.assignmentName').on('click', function(e) {
    		e.preventDefault();
    		// console.log(e.target);

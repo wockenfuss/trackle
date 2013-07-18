@@ -11,7 +11,7 @@ module UsersHelper
 	end
 
 	def hold_resume(item)
-		if @user.current_assignment.status == "in progress"
+		if @user.current_assignment && @user.current_assignment.status == "in progress"
 			return ""
 		else 
 			return link_to 'resume', assignment_path(item, :assignment => 
