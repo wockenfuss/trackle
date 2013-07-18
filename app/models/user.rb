@@ -49,7 +49,11 @@ class User < ActiveRecord::Base
 
   def task_color
   	if assigned?
-			return current_assignment.task.color
+      if current_assignment
+        return current_assignment.task.color
+      else
+        return on_hold.first.task.color
+      end
 		else 
 			return 'lightgreen'
 		end
