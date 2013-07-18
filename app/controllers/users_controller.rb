@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 		@on_hold = @user.on_hold
 		@queue = @user.queued
 		@location = params[:appendLocation] if params[:appendLocation]
+		@announcements = Announcement.current
 		respond_with @user, @location
 	end
 

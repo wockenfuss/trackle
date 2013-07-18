@@ -1,0 +1,14 @@
+<% if current_object.errors.any? %>
+  <div id="error_explanation">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <h4><%= pluralize(current_object.errors.count, "error") %> prohibited this <%= current_object.class %> from being saved:</h4>
+    <div class="alert alert-error">
+      
+      <ul>
+      <% current_object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

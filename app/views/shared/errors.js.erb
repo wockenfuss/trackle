@@ -1,0 +1,11 @@
+$('<%= target %>').html = ""
+$('<%= target %>').append('<%= j render :partial => "shared/errors", :locals => { :current_object => current_object } %>');
+$('#error_explanation').slideToggle();
+$('input[type="submit"]').on('click', function(e){
+	$('<%= target %>').empty();
+});
+$('.close').on('click', function(e) {
+	$(this).parent().slideToggle(function() {
+		// $(target).empty();
+	});
+});

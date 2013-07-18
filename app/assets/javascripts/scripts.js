@@ -12,6 +12,7 @@
 		myApp.draggable(".draggable");
 		myApp.droppable('.droppable');
     myApp.taskModal();
+    $( ".datepicker" ).datepicker();
 
    	$('#announcements span').on('click', function(e) {
    		$(e.target).parent().find('#announcementInterior').slideToggle();
@@ -19,7 +20,12 @@
 
    	myApp.Users('.userBox').refresh();
    	myApp.Tasks('.taskBox').refresh();
-
+   	$('.deleteButton').on('click', function(e) {
+   		$(this).parent().remove();
+   		if ( $('#userAnnouncements').children().size() < 2 ) {
+   			$('#userAnnouncements').slideToggle();
+   		}
+   	});
 	};
 
 	myApp.addAssignmentListeners = function() {

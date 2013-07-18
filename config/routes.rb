@@ -1,6 +1,6 @@
 Trackle::Application.routes.draw do
 
-  
+  resources :announcements, :only => [:create]
   resources :assignments, :except => [:index, :show, :edit]
   resources :cities, :except => [:show, :new]
   resources :tasks, :except => [:new]

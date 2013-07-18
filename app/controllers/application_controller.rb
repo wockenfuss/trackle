@@ -28,4 +28,17 @@ class ApplicationController < ActionController::Base
     string
   end
 
+  def js_alert(current_object)
+    render "shared/errors", :locals => { :current_object => current_object, :target => targetId(current_object) }
+  end
+
+  def targetId(object)
+    case object
+    when @announcement
+      return '#announcementErrors'
+    else
+      return '#errors'
+    end
+  end
+
 end
