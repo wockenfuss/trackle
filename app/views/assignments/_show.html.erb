@@ -6,7 +6,11 @@
 		<li><%= "Deadline: #{parse_time(assignment.deadline) || 'None set'}" %></li>
 		<li><%= "Scheduled duration: #{ assignment.duration || 'Not set'} hours" %></li>
 		<% if assignment.comments.count > 0 %>
-			<li><%= "Comment: \"#{assignment.comments.first.content}\" -#{assignment.comments.first.user.name}" %></li>
+			<li class="comment">
+				<%= "\"#{assignment.comments.first.content}\""%>
+				</br> 
+				<%= "-#{assignment.comments.first.user.name}" %>
+			</li>
 		<% end %>
 	</ul>	
 </div>

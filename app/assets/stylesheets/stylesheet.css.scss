@@ -145,12 +145,12 @@ a {
 			}
 		}
 		color: #000;
-		margin: 1% 5%;
-		/*border-radius: 5px;*/
-		/*border: 5px #000 solid;*/
-		/*background-color: #5ad;*/
-		text-align: center;
-		padding: 3%;
+		margin: 1.5% 5%;
+		border-radius: 5px;
+		border: 2px #bbb solid;
+		/*background-color: #ccc;*/
+		text-align: left;
+		padding: 1%;
 		.taskProgress {
 			border: solid 2px #eee;
 			border-radius: 3px;
@@ -257,19 +257,19 @@ a {
 
 #usersContainer {
 	width: 83%;
-	background-color: #eee;
+	background-color: #ddd;
 	overflow: auto;
 	margin: 0 2% 3% 4%;
 	padding: 2%;
 	border-radius: 5px;
-
+	border: solid 4px #999;
 }
 
 .userBox {
 	border-radius: 5px;
-	border-width: 10px;
+	border-width: 5px;
 	border-style: solid;
-	font-size: .7em;
+	font-size: .9em;
 	line-height: 1em;
 	color: #000;
 	text-align: center;
@@ -277,6 +277,7 @@ a {
 	height: 200px;
 	float: left;
 	margin: 2%;
+	background-color: #eee;
 	/*padding: 1%;*/
 	&:hover {
 		cursor: hand; cursor: pointer;
@@ -288,11 +289,12 @@ a {
 		padding: 10% 0;
 		p {
 			margin: 0;
+			line-height: 1.5em;
 		}
 	}
 
 	.cityStripe {
-		font-size: 1.2em;
+		font-size: 1em;
 		margin: 0;
 		padding: 2%;
 		p {
@@ -302,8 +304,8 @@ a {
 
 
 	.userName {
-		font-size: 1.3em;
-		line-height: 1.3em;
+		font-size: 1.2em;
+		line-height: 1.2em;
 	}
 
 }
@@ -383,7 +385,7 @@ a {
 
 .occupied {
 	/*background-color: red;*/
-	color: #fff;
+	/*color: #fff;*/
 }
 
 .absent {
@@ -405,6 +407,9 @@ a {
 
 .assignmentDetails {
 	display: none;
+	li {
+		margin-left: -6%;
+	}
 }
 
 .currentAssignment {

@@ -1,5 +1,7 @@
-<div class="userBox droppable" data-user="<%= user.id %>" data-color="<%= user.current_city_color %>" data-taskColor="<%= user.task_color%>">
-
+<div class="<%= user.assigned? ? "userBox droppable occupied" : "userBox droppable available" %>" data-user="<%= user.id %>" data-color="<%= user.current_city_color %>" data-taskColor="<%= user.task_color%>">
+	<div class="userName">
+		<p><%= user.name %></p>
+	</div>
 	<% if user.assigned?%>
 
 		<div class="cityStripe">
@@ -8,19 +10,15 @@
 
 		<div class="assignments">
 			<p><%= user.current_assignment.task.name %></p>
+			<p>
+				<em>
+					<%= status_bar(user) %>
+				</em>
+			</p>
 		</div>
 			
 	<% end %>
-	<div class="userName">
-		<p><%= user.name %></p>
-		<p>
-			<em>
-				<%= status_bar(user) %>
-			</em>
-		</p>
 
-
-	</div>
 </div>
 
 	

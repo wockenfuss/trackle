@@ -23,7 +23,7 @@
 
 			var updateView = function() {
 				$.each($target, function( index, value ) {
-					setColor(value);
+					// setColor(value);
 					setProgress(value);
 				});
 			};
