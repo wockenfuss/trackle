@@ -32,16 +32,18 @@ class User < ActiveRecord::Base
   end
 
   def current_assignment
-  	assigned? ? (return self.incomplete_assignments.first) : (return "none")
+    if self.incomplete_assignments.first
+      return self.incomplete_assignments.first
+    elsif self.on_hold
+      return self.on_hold.first
+    else
+      return "none"
+    end
   end
 
   def current_city_color
   	if assigned?
-      if current_assignment
-        return current_assignment.city.color 
-      else
-        return on_hold.first.city.color
-      end
+			return current_assignment.city.color 
 		else 
 			return 'lightgreen'
 		end
@@ -49,11 +51,7 @@ class User < ActiveRecord::Base
 
   def task_color
   	if assigned?
-      if current_assignment
-        return current_assignment.task.color
-      else
-        return on_hold.first.task.color
-      end
+			return current_assignment.task.color
 		else 
 			return 'lightgreen'
 		end
