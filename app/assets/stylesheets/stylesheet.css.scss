@@ -197,6 +197,14 @@ a {
 	}
 }
 
+.comment {
+	width: 95%;
+	background-color: #eeeeee;
+	border-radius: 5px;
+	margin: 3%;
+	padding: 2%;
+}
+
 #announcements {
 	border-radius: 5px;
 	float: left;
@@ -321,8 +329,9 @@ a {
 		}*/
 
 		input[type="submit"] {
+			width: 25%;
 			margin: 3% 0;
-			padding: 4%;
+			padding: 2%;
 			font-size: .9em;
 			border-radius: 15px;
 			outline: none;
