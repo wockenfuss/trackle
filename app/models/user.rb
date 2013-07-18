@@ -37,7 +37,11 @@ class User < ActiveRecord::Base
 
   def current_city_color
   	if assigned?
-			return current_assignment.city.color
+      if current_assignment
+        return current_assignment.city.color 
+      else
+        return on_hold.first.city.color
+      end
 		else 
 			return 'lightgreen'
 		end

@@ -36,7 +36,7 @@
 		   			data: data,
 		   			success: function(result) {
 		   				if ( $('#userDisplay').is(':hidden') ) {
-			   				$('#userDisplay').find('.assignmentDetails').first().show();
+		   					$('#current').next().find('.assignmentDetails').show();
 		   				}
 		   				$('#userDisplay').slideToggle()
 		   			}

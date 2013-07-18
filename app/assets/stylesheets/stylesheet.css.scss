@@ -55,6 +55,11 @@ nav {
 	float: right;
 }
 
+.pullLeft {
+	float: left;
+	margin-top: .5%;
+}
+
 .right {
 	float: right;
 	margin-top: -2%;
@@ -244,11 +249,20 @@ a {
 
 .userHeadline {
 	text-align: right;
-	width: 60%;
+	width: 98%;
 	float: right;
 	span {
 		margin-right: 3%;
 	}
+}
+
+.assignmentManager {
+	text-align: center;
+	width: 41%;
+	a {
+		margin: 0 10%;
+	}
+	font-size: 1.2em;
 }
 
 .userLink {
@@ -397,6 +411,7 @@ a {
 }
 
 .assignmentShow {
+	margin: 2% 0;
 	border: solid 3px #eee;
 	padding: .5%;
 	background-color: #aaa;
