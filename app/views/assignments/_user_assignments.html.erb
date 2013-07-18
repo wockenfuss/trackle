@@ -4,7 +4,19 @@
 	<div id="currentTask">
 		<%= render :partial => 'assignments/current_task', :locals => { :assignment => @assignment }  %>
 	</div>
-		
+	
+	<% if !@on_hold.blank? %>
+		<h3>On Hold: </h3>
+		<ul>
+			<% @on_hold.each do |item| %>
+				<li>
+					<%= "#{item.task.name}: #{item.city.name}" %></br>
+					<%= hold_resume(item) %>
+				</li> 
+			<% end %>
+		</ul>
+	<% end %>
+
 	<!-- queued -->
 	<% if !@queue.blank? %>
 	<h3>Queue:</h3>

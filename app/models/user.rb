@@ -17,13 +17,16 @@ class User < ActiveRecord::Base
 
   # scope :non_admin, -> { where(published: true) }
 
+  def on_hold
+    self.assignments.where(:hold => true)
+  end
 
   def completed_assignments
     self.assignments.where('completed_at is NOT NULL')
   end
 
   def incomplete_assignments
-    self.assignments.where(:completed_at => nil)
+    self.assignments.where(:completed_at => nil, :hold => false)
     # Assignment.where("user_id = ?", self.id)    
     # Assignment.where("user_id = ? AND assignments.completed_at = ?", self.id, nil)
   end

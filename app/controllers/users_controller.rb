@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 	def show 
 		@user = User.find(params[:id])
 		@assignment = @user.current_assignment
+		@on_hold = @user.on_hold
 		@queue = @user.queued
 		@location = params[:appendLocation] if params[:appendLocation]
 		respond_with @user, @location

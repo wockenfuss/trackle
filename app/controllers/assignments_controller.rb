@@ -23,12 +23,15 @@ class AssignmentsController < ApplicationController
 
 	def update
 		@assignment = Assignment.find(params[:id])
+		puts "assignment on hold: #{@assignment.hold}"
 		@user = @assignment.user
 		if @assignment.update_attributes(params[:assignment])
 			@assignment = @user.current_assignment
 			@queue = @user.queued
-			respond_with @assignment, @queued
+			@on_hold = @user.on_hold
+			respond_with @assignment, @queued, @on_hold
 		else
+			puts "error"
 			# handle error
 		end
 	end

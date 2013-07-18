@@ -311,10 +311,19 @@ a {
 				cursor: pointer; cursor: hand;
 			}
 		}
+
+
 	}
 
 	#completedAssignments {
 		margin-top: 15%;	
+	}
+
+	a {
+		color: #999;
+		&:hover {
+			color: #555;
+		}
 	}
 	
 }

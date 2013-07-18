@@ -6,3 +6,10 @@
 	<% end %>
 	<%= render :partial => "assignments/show", :locals => { :assignment => assignment } %>
 <% end %>
+
+<% if user.on_hold.count > 0 %>
+	<h4>On Hold: </h4>
+	<% user.on_hold.each do |assignment| %>
+		<%= render :partial => "assignments/show", :locals => { :assignment => assignment } %>
+	<% end %>
+<% end %>
