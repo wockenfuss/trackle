@@ -80,6 +80,8 @@ a {
 	height: 40px;
 }
 .dropdownMenu{
+	position: relative;
+	z-index: 100;
 	/*height: 100px;*/
 	display: none;
 	width: 10%;
@@ -229,6 +231,8 @@ a {
 	width: 78%;
 	float: left;
 	#userDisplay {
+		border-radius: 3px;
+		border: 3px solid #aaa;
 		display: none;
 		background: #ccc;
 		width: 94%;
@@ -245,6 +249,10 @@ a {
 	span {
 		margin-right: 3%;
 	}
+}
+
+.userLink {
+	font-size: 1.6em;
 }
 
 #usersContainer {
