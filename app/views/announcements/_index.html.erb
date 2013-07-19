@@ -1,0 +1,26 @@
+<% if @announcements.size > 0 %>
+	<h3>Announcements</h3>
+	<% @announcements.each do |announcement| %>
+		<div class="editAnnouncement">
+			<div>
+				<span><%= "#{announcement.subject}"%></span>
+				<span><%= "-posted by #{announcement.user.name}" %></span>
+				<span><em><%= "#{announcement.created_at.to_date}" %></em></span>	
+			</div>
+			<div>
+				<%= announcement.content %></br>					
+			</div>
+			<div>
+				<span>
+					<%= link_to "Edit", edit_announcement_path(announcement) %>
+				</span> |
+				<span>
+					<%= link_to "Delete", announcement_path(announcement), :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this announcement?" %>
+				</span>
+			</div>
+				
+		</div>
+	<% end %>
+<% else %>
+<p>There are no announcements.</p>	
+<% end %>

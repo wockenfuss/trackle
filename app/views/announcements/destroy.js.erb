@@ -1,0 +1,6 @@
+$('#editAnnouncementList').html('<%= j render "index" %>');
+$('#alerts').html("");
+$('#alerts').append('<%= j render "shared/messages", :locals => { :notice => @notice} %>').fadeIn('slow');
+setTimeout(function() {
+	$('#alerts').fadeOut('slow');
+}, 3000);

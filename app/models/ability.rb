@@ -18,6 +18,7 @@ class Ability
       cannot :all, Schedule
       cannot :all, City
       cannot :all, Task
+      cannot :all, Announcement
     end
   end
     # Define abilities for the passed in user here. For example:

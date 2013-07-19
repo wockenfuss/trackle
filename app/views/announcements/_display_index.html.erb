@@ -1,0 +1,11 @@
+<% if @announcements.count > 0 %>
+	<% @announcements.each do |announcement| %>
+		<div class="eachAnnouncement">
+			<strong><%= "#{announcement.subject}:" %></strong>
+			<%= announcement.content %>
+			<span id="userTag"><%= "-posted by #{announcement.user.name}" %></span>
+			<span><em><%= announcement.begin_date.to_date %></em></span>
+			<span class="deleteButton">x</span>
+		</div>
+	<% end %>
+<% end %>

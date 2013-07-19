@@ -10,17 +10,7 @@
 	</div>
 
 	<div id="userAnnouncements">
-		<% if @announcements.count > 0 %>
-		<!-- <h4>Announcements:</h4> -->
-			<% @announcements.each do |announcement| %>
-				<p class="eachAnnouncement">
-					<strong><%= "#{announcement.subject}:" %></strong>
-					<%= announcement.content %>
-					<span class="deleteButton">x</span>
-				</p>
-			<% end %>
-		<% end %>
-
+		<%= render 'announcements/display_index' %>
 	</div>
 
 </div>

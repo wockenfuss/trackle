@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
     string
   end
 
+  def js_redirect_to(path)
+    render js: %(window.location.href='#{path}') and return
+  end
+  
   def js_alert(current_object)
     render "shared/errors", :locals => { :current_object => current_object, :target => targetId(current_object) }
   end
