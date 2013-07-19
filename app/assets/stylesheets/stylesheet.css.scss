@@ -3,6 +3,20 @@ $secondary-font: "Pontano Sans";
 /*$secondary-font: "Sintony";*/
 
 /*$tertiary-font: "Karla";*/
+@mixin flash {
+	position: absolute;
+	top: 0;
+	left: 25%;
+	width: 50%;
+	margin: .5% auto;
+	padding: .5%;
+	font-family: $secondary-font;
+	text-align: center;
+	color: #fff;
+	border-radius: 5px;
+	/*background-color: $color;*/
+}
+
 
 .navbar {
 	margin: 15px 30px 0 0;
@@ -592,3 +606,26 @@ a {
 		cursor: hand; cursor: pointer;
 	}
 }
+
+/*------ flash -----*/
+#alerts {
+	@include flash;
+	display:none;
+	background-color: #0b0;
+}
+
+#flash_alert {
+	@include flash;
+	background-color: #bc5656;
+}
+
+#flash_error {
+	@include flash;
+	background-color: #f00;
+}
+
+#flash_notice {
+	@include flash;
+	background-color: #0b0;
+}
+
