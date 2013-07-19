@@ -4,14 +4,6 @@
 <div id="announcementDisplay">
 	<%= render 'announcements/display_index' %>
 </div>
-<div id="announcements">
-	<span>Announcements</span>
-	<div id="announcementInterior">
-		<div id="announcementErrors"></div>
-		<%= render 'announcements/form' %>
-	</div>
-	<!-- <a href="#">Announcements</a> -->
-</div>
 
 <div id="usersList">
 	<% if @users.any? %>
@@ -23,8 +15,7 @@
 	</div>
 	<% end %>
 </div>
-<!-- <div id="user-modal" class="modal"></div> -->
+
 <div id="task-modal" class="modal">
 	<%= render 'assignments/form' %>
 </div>
-<!-- <div id="task-display"></div> -->

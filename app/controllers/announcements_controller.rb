@@ -5,12 +5,15 @@ class AnnouncementsController < ApplicationController
 
 	def index
 		@announcements = Announcement.order('created_at')
+		@announcement = current_user.announcements.build(:begin_date => Time.now.strftime("%-m/%d/%Y"), :end_date => 1.day.from_now.strftime("%-m/%d/%Y"))
 	end
 
 	def create
 		@announcement = current_user.announcements.build(params[:announcement])
 		if @announcement.save
+			@announcements = Announcement.order('created_at')
 			@notice = "Announcement created"
+			respond_with @announcements, @notice
 		else
 			js_alert(@announcement)
 		end

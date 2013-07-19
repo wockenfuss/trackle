@@ -4,3 +4,4 @@ setTimeout(function() {
 	$('#alerts').fadeOut('slow');
 }, 3000);
 $('#announcement_subject, textarea').val('');
+$('#editAnnouncementList').html('<%= j render "announcements/index" %>');
