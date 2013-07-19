@@ -1,10 +1,3 @@
-<% if user.on_hold.count > 0 %>
-	<h4>On Hold: </h4>
-	<% user.on_hold.each do |assignment| %>
-		<%= render :partial => "assignments/show", :locals => { :assignment => assignment } %>
-	<% end %>
-<% end %>
-
 <% user.incomplete_assignments.each_with_index do |assignment, index| %>
 	<% if index == 0 %>
 		<h4 id="current">Current: </h4>
@@ -12,4 +5,11 @@
 		<h4>Queue: </h4>	
 	<% end %>
 	<%= render :partial => "assignments/show", :locals => { :assignment => assignment } %>
+<% end %>
+
+<% if user.on_hold.count > 0 %>
+	<h4>On Hold: </h4>
+	<% user.on_hold.each do |assignment| %>
+		<%= render :partial => "assignments/show", :locals => { :assignment => assignment } %>
+	<% end %>
 <% end %>

@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+  before_filter :authenticate_user!
   load_and_authorize_resource  
 	before_filter :parse_params, :only => [:create, :update]
 
@@ -6,9 +7,10 @@ class AssignmentsController < ApplicationController
 
 	def new
 		@assignment = Assignment.new(params[:assignment])
+		@queue_index = @assignment.user.assignments.count + 1
 		# @comments = Comment.new
 		@assignment.comments.build
-		respond_with @assignment, @comment
+		respond_with @assignment, @comment, @queue_index
 	end
 
 	def create
@@ -23,13 +25,15 @@ class AssignmentsController < ApplicationController
 
 	def update
 		@assignment = Assignment.find(params[:id])
-		puts "assignment on hold: #{@assignment.hold}"
 		@user = @assignment.user
 		if @assignment.update_attributes(params[:assignment])
 			@assignment = @user.current_assignment
 			@queue = @user.queued
 			@on_hold = @user.on_hold
-			respond_with @assignment, @queued, @on_hold
+			respond_to do |format|
+	      format.js
+	      format.json { render :json => { :assignment => Assignment.find(params[:id])} }
+	    end
 		else
 			puts "error"
 			# handle error

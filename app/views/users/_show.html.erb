@@ -1,13 +1,11 @@
 <div id="userDisplay">
 	<div class="userHeadline">
-<!-- 		<span class="pullLeft assignmentManager">
-			<%= link_to "Reorder", "#", :remote => true %> |
-			<%= link_to "Delete", "#", :remote => true %>
-		</span> -->
+		<span class="pullLeft assignmentManager">
+			<%= link_to "Edit Queue", edit_user_path(user), :remote => true if user.assigned? %>
+
+		</span>
 		<span class="userLink"><%= link_to user.name %></span>
-		<!-- <span><h2 class="inline"><%= user.name %></h2></span> -->
 		<span><%= "<#{user.email}>" %></span>
-		<!-- <span><#%= link_to "View User", user_path(user) %></span> -->
 	</div>
 
 	<% if user.assigned? %>

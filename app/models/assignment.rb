@@ -1,13 +1,15 @@
 class Assignment < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
+  validates :queue_index, :presence => true
+
   has_many :comments, :dependent => :destroy
   accepts_nested_attributes_for :comments, :allow_destroy => true, reject_if: proc { |attributes| attributes['content'].blank? }
 	belongs_to :user
 	belongs_to :task
 	belongs_to :city
 
-  attr_accessible :amount_completed, :completed_at, :deadline, :duration, :hold, :paused_at, :started_at, :user_id, :task_id, :city_id, :comments_attributes
+  attr_accessible :amount_completed, :completed_at, :deadline, :duration, :hold, :paused_at, :started_at, :user_id, :task_id, :city_id, :comments_attributes, :queue_index
 
   def assignments_for_city(city)
   	Assignment.where(:city_id => city.id)

@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		@assignments = @user.assignments.where('completed_at is NULL')
 	end
 
 	def destroy

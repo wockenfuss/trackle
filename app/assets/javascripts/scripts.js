@@ -125,6 +125,31 @@
 
 	};
 
+	myApp.updateOrder = function(e, ui) {
+		$.each(e.target.children, function(index, value) {
+			$(value).attr('data-sort', index + 1);
+			var item_id = $(value).attr('data-id');
+			var data = {
+				assignment: {
+					queue_index: $(value).attr('data-sort')
+				}
+			};
+			$.ajax({
+				url: '/assignments/' + item_id,
+				dataType: 'json',
+				data: data,
+				type: 'put',
+				success: myApp.updateText
+			});
+		});
+	};
+
+	myApp.updateText = function(result) {
+		var $target = $('div[data-id=' + result.assignment.id + ']');
+		var number = result.assignment.queue_index;
+		$target.find('.assignmentQueue').html("Queue: " + number);
+	};
+
 	myApp.taskModal = function() {
 		$( "#task-modal" ).dialog({
 			closeText: 'X',

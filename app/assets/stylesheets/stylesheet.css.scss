@@ -269,7 +269,7 @@ a {
 
 #editAnnouncementList {
 	margin: 2% 4%;
-	width: 50%;
+	width: 60%;
 	.editAnnouncement {
 		background-color: #ddd;
 		span {
@@ -552,6 +552,7 @@ a {
 }
 
 .assignmentDetails {
+	margin-top: 1%;
 	display: none;
 	li {
 		margin-left: -6%;
@@ -563,8 +564,13 @@ a {
 	float: left;
 }
 
+.assignmentStatus {
+	color: #fff;
+	margin-right: 3%;
+}
+
 .queuedAssignments {
-	width: 40%;
+	width: 50%;
 	float: left;
 	margin-left: 2%;
 }

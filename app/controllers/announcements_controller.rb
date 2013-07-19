@@ -1,4 +1,5 @@
 class AnnouncementsController < ApplicationController
+	before_filter :authenticate_user!
 	before_filter :parse_params, :only => [:create, :update]
 	load_and_authorize_resource
 	respond_to :json, :js, :html

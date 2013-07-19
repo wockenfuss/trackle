@@ -1,0 +1,3 @@
+<% @assignments.each do |assignment| %>
+	<%= render :partial => "assignments/show", :locals => { :assignment => assignment } %>
+<% end %>

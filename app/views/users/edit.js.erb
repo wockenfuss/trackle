@@ -1,0 +1,10 @@
+$('#userDisplay').slideToggle(function() {
+	$('.queuedAssignments').html('<%= j render "users/queue_display" %>');
+	$('.assignmentDetails').show();
+	$('#userDisplay').slideToggle();
+	//disable links
+	$('.comment').hide();
+	$('.queuedAssignments').sortable({
+		update: myApp.updateOrder
+	});
+});

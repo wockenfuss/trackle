@@ -5,7 +5,9 @@
 			<div>
 				<span><%= "#{announcement.subject}"%></span>
 				<span><%= "-posted by #{announcement.user.name}" %></span>
-				<span><em><%= "#{announcement.created_at.to_date}" %></em></span>	
+				<span><em><%= "Created: #{announcement.created_at.to_date}" %></em></span>	
+				<span><em><%= "Begins: #{announcement.begin_date.to_date}" %></em></span>	
+				<span><em><%= "Ends: #{announcement.end_date.to_date}" %></em></span>	
 			</div>
 			<div>
 				<%= announcement.content %></br>					

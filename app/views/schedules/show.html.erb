@@ -8,7 +8,6 @@
 <div id="usersList">
 	<% if @users.any? %>
 	<div id="usersContainer">
-		<!-- <div id="userDisplay"></div> -->
 		<% @users.each do |user| %>
 			<%= render :partial => 'users/box', :locals => { :user => user } %>
 		<% end %>		
