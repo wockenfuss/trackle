@@ -3,4 +3,4 @@ $('#alerts').append('<%= j render "shared/messages", :locals => { :notice => @no
 setTimeout(function() {
 	$('#alerts').fadeOut('slow');
 }, 3000);
-$('input[type=text] textarea').val('');
+$('#announcement_subject, textarea').val('');

@@ -20,11 +20,9 @@
 
    	myApp.Users('.userBox').refresh();
    	myApp.Tasks('.taskBox').refresh();
+
    	$('.deleteButton').on('click', function(e) {
    		$(this).parent().remove();
-   		if ( $('#userAnnouncements').children().size() < 2 ) {
-   			$('#userAnnouncements').slideToggle();
-   		}
    	});
 	};
 

@@ -442,13 +442,10 @@ a {
 }
 
 #userAnnouncements {
-	border-radius: 5px;
-	margin: 1%;
-	padding: 1%;
-	width: 70%;
+
+	width: 75%;
 	float: left;
-	background-color: #ccc;
-	border: solid 3px #666;
+
 	.deleteButton {
 		float: right;
 		&:hover {
@@ -457,6 +454,7 @@ a {
 		}
 	}
 	.eachAnnouncement {
+		border-radius: 5px;
 		background-color: #fff;
 		padding: 1%;
 		margin: 1%;
