@@ -1,5 +1,5 @@
-<div class="dropdown cityName" data-color="<%= @city.color %>">
-	<%= link_to @city.name, "#" %>
+<div class="dropdown cityName" data-color="<%= @city.color if @city %>">
+	<%= link_to @city.name, "#" if @city %>
 	<ul class="dropdownMenu">
 		<% @cities.each do |city| %>
 			<li data-color="<%= city.color %>"><%= link_to city.name, root_path(:city_id => city.id), :remote => true %></li>

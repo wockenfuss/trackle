@@ -18,14 +18,14 @@ class UsersController < ApplicationController
 		respond_with @user, @location
 	end
 
-	def create
-		@user = User.create(params[:user])
-		if @user.save
-			redirect_to users_path, :notice => "New user created"
-		else
-			render users_path, :error => "Something went wrong"
-		end
-	end
+	# def create
+	# 	@user = User.create(params[:user])
+	# 	if @user.save
+	# 		redirect_to users_path, :notice => "New user created"
+	# 	else
+	# 		render users_path, :error => "Something went wrong"
+	# 	end
+	# end
 
 	def update
 		@user = User.find(params[:id])
