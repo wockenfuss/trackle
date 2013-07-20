@@ -11,6 +11,7 @@ FactoryGirl.define do
 	factory :user do
 		name { Faker::Name.name }
     email { Faker::Internet.email }
+    password "password"
 	end
 
 	factory :assignment do 
@@ -31,4 +32,14 @@ FactoryGirl.define do
 		color "#fff"
 	end
 
+	factory :comment do
+		content { Faker::Lorem.sentence(word_count = 5, supplemental = false ) }
+		assignment_id 1
+		user_id 1
+	end
+
+	factory :task do
+		name { Faker::Lorem.sentence(word_count = 2, supplemental = false ) }
+		color "#fff"
+	end
 end
