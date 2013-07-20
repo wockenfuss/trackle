@@ -1,12 +1,8 @@
 class User < ActiveRecord::Base
   rolify
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 	has_many :assignments, :order => :queue_index, :dependent => :destroy
 	has_many :tasks, :through => :assignments
@@ -15,8 +11,6 @@ class User < ActiveRecord::Base
 	validates :name, :presence => true
   attr_accessible :absent, :available, :name, :admin
   attr_accessor :admin
-
-  # scope :non_admin, -> { where(published: true) }
 
   def on_hold
     self.assignments.where(:hold => true)
@@ -28,8 +22,6 @@ class User < ActiveRecord::Base
 
   def incomplete_assignments
     self.assignments.where(:completed_at => nil, :hold => false)
-    # Assignment.where("user_id = ?", self.id)    
-    # Assignment.where("user_id = ? AND assignments.completed_at = ?", self.id, nil)
   end
 
   def current_assignment

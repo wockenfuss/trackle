@@ -9,14 +9,13 @@ class Assignment < ActiveRecord::Base
 	belongs_to :task
 	belongs_to :city
 
-  attr_accessible :amount_completed, :completed_at, :deadline, :duration, :hold, :paused_at, :started_at, :user_id, :task_id, :city_id, :comments_attributes, :queue_index
-
-  def assignments_for_city(city)
-  	Assignment.where(:city_id => city.id)
-  end
+  attr_accessible :amount_completed, :completed_at, :deadline, 
+                  :duration, :hold, :paused_at, :started_at, 
+                  :user_id, :task_id, :city_id, :comments_attributes, 
+                  :queue_index
 
   def status
-  	if completed_at
+  	if completed?
   		return "completed"
   	else
   		if started_at
@@ -35,11 +34,4 @@ class Assignment < ActiveRecord::Base
   	return !!completed_at
   end
 
-  def has_comment?
-    result = false
-    self.comments.each do |comment|
-      result = comment.content != ""
-    end
-    result
-  end
 end

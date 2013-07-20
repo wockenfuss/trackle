@@ -9,7 +9,7 @@
 	<ul class="assignmentDetails">
 		<li><%= "Deadline: #{parse_time(assignment.deadline) || 'None set'}" %></li>
 		<li><%= "Scheduled duration: #{ assignment.duration || 'Not set'} hours" %></li>
-		<% if assignment.has_comment? %>
+		<% if assignment.comments.count > 0 %>
 			<li class="comment">
 				<%= "\"#{assignment.comments.first.content}\""%>
 				</br> 
