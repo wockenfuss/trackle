@@ -10,22 +10,10 @@ class UsersController < ApplicationController
 
 	def show 
 		@user = User.find(params[:id])
-		@assignment = @user.current_assignment
-		@on_hold = @user.on_hold
-		@queue = @user.queued
 		@location = params[:appendLocation] if params[:appendLocation]
 		@announcements = Announcement.current
 		respond_with @user, @location
 	end
-
-	# def create
-	# 	@user = User.create(params[:user])
-	# 	if @user.save
-	# 		redirect_to users_path, :notice => "New user created"
-	# 	else
-	# 		render users_path, :error => "Something went wrong"
-	# 	end
-	# end
 
 	def update
 		@user = User.find(params[:id])
@@ -33,7 +21,7 @@ class UsersController < ApplicationController
 		if @user.update_attributes(params[:user])
 			redirect_to users_path, :notice => "User updated"
 		else
-			render @user, :error => "Something went wrong"
+			redirect_to edit_user_path(@user), :alert => "Something went wrong"
 		end
 	end
 

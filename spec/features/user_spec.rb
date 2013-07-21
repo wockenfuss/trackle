@@ -99,45 +99,83 @@ describe User do
 	
 	end
 
-
-	context "when logged in as admin" do
+	describe "#update" do
 		before(:each) do
 			login_as @admin, :scope => :user
-			visit root_path
+			visit edit_user_path(@user)
 		end
 
-		it "root path displays admin options" do
-			page.should have_content("Manage")
+		it "displays a message when the user is updated" do
+			fill_in "Name", :with => "yippee"
+			find(:css, 'input[type="submit"]').click
+			page.should have_content "User updated"
 		end
 
+		it "displays an error message if update fails" do
+			fill_in "Name", :with => ""
+			find(:css, 'input[type="submit"]').click
+			page.should have_content "Something went wrong"
+		end
 	end
 
-	context "when no user is logged in" do
-		it "visiting a page requires user to sign in" do
-			visit root_path
-			page.should have_content("You need to sign in or sign up")
-		end
-	end
-
-	context "when non-admin user is logged in" do
-		before(:each) do
-			login_as @user, :scope => :user
-		end
-
-		it "user path doesn't display admin options" do
-			visit user_path(@user)
-			page.should_not have_content("Manage")
-		end
-
-		it "doesn't allow user to view other users pages" do
-			visit user_path(@admin)
-			page.should have_content("You are not authorized to access this page")
-		end
-
-		it "doesn't allow user to view users index" do
+	describe "#destroy", :js => true do
+		it "deletes the specified user" do
+			login_as @admin
 			visit users_path
-			page.should have_content("You are not authorized to access this page")
+			css = "li[data-id='#{@user.id}']" 
+			expect do
+				within(:css, css) do 
+					click_link "delete"
+				end
+				click_button "OK"
+	    end.to change(User, :count).by -1
 		end
 	end
+
+
+
+
+
+
+
+	# context "when logged in as admin" do
+	# 	before(:each) do
+	# 		login_as @admin, :scope => :user
+	# 		visit root_path
+	# 	end
+
+	# 	it "root path displays admin options" do
+	# 		page.should have_content("Manage")
+	# 	end
+
+	# end
+
+	# context "when no user is logged in" do
+	# 	it "visiting a page requires user to sign in" do
+	# 		visit root_path
+	# 		page.should have_content("You need to sign in or sign up")
+	# 	end
+	# end
+
+	# context "when non-admin user is logged in" do
+	# 	before(:each) do
+	# 		login_as @user, :scope => :user
+	# 	end
+
+	# 	it "user path doesn't display admin options" do
+	# 		visit user_path(@user)
+	# 		page.should_not have_content("Manage")
+	# 	end
+
+	# 	it "doesn't allow user to view other users pages" do
+	# 		visit user_path(@admin)
+	# 		page.should have_content("You are not authorized to access this page")
+	# 	end
+
+	# 	it "doesn't allow user to view users index" do
+	# 		visit users_path
+	# 		page.should have_content("You are not authorized to access this page")
+	# 	end
+	# end
 
 end
