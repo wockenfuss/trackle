@@ -16,10 +16,14 @@ class AssignmentsController < ApplicationController
 	def create
 		@assignment = Assignment.new(params[:assignment])
 		if @assignment.save
-			@color = @assignment.user.current_city_color
-			respond_with(@assignment, @color)
-		else
-			respond_with( {:error => "error"}, :location => nil)
+			# p @assignment.city
+			# p @assignment.user
+			# p @assignment
+			# p @assignment.task
+			# p User.all
+			# p Task.all
+			# p City.all
+			respond_with(@assignment)
 		end
 	end
 

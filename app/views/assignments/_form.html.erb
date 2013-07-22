@@ -3,13 +3,15 @@
 
 	<%= form_for @assignment, :remote => true do |f| %>
 	<div>
-		<%= f.label :duration %>
-		<%= f.text_field :duration %> hours
-	</div>
-	<div>
 		<%= f.label :deadline %>
 		<%= f.text_field :deadline, :class => "datepicker" %>
 	</div>
+
+	<div>
+		<%= f.label :duration %>
+		<%= f.text_field :duration %> hours
+	</div>
+
 
 	<div>
 		<%= f.fields_for :comments do |builder| %>
