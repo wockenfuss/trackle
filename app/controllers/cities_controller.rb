@@ -1,6 +1,8 @@
 class CitiesController < ApplicationController
 	before_filter :authenticate_user!
 	load_and_authorize_resource
+	before_filter :parse_params, :only => [:create, :update]
+
 	def index
 		@cities = City.all
 		@city = City.new
@@ -15,7 +17,7 @@ class CitiesController < ApplicationController
 		if @city.update_attributes(params[:city])
 			redirect_to cities_path, :notice => "City updated"
 		else 
-			render edit_city_path(@city), :error => "Something went wrong"
+			redirect_to edit_city_path(@city), :alert => "Something went wrong"
 		end
 	end
 
@@ -24,7 +26,7 @@ class CitiesController < ApplicationController
 		if @city.save
 			redirect_to cities_path, :notice => "City created"
 		else
-			render 'index', :error => "Something went wrong"
+			redirect_to cities_path, :alert => "Something went wrong"
 		end
 	end
 
@@ -35,4 +37,8 @@ class CitiesController < ApplicationController
 		end
 	end
 
+	private
+	def parse_params
+		parse_dates(params[:city]) if params[:city]
+	end
 end

@@ -8,7 +8,6 @@ class AssignmentsController < ApplicationController
 	def new
 		@assignment = Assignment.new(params[:assignment])
 		@queue_index = @assignment.user.assignments.count + 1
-		# @comments = Comment.new
 		@assignment.comments.build
 		respond_with @assignment, @comment, @queue_index
 	end
@@ -16,13 +15,6 @@ class AssignmentsController < ApplicationController
 	def create
 		@assignment = Assignment.new(params[:assignment])
 		if @assignment.save
-			# p @assignment.city
-			# p @assignment.user
-			# p @assignment
-			# p @assignment.task
-			# p User.all
-			# p Task.all
-			# p City.all
 			respond_with(@assignment)
 		end
 	end

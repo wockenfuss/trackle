@@ -47,7 +47,6 @@ describe Assignment, :js => true do
 			end
 
 		end
-
 	end
 
 	describe "deleting assignments" do
