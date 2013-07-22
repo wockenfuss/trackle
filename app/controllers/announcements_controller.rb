@@ -40,8 +40,6 @@ class AnnouncementsController < ApplicationController
 			@notice = "Announcement deleted"
 			@announcements = Announcement.order('created_at')
 			respond_with @announcments
-		else
-			js_alert(@announcement)
 		end
 	end
 
