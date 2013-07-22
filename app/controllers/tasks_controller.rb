@@ -9,17 +9,17 @@ class TasksController < ApplicationController
 		respond_with @tasks, @task
 	end
 
-	def show
-		@task = Task.find(params[:id])
-		@city = City.find(params[:city_id])
-	end
+	# def show
+	# 	@task = Task.find(params[:id])
+	# 	@city = City.find(params[:city_id])
+	# end
 
 	def create
 		@task = Task.create(params[:task])
 		if @task.save
 			redirect_to tasks_path, :notice => "Task created"
 		else
-			render @tasks, :error => "Something went wrong"
+			redirect_to tasks_path, :alert => "Something went wrong"
 		end
 	end
 
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
 		if @task.update_attributes(params[:task])
 			redirect_to tasks_path, :notice => "Task updated"
 		else
-			render tasks_path, :error => "Something went wrong"
+			redirect_to edit_task_path(@task), :alert => "Something went wrong"
 		end
 	end
 

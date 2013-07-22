@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def after_sign_in_path_for(resource)
-  	p resource
   	if can? :manage, :all
   		return root_path
   	else
@@ -41,7 +40,7 @@ class ApplicationController < ActionController::Base
     when @announcement
       return '#announcementErrors'
     else
-      return '#errors'
+      return '#alerts'
     end
   end
 

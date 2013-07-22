@@ -1,11 +1,11 @@
-<% if @assignment.status == "not yet begun" %>
+<% if assignment.status == "not yet begun" %>
 	<li>
-		<%= button_to "Begin", assignment_path(@assignment, :assignment => {:started_at => Time.now}), :method => 'put', :remote => true %>
+		<%= button_to "Begin", assignment_path(assignment, :assignment => {:started_at => Time.now}), :method => 'put', :remote => true %>
 	</li>
-<% elsif @assignment.status == "in progress" %>
+<% elsif assignment.status == "in progress" %>
 	<li>
-		<%= button_to "Pause", assignment_path(@assignment, :assignment => { :hold => true, :paused_at => Time.now }), :method => 'put', :remote => true%>
+		<%= button_to "Pause", assignment_path(assignment, :assignment => { :hold => true, :paused_at => Time.now }), :method => 'put', :remote => true%>
 
-		<%= button_to "Finish", assignment_path(@assignment, :assignment => { :completed_at => Time.now }), :method => 'put', :remote => true %>
+		<%= button_to "Finish", assignment_path(assignment, :assignment => { :completed_at => Time.now }), :method => 'put', :remote => true %>
 	</li>
 <% end %>
