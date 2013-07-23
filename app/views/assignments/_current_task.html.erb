@@ -1,6 +1,6 @@
 <ul>
 	<li><strong><%= "#{assignment.task.name}: #{assignment.city.name}" %></strong></li>
-	<li><em><%= assignment.status %></em></li>
+	<li id="currentStatus"><em><%= assignment.status %></em></li>
 	<li><%= "Deadline: #{parse_time(assignment.deadline)}" if assignment.deadline %></li>
 	<li><%= "Scheduled Duration: #{@user.current_assignment.duration} hours" if assignment.duration %></li>
 

@@ -73,4 +73,39 @@ describe Assignment, :js => true do
 
 	end
 
+	describe "updating assignments" do
+		before(:each) do
+			# @city = FactoryGirl.create(:city)
+			# @task = FactoryGirl.create(:task)
+			# @assignment = FactoryGirl.create(:assignment, 
+			# 																	:user_id => @user.id,
+			# 																	:task_id => @task.id,
+			# 																	:city_id => @city.id)
+			# login_as @user, :scope => :user
+			# visit user_path(@user)
+		end
+
+		it "allows a user to mark an assignment as started" do
+			pending
+			# click_button "Begin"
+			# page.should have_content "in progress"
+		end
+
+		it "allows a user to mark an assignment as paused" do
+			pending
+		end
+
+		it "allows a user to resume a paused assignment" do
+			pending
+		end
+
+		it "does not allow a paused assignment to resume if another assignment is in progress" do
+			pending
+		end
+
+		it "allows a user to mark an in progress assignment as completed" do
+			pending
+		end
+	end
+
 end
