@@ -249,7 +249,7 @@ a {
 		border-radius: 5px;
 		padding: 4% 2% 2% 6%;
 		margin-top: 2%;
-		textarea {
+/*		textarea {
 			height: 75px;
 			width: 85%;
 			margin-top: 3%;
@@ -259,7 +259,6 @@ a {
 			border: solid 4px #999;
 		}
 		input[type="submit"] {
-			/*width: 25%;*/
 			margin: 3% 0;
 			padding: 1%;
 			font-size: .9em;
@@ -273,7 +272,7 @@ a {
 				cursor: pointer; cursor: hand;
 			}
 			margin-left: 25%;
-		}
+		}*/
 		.announcementFields label {
 			margin-right: 3%;
 		}
@@ -491,7 +490,7 @@ a {
 			display: inline-block;
 		}*/
 
-		input[type="submit"] {
+/*		input[type="submit"] {
 			width: 25%;
 			margin: 3% 0;
 			padding: 2%;
@@ -505,7 +504,7 @@ a {
 				background-color: #aaa;
 				cursor: pointer; cursor: hand;
 			}
-		}
+		}*/
 
 
 	}
@@ -523,7 +522,34 @@ a {
 	
 }
 
+form {
+	input[type="submit"] {
+		width: 25%;
+		margin: 4% 0;
+		padding: 2%;
+		font-size: .9em;
+		border-radius: 15px;
+		outline: none;
+		border: none;
+		color: #fff;
+		background-color: #999;
+		&:hover {
+			background-color: #aaa;
+			cursor: pointer; cursor: hand;
+		}
+	}
+	textarea {
+		height: 75px;
+		width: 85%;
+		margin-top: 3%;
+		border: solid 4px #999;
+	}
+	input {
+		border: solid 4px #999;
+		margin: 2% 0 ;
+	}
 
+}
 
 #userPage {
 	width: 100%;
@@ -629,5 +655,29 @@ a {
 	background-color: #0b0;
 }
 
+.resourceList {
+	width: 75%;
+	margin: 1% 0 3% 4%;
+}
+
+.resourceColumn {
+	border: 3px solid #999;
+	padding: 2%;
+	width: 35%;
+	float: left;
+	background-color: #eee;
+	margin: 2%;
+	border-radius: 5px;
+	a {
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+
+.resourceForm {
+/*	width: 50%;
+	background-color: red;*/
+}
 
 

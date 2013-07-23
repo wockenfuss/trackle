@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 	respond_to :js, :json, :html
 
 	def index
-		@users = User.all
-		@user = User.new
+		@users = User.non_admin
+		@admins = User.admin
 	end
 
 	def show 

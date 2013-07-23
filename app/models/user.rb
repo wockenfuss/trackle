@@ -83,4 +83,14 @@ class User < ActiveRecord::Base
     end
     @users
   end
+
+  def self.admin
+    @users = []
+    User.find_each do |user|
+      if user.has_role? :admin
+        @users << user
+      end
+    end
+    @users
+  end
 end

@@ -1,10 +1,15 @@
-<%= form_for @task do |f| %>
+<div class="resourceForm resourceColumn">
+	<%= form_for @task do |f| %>
 
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-
-	<%= f.label :color %>
-	<%= f.text_field :color, :class => "colorPicker" %>
-
-	<%= f.submit %>
-<% end %>
+		<div>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
+		<div>
+			<%= f.label :color %>
+			<%= f.text_field :color, :class => "colorPicker" %>
+		</div>	
+			
+		<%= f.submit %>
+	<% end %>
+</div>

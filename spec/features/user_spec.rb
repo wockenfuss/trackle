@@ -28,9 +28,18 @@ describe User do
 				page.should have_content "Users"
 			end
 
-			it "displays a list of all users" do
-				page.should have_content @user.name
-				page.should have_content @admin.name
+			it "displays a list of all non-admin users" do
+				within(:css, "#nonadminUsers") do
+					page.should have_content @user.name
+					page.should_not have_content @admin.name
+				end
+			end
+
+			it "displays a list of admin users" do
+				within(:css, "#adminUsers") do
+					page.should have_content @admin.name
+					page.should_not have_content @user.name
+				end
 			end
 		end
 	end
