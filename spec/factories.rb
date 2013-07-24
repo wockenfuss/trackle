@@ -5,7 +5,7 @@ FactoryGirl.define do
 		subject { Faker::Lorem.sentence(word_count = 2, supplemental = false ) }
 		user_id 1
 		begin_date { Time.now }
-		end_date { 1.day.from_now }
+		end_date { 1.day.from_now.to_date }
 	end
 
 	factory :user do

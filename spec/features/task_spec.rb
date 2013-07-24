@@ -52,6 +52,27 @@ describe Task do
 		end
 	end
 
+	describe "#show", :js => true do
+		before(:each) do
+			@city = FactoryGirl.create(:city)
+			@task = FactoryGirl.create(:task)
+			@assignment = FactoryGirl.create(:assignment, 
+																				:user_id => @user.id,
+																				:city_id => @city.id,
+																				:task_id => @task.id)
+			login_as @admin, :scope => :user
+			visit root_path
+		end
+
+		it "displays a list of assignments associated with a given task" do
+			page.find(".taskBoxName").click
+			within(:css, "div[data-task='#{@task.id}']") do
+				page.should have_content @user.name
+				page.should have_content @assignment.status
+			end
+		end
+	end
+
 	describe "updating tasks" do
 		before(:each) do
 			@task = FactoryGirl.create(:task)

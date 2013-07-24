@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     begin
       string = DateTime.strptime(string, '%Y-%m-%d %H:%M:%S')
     rescue => error
-      string = DateTime.strptime(string, '%m/%d/%Y')
+      string = DateTime.strptime(string, '%m/%d/%Y') + utc_offset_in_hours(Time.now).hours
     end
     string
   end
@@ -42,6 +42,12 @@ class ApplicationController < ActionController::Base
     else
       return '#alerts'
     end
+  end
+
+  private
+
+  def utc_offset_in_hours(time)
+    time.utc_offset.abs/(60 * 60)
   end
 
 end

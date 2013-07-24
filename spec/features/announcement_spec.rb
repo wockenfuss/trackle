@@ -9,6 +9,8 @@ describe Announcement do
 		@admin.add_role(:admin)
 	end
 
+	after(:each) { back_to_the_present }
+
 	describe "#index" do
 
 		context "for unauthorized users" do
@@ -110,6 +112,26 @@ describe Announcement do
 			end.to change(Announcement, :count).by -1
 		end
 
+	end
+
+	describe "announcement display" do
+		before(:each) do
+			@announcement = FactoryGirl.create(:announcement)
+		end
+
+		it "displays current announcement to users" do
+			time_travel_to "23:59"
+			login_as @user, :scope => :user
+			visit user_path @user
+			page.should have_content @announcement.subject
+		end
+
+		it "doesn't display expired announcements" do
+			time_travel_to "24:01"
+			login_as @user, :scope => :user
+			visit user_path @user
+			page.should_not have_content @announcement.subject
+		end
 	end
 
 end

@@ -3,13 +3,14 @@ class AnnouncementsController < ApplicationController
 	before_filter :parse_params, :only => [:create, :update]
 	load_and_authorize_resource
 	respond_to :json, :js, :html
-
+	
 	def index
 		@announcements = Announcement.order('created_at')
-		@announcement = current_user.announcements.build(:begin_date => Time.now.strftime("%-m/%d/%Y"), :end_date => 1.day.from_now.strftime("%-m/%d/%Y"))
+		@announcement = current_user.announcements.build(:begin_date => Time.now.strftime("%-m/%d/%Y"), :end_date => 1.day.from_now.localtime.strftime("%-m/%d/%Y"))
 	end
 
 	def create
+		p params
 		@announcement = current_user.announcements.build(params[:announcement])
 		if @announcement.save
 			@announcements = Announcement.order('created_at')

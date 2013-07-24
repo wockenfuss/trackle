@@ -33,6 +33,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'selenium-webdriver'
+  gem 'delorean'
 end
 
 gem 'jquery-rails'
