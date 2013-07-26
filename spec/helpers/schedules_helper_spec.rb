@@ -4,12 +4,14 @@ describe SchedulesHelper do
 
 	describe "#task_progress_bar" do
 		before(:each) do 
+			@user = FactoryGirl.create(:user)
 			@city = FactoryGirl.create(:city)
 			@task = FactoryGirl.create(:task)
 			@complete = FactoryGirl.create(:assignment, :task_id => @task.id, 
 																									:city_id => @city.id,
 																									:started_at => Time.now,
-																									:completed_at => Time.now)
+																									:completed_at => Time.now,
+																									:user_id => @user.id)
 			@incomplete = FactoryGirl.create(:assignment, :task_id => @task.id,
 																										:city_id => @city.id)
 		end

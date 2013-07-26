@@ -2,7 +2,8 @@
 	$.extend(myApp, {
 		Tasks: function( selector ) {
 			var $target = $(selector);
-
+			console.log($target);
+			a = $target;
 			var addListener = function() {
 				$target.find('.taskBoxName').on('click', function(e) {
 					var taskId = $(this).parent().attr('data-task');

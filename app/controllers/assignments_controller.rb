@@ -1,7 +1,7 @@
 class AssignmentsController < ApplicationController
   load_and_authorize_resource  
   before_filter :authenticate_user!
-	before_filter :parse_params, :only => [:create, :update]
+	before_filter :parse_date_params, :only => [:create, :update]
 	before_filter :check_timestamps, :only => [:update]
 	respond_to :js, :html, :json
 
@@ -45,7 +45,7 @@ class AssignmentsController < ApplicationController
 	end
 
 	private
-	def parse_params
+	def parse_date_params
 		parse_dates(params[:assignment]) if params[:assignment]
 	end
 

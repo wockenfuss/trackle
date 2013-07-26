@@ -1,5 +1,3 @@
-console.log('now - ' + '<%= Time.now.strftime("%M:%S") %>');
-
 var target = $('.userBox')['<%= @location %>'];
 var $current = $('.userBox[data-user=' + '<%= @user.id %>' + ']');
 if ( $('#userDisplay').is(':visible') ) {

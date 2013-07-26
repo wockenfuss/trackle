@@ -154,7 +154,7 @@
 		$( "#task-modal" ).dialog({
 			closeText: 'X',
       autoOpen: false,
-      height: 400,
+      height: 450,
       width: 500,
       modal: true,
       draggable: false,

@@ -21,11 +21,8 @@ if ( $('#userDisplay').is(':visible') ) {
 myApp.addAssignmentListeners();
 
 function renderTaskBox(taskSelector) {
-	var $div = $(taskSelector);
-	var html = '<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>';
-	$div.replaceWith(html);
-	//make task draggable
-	myApp.draggable('div[data-task="' + taskId + '"]');
+	$(taskSelector).replaceWith('<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>');
+	myApp.draggable(taskSelector);
 };
 
 function renderUserBox(userSelector) {
