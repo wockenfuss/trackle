@@ -114,8 +114,9 @@ describe Announcement do
 
 	end
 
-	describe "announcement display" do
+	describe "announcement display", :js => true do
 		before(:each) do
+			time_travel_to "11:00"
 			@announcement = FactoryGirl.create(:announcement)
 		end
 

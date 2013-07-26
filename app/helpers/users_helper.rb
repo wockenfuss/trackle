@@ -15,7 +15,7 @@ module UsersHelper
 			return ""
 		else 
 			return link_to 'resume', assignment_path(item, :assignment => 
-			{:hold => false}), :method => 'put', :remote => true
+			{:hold => false, :resumed_at => true}), :method => 'put', :remote => true
 		end
 	end
 

@@ -10,9 +10,10 @@ class Assignment < ActiveRecord::Base
 	belongs_to :city
 
   attr_accessible :amount_completed, :completed_at, :deadline, 
-                  :duration, :hold, :paused_at, :started_at, 
+                  :duration, :hold, :started_at, 
                   :user_id, :task_id, :city_id, :comments_attributes, 
-                  :queue_index
+                  :queue_index, :resumed_at, :elapsed_time
+  before_save :check_elapsed_time
 
   def status
   	if completed?
@@ -32,6 +33,19 @@ class Assignment < ActiveRecord::Base
 
   def completed?
   	return !!completed_at
+  end
+
+  def elapsed
+    return 0.0 if !self.resumed_at
+    return self.elapsed_time.to_f if !!self.hold
+    Time.now - self.resumed_at + self.elapsed_time
+  end
+
+  private
+  def check_elapsed_time
+    if self.hold == true || !!self.completed_at
+      self.elapsed_time = Time.now - self.resumed_at + self.elapsed_time
+    end
   end
 
 end

@@ -9,6 +9,8 @@
 	<ul class="assignmentDetails">
 		<li><%= "Deadline: #{parse_time(assignment.deadline) || 'None set'}" %></li>
 		<li><%= "Scheduled duration: #{ assignment.duration || 'Not set'} hours" %></li>
+		<li><%= "Time Spent: #{distance_of_time_in_words(assignment.elapsed)}"  if assignment.elapsed != 0 %></li>
+		<!-- <li><#%= "Time Spent: #{Time.at(assignment.elapsed).utc.strftime("%H:%M:%S")}"%></li>		 -->
 		<% if assignment.comments.count > 0 %>
 			<li class="comment">
 				<%= "\"#{assignment.comments.first.content}\""%>

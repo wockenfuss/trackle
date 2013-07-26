@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719175448) do
+ActiveRecord::Schema.define(:version => 20130726020541) do
 
   create_table "announcements", :force => true do |t|
     t.text     "content",    :null => false
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20130719175448) do
     t.datetime "deadline"
     t.datetime "started_at"
     t.datetime "completed_at"
-    t.datetime "paused_at"
     t.boolean  "hold",             :default => false
     t.integer  "amount_completed", :default => 0
     t.integer  "user_id",                             :null => false
@@ -37,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20130719175448) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.integer  "queue_index"
+    t.integer  "elapsed_time",     :default => 0
+    t.datetime "resumed_at"
   end
 
   create_table "cities", :force => true do |t|

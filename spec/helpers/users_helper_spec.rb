@@ -32,8 +32,8 @@ describe UsersHelper do
 																									:hold => true)}
 
 		it "returns a link to resume the assignment if no other assignment is in progress" do
-			hold_resume(@assignment).should eq link_to 'resume', assignment_path(@assignment, :assignment => 
-			{:hold => false}), :method => 'put', :remote => true
+			hold_resume(@assignment).should eq link_to 'resume', assignment_path(item, :assignment => 
+			{:hold => false, :resumed_at => true}), :method => 'put', :remote => true
 		end
 
 		it "returns nothing if another assignment is in progress" do

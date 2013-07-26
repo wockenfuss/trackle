@@ -1,7 +1,7 @@
 <div id="userDisplay">
 	<div class="userHeadline">
 		<span class="pullLeft assignmentManager">
-			<%= link_to "Edit Queue", edit_user_path(user), :remote => true if user.assigned? %>
+			<%= link_to "Reorder Queue", edit_user_path(user), :remote => true if user.assigned? %>
 
 		</span>
 		<span class="userLink"><%= link_to user.name %></span>

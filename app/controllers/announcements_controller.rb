@@ -10,7 +10,6 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def create
-		p params
 		@announcement = current_user.announcements.build(params[:announcement])
 		if @announcement.save
 			@announcements = Announcement.order('created_at')

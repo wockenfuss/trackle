@@ -10,7 +10,7 @@ describe Assignment do
 	it { should belong_to :city }
 
 	[:amount_completed, :completed_at, :deadline, :duration, 
-		:hold, :paused_at, :started_at, :user_id, :task_id, 
+		:hold, :started_at, :user_id, :task_id, 
 		:city_id, :queue_index].each do |attr|
 		it { should respond_to attr }
 	end	

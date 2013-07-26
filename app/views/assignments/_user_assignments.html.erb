@@ -13,6 +13,8 @@
 			<% @user.on_hold.each do |item| %>
 				<li>
 					<%= "#{item.task.name}: #{item.city.name}" %></br>
+					<!-- <#%= "Time Spent: #{Time.at(item.elapsed).utc.strftime("%H:%M:%S")}"%></br> -->
+				 <%= "Time Spent: #{distance_of_time_in_words(item.elapsed)}" if item.elapsed != 0 %></br>
 					<%= hold_resume(item) %>
 				</li> 
 			<% end %>

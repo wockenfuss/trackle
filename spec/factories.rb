@@ -23,6 +23,8 @@ FactoryGirl.define do
 		task_id 1
 		city_id 1
 		queue_index 1
+		elapsed_time 0
+		resumed_at { Time.now }
 	end
 
 	factory :city do

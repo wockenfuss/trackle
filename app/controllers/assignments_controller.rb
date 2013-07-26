@@ -1,8 +1,8 @@
 class AssignmentsController < ApplicationController
-  before_filter :authenticate_user!
   load_and_authorize_resource  
+  before_filter :authenticate_user!
 	before_filter :parse_params, :only => [:create, :update]
-
+	before_filter :check_timestamps, :only => [:update]
 	respond_to :js, :html, :json
 
 	def new
@@ -48,4 +48,12 @@ class AssignmentsController < ApplicationController
 	def parse_params
 		parse_dates(params[:assignment]) if params[:assignment]
 	end
+
+	def check_timestamps
+    params[:assignment][:started_at] = Time.now if params[:assignment][:started_at] == "true"
+    params[:assignment][:resumed_at] = Time.now if params[:assignment][:resumed_at] == "true"
+    params[:assignment][:completed_at] = Time.now if params[:assignment][:completed_at] == "true"
+  end
+
+
 end
