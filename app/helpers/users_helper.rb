@@ -3,7 +3,7 @@ module UsersHelper
 	def status_bar(user)
 		if user.current_assignment != "none"
 			if user.current_assignment.status == "in progress"
-				return "Started at #{user.current_assignment.started_at.localtime.strftime("%l:%M %p, %-m/%d/%Y")}"
+				return "Started at #{user.current_assignment.started_at.in_time_zone.strftime("%l:%M %p, %-m/%d/%Y")}"
 			else
 				return user.current_assignment.status
 			end

@@ -4,6 +4,8 @@
 	});
 
 	var bind = function() {
+		var timezone = $(window).get_timezone();
+		console.log(timezone);
 		$('.colorPicker').minicolors();
 		myApp.setProjectColor();
 
@@ -16,7 +18,7 @@
 
    	$('#announcements span').on('click', function(e) {
    		$(e.target).parent().find('#announcementInterior').slideToggle();
-   	})
+   	});
 
    	myApp.Users('.userBox').refresh();
    	myApp.Tasks('.taskBox').refresh();
