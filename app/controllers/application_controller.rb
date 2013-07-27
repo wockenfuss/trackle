@@ -39,6 +39,8 @@ class ApplicationController < ActionController::Base
     case object
     when @announcement
       return '#announcementErrors'
+    when @task_group
+      return '#taskGroupErrors'
     else
       return '#alerts'
     end

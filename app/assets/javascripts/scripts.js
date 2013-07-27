@@ -26,6 +26,10 @@
    	$('.deleteButton').on('click', function(e) {
    		$(this).parent().remove();
    	});
+
+   	$('.hiddenFormLink').on('click', function(e) {
+   		$(this).next().slideToggle();
+   	});
 	};
 
 	myApp.addAssignmentListeners = function() {

@@ -522,7 +522,7 @@ a {
 
 form {
 	input[type="submit"] {
-		width: 25%;
+		/*width: 25%;*/
 		margin: 4% 0;
 		padding: 2%;
 		font-size: .9em;
@@ -546,6 +546,7 @@ form {
 		border: solid 4px #999;
 		margin: 2% 0 ;
 	}
+
 
 }
 
@@ -664,18 +665,27 @@ form {
 }
 
 .resourceList {
-	width: 75%;
+	border: 3px solid #999;
+	width: 30%;
 	margin: 1% 0 3% 4%;
+	float: left;
+	/*background-color: red;*/
+	overflow: auto;
+	padding: 2%;
+	border-radius: 5px;
+	h2 {
+		margin-top: 0;
+	}
 }
 
 .resourceColumn {
-	border: 3px solid #999;
-	padding: 2%;
-	width: 35%;
-	float: left;
+	/*border: 3px solid #999;*/
+	padding: 4%;
+	/*width: 35%;*/
+	/*float: left;*/
 	background-color: #eee;
 	margin: 2%;
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 	a {
 		&:hover {
 			color: #fff;
@@ -692,4 +702,8 @@ form {
 		opacity: .5;
 	}
 }
+
+/*.hiddenForm {
+	display: none;
+}*/
 

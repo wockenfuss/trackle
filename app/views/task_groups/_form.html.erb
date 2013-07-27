@@ -1,0 +1,11 @@
+<div class="resourceColumn">
+	<%= form_for @task_group, :remote => true do |f| %>
+		<div id="taskGroupErrors"></div>
+		<div>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
+			
+		<%= f.submit %>
+	<% end %>
+</div>

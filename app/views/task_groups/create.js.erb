@@ -1,0 +1,8 @@
+$('#alerts').html("");
+$('#alerts').append('<%= j render "shared/messages", :locals => { :notice => @notice} %>').fadeIn('slow');
+setTimeout(function() {
+	$('#alerts').fadeOut('slow');
+}, 3000);
+$('#task_group_name').val('');
+
+$('#taskGroupIndex').html('<%= j render "task_groups/index" %>');

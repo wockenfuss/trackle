@@ -1,9 +1,10 @@
-<div id="nonadminUsers" class="resourceColumn">
-	<% if @users.any? %>
-		<% @users.each do |user| %>
+<div class="resourceColumn">
+	<% if users.any? %>
+		<% users.each do |user| %>
 		<ul>
 			<li data-id="<%= user.id %>">
 				<%= user.name %> |
+				<%= "Admin | " if user.has_role? :admin %>
 				<%= link_to "view user's page", user_path(user) %> |
 				<%= link_to "edit", edit_user_path(user) %> |
 				<%= link_to "delete", user_path(user), :method => :delete, :confirm => "Are you sure you want to delete this user?"%>
@@ -14,19 +15,3 @@
 		<p><%= "No users yet." %></p>
 	<% end %>
 </div>
-
-<div id="adminUsers" class="resourceColumn">
-	<% if @admins.any? %>
-		<% @admins.each do |admin| %>
-			<ul>
-				<li data-id="<%= admin.id %>">
-					<%= "#{admin.name} | Admin |" %>
-					<%= link_to "view user's page", user_path(admin) %> |
-					<%= link_to "edit", edit_user_path(admin) %> |
-					<%= link_to "delete", user_path(admin), :method => :delete, :confirm => "Are you sure you want to delete this user?"%>
-				</li>
-			</ul>
-		<% end %>
-	<% end %>
-</div>
-

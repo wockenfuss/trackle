@@ -43,4 +43,8 @@ FactoryGirl.define do
 		name { Faker::Lorem.sentence(word_count = 2, supplemental = false ) }
 		color "#fff"
 	end
+
+	factory :task_group do
+		name { Faker::Lorem.sentence(word_count = 2, supplemental = false ) }
+	end
 end

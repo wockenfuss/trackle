@@ -5,6 +5,8 @@ class TasksController < ApplicationController
 
 	def index
 		@task = Task.new
+		@task_group = TaskGroup.new
+		@task_groups = TaskGroup.all
 		@tasks = Task.all
 		respond_with @tasks, @task
 	end

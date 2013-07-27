@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
 	has_many :assignments
+	# has_and_belongs_to_many :task_groups
+
 	validates :name, :presence => true
   attr_accessible :name, :color
 

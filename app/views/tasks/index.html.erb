@@ -1,5 +1,13 @@
 <div class="resourceList">
 	<h2>Tasks</h2>
-	<%= render 'index' %>
 	<%= render 'form' %>
+	<%= render 'index' %>
+</div>
+
+<div class="resourceList">
+	<h2>Task Groups</h2>
+	<%= render 'task_groups/form' %>
+	<div id="taskGroupIndex">
+		<%= render 'task_groups/index' %>	
+	</div>
 </div>

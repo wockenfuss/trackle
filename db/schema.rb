@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727170746) do
+ActiveRecord::Schema.define(:version => 20130727205942) do
 
   create_table "announcements", :force => true do |t|
     t.text     "content",    :null => false
@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(:version => 20130727170746) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "schedules", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "task_groups", :force => true do |t|
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

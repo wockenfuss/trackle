@@ -1,4 +1,13 @@
 <div class="resourceList">
 	<h2>Users</h2>
-	<%= render 'index' %>
+	<div id="nonadminUsers">
+		<%= render :partial => 'index', :locals => {:users => @users} %>		
+	</div>
+</div>
+
+<div class="resourceList">
+	<h2>Admin</h2>
+	<div id="adminUsers">
+		<%= render :partial => 'index', :locals => {:users => @admins} %>	
+	</div>
 </div>

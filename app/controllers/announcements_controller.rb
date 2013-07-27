@@ -39,7 +39,7 @@ class AnnouncementsController < ApplicationController
 		if @announcement.destroy
 			@notice = "Announcement deleted"
 			@announcements = Announcement.order('created_at')
-			respond_with @announcments
+			respond_with @announcements
 		end
 	end
 
