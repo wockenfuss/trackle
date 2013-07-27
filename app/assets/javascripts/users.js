@@ -40,7 +40,7 @@
 		   				}
 		   				$('#userDisplay').slideToggle()
 		   			}
-		   		})
+		   		});
 		   	});
 		   	return myApp.Users($target);
 			};

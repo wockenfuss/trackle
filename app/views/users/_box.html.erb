@@ -1,5 +1,7 @@
-<div class="<%= user.assigned? ? "userBox droppable occupied" : "userBox droppable available" %>" data-user="<%= user.id %>" data-color="<%= user.current_city_color %>" data-taskColor="<%= user.task_color%>">
-	<div class="userName">
+<%= content_tag "div", :class => user.assigned? ? "userBox droppable occupied" : "userBox droppable available", 'data-user' => user.id, 'data-color' => user.current_city_color, 'data-taskColor' => user.task_color, :data => {:userInfo => user} do %>
+
+<!-- <div class="<#%= user.assigned? ? "userBox droppable occupied" : "userBox droppable available" %>" data-user="<%= user.id %>" data-color="<%= user.current_city_color %>" data-taskColor="<%= user.task_color%>"> -->
+	<div class="userName" >
 		<p><%= user.name %></p>
 	</div>
 	<% if user.assigned?%>
@@ -15,10 +17,9 @@
 					<%= status_bar(user) %>
 				</em>
 			</p>
-		</div>
-			
+		</div>	
 	<% end %>
 
-</div>
+<% end %>
 
 	

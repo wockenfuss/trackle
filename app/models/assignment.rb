@@ -34,7 +34,7 @@ class Assignment < ActiveRecord::Base
 
   def elapsed_time
     return 0.0 if !self.resumed_at
-    return read_attribute(:elapsed_time).to_f if !!self.hold
+    return read_attribute(:elapsed_time).to_f if self.hold?
     Time.now - self.resumed_at + read_attribute(:elapsed_time)
   end
 
