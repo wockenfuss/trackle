@@ -3,9 +3,8 @@ Trackle::Application.routes.draw do
   resources :announcements, :only => [:create, :index, :edit, :destroy, :update]
   resources :assignments, :except => [:index, :show, :edit]
   resources :projects, :except => [:show, :new]
-  resources :tasks, :except => [:new]
+  resources :tasks, :except => [:new]  
   devise_for :users
-
   root :to => 'schedules#show'
 
   devise_scope :user do

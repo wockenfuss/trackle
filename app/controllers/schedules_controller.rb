@@ -8,6 +8,9 @@ class SchedulesController < ApplicationController
 		@tasks = Task.order('created_at')
 		@users = User.non_admin
 		@announcements = Announcement.current
+		if params[:time_zone]
+			Time.zone = params[:time_zone]
+		end
 	end
 	
 end

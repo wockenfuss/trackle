@@ -4,8 +4,8 @@
 	});
 
 	var bind = function() {
-		var timezone = $(window).get_timezone();
-		console.log(timezone);
+		myApp.setTimezone();
+
 		$('.colorPicker').minicolors();
 		myApp.setProjectColor();
 
@@ -56,6 +56,21 @@
 			});
 		});
 	}
+
+	myApp.setTimezone = function() {
+		var timezone = $(window).get_timezone();
+		$.ajax({
+			url: '/',
+			type: 'get',
+			dataType: 'script',
+			data: {
+				time_zone: timezone
+			},
+			success: function(result) {
+				console.log('timezone changed');
+			}
+		});
+	};
 
 	myApp.setFlashAlerts = function() {
 		$('#flash_alert, #flash_error, #flash_notice').fadeIn('normal', function() {
