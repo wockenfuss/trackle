@@ -21,12 +21,12 @@ FactoryGirl.define do
 		amount_completed 0
 		user_id 1
 		task_id 1
-		city_id 1
+		project_id 1
 		queue_index 1
 		elapsed_time 0
 	end
 
-	factory :city do
+	factory :project do
 		name { Faker::Address.city }
 		deadline { 1.day.from_now }
 		hold false

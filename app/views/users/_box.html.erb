@@ -1,13 +1,13 @@
-<%= content_tag "div", :class => user.assigned? ? "userBox droppable occupied" : "userBox droppable available", 'data-user' => user.id, 'data-color' => user.current_city_color, 'data-taskColor' => user.task_color, :data => {:userInfo => user} do %>
+<%= content_tag "div", :class => user.assigned? ? "userBox droppable occupied" : "userBox droppable available", 'data-user' => user.id, 'data-color' => user.current_project_color, 'data-taskColor' => user.task_color, :data => {:userInfo => user} do %>
 
-<!-- <div class="<#%= user.assigned? ? "userBox droppable occupied" : "userBox droppable available" %>" data-user="<%= user.id %>" data-color="<%= user.current_city_color %>" data-taskColor="<%= user.task_color%>"> -->
+<!-- <div class="<#%= user.assigned? ? "userBox droppable occupied" : "userBox droppable available" %>" data-user="<%= user.id %>" data-color="<%= user.current_project_color %>" data-taskColor="<%= user.task_color%>"> -->
 	<div class="userName" >
 		<p><%= user.name %></p>
 	</div>
 	<% if user.assigned?%>
 
-		<div class="cityStripe">
-			<p><%= user.city_name %></p>
+		<div class="projectStripe">
+			<p><%= user.project_name %></p>
 		</div>
 
 		<div class="assignments">

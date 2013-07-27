@@ -11,7 +11,7 @@ renderUserBox(userSelector);
 myApp.Users(userSelector).refresh();
 myApp.Tasks(taskSelector).refresh();
 
-myApp.setCityColor();
+myApp.setProjectColor();
 
 
 if ( $('#userDisplay').is(':visible') ) {
@@ -21,7 +21,7 @@ if ( $('#userDisplay').is(':visible') ) {
 myApp.addAssignmentListeners();
 
 function renderTaskBox(taskSelector) {
-	$(taskSelector).replaceWith('<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>');
+	$(taskSelector).replaceWith('<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :project => @assignment.project } %>');
 	myApp.draggable(taskSelector);
 };
 

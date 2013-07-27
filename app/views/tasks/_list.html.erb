@@ -1,6 +1,6 @@
-<% if task.assignments_for_city(city).count > 0 %>
+<% if task.assignments_for_project(project).count > 0 %>
 	<ul>
-		<% task.assignments_for_city(city).each do |assignment| %>
+		<% task.assignments_for_project(project).each do |assignment| %>
 			<% puts assignment.id %>
 			<li>
 				<%= link_to assignment.user.name, user_path(assignment.user) %>

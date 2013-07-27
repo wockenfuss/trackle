@@ -66,7 +66,7 @@
 					var boxColor = $(value).attr('data-color');
 					$(value).css('border-color', boxColor);
 					// $(value).css('background-color', interiorColor);
-					// $(value).find('.cityStripe').css('background-color', boxColor);
+					// $(value).find('.projectStripe').css('background-color', boxColor);
 				});
 				return myApp.Users($target);
 			};

@@ -5,7 +5,7 @@
 
 	var bind = function() {
 		$('.colorPicker').minicolors();
-		myApp.setCityColor();
+		myApp.setProjectColor();
 
 		myApp.setFlashAlerts();
 		myApp.setDropdowns();
@@ -42,9 +42,9 @@
 
 		$('.dropdown a').on('mouseenter', myApp.dropdown); 
 		$('.dropdownProject').on('click', function(e) {
-			var cityId = $(this).attr('data-city');
+			var projectId = $(this).attr('data-project');
 			var data = {
-				city_id: cityId
+				project_id: projectId
 			};
 			$.ajax({
 				url: '/',
@@ -82,7 +82,7 @@
     var data = {
     	assignment: {
     		task_id: ui.draggable.attr('data-task'),
-    		city_id: ui.draggable.attr('data-city'),
+    		project_id: ui.draggable.attr('data-project'),
     		user_id: $(event.target).attr('data-user')
     	}
     };
@@ -124,14 +124,14 @@
 		})
 	};
 
-	myApp.setCityColor = function() {
-		//city name bar color
-		var $city = $('.cityName');
-		var cityColor = $city.attr('data-color');
-		$city.css('background-color', cityColor);
+	myApp.setProjectColor = function() {
+		//project name bar color
+		var $project = $('.projectName');
+		var projectColor = $project.attr('data-color');
+		$project.css('background-color', projectColor);
 
 		//dropdown colors
-		$.each($('.cityName li'), function( index, value ) {
+		$.each($('.projectName li'), function( index, value ) {
 			var color = $(value).attr('data-color');
 			$(value).css('background-color', color);
 		});

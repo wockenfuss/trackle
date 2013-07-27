@@ -1,3 +1,4 @@
+
 $('.queuedAssignments').html('<%= j render :partial => "assignments/index", :locals => { :user => @user } %>');
 
 var userId = '<%= @user.id %>';
@@ -11,7 +12,7 @@ renderTaskBox(taskSelector);
 myApp.Tasks(taskSelector).refresh();
 myApp.Users(userSelector).refresh();
 
-myApp.setCityColor();
+myApp.setProjectColor();
 
 
 function refreshUserBox(userSelector) {
@@ -20,6 +21,6 @@ function refreshUserBox(userSelector) {
 }
 
 function renderTaskBox(taskSelector) {
-	$(taskSelector).replaceWith('<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :city => @assignment.city } %>');
+	$(taskSelector).replaceWith('<%= j render :partial => "tasks/show", :locals => { :task => @assignment.task, :project => @assignment.project } %>');
 	myApp.draggable(taskSelector);
 };

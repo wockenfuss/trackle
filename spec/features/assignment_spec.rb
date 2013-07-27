@@ -13,7 +13,7 @@ describe Assignment, :js => true do
 
 		context "when user is admin" do
 			before(:each) do 
-				@city = FactoryGirl.create(:city)
+				@project = FactoryGirl.create(:project)
 				@task = FactoryGirl.create(:task)
 				login_as @admin, :scope => :user
 				visit root_path
@@ -51,10 +51,10 @@ describe Assignment, :js => true do
 
 	describe "deleting assignments" do
 		before(:each) do
-				@city = FactoryGirl.create(:city)
+				@project = FactoryGirl.create(:project)
 				@task = FactoryGirl.create(:task)
 				@assignment = FactoryGirl.create(:assignment, 
-																					:city_id => @city.id,
+																					:project_id => @project.id,
 																					:task_id => @task.id,
 																					:user_id => @user.id)
 				login_as @admin, :scope => :user
@@ -75,12 +75,12 @@ describe Assignment, :js => true do
 
 	describe "updating assignments" do
 		before(:each) do
-			# @city = FactoryGirl.create(:city)
+			# @project = FactoryGirl.create(:project)
 			# @task = FactoryGirl.create(:task)
 			# @assignment = FactoryGirl.create(:assignment, 
 			# 																	:user_id => @user.id,
 			# 																	:task_id => @task.id,
-			# 																	:city_id => @city.id)
+			# 																	:project_id => @project.id)
 			# login_as @user, :scope => :user
 			# visit user_path(@user)
 		end

@@ -10,7 +10,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.integer :amount_completed, :default => 0
       t.references :user, :null => false
       t.references :task, :null => false
-      t.references :city, :null => false
+      t.references :project, :null => false
 
       t.timestamps
     end

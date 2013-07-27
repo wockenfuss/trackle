@@ -54,11 +54,11 @@ describe Task do
 
 	describe "#show", :js => true do
 		before(:each) do
-			@city = FactoryGirl.create(:city)
+			@project = FactoryGirl.create(:project)
 			@task = FactoryGirl.create(:task)
 			@assignment = FactoryGirl.create(:assignment, 
 																				:user_id => @user.id,
-																				:city_id => @city.id,
+																				:project_id => @project.id,
 																				:task_id => @task.id)
 			login_as @admin, :scope => :user
 			visit root_path

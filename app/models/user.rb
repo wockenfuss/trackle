@@ -34,9 +34,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def current_city_color
+  def current_project_color
   	if assigned?
-			return current_assignment.city.color 
+			return current_assignment.project.color 
 		else 
 			return 'lightgreen'
 		end
@@ -50,9 +50,9 @@ class User < ActiveRecord::Base
 		end
   end
 
-  def city_name
+  def project_name
   	if assigned?
-  		return current_assignment.city.name
+  		return current_assignment.project.name
   	else
   		return "none"
   	end

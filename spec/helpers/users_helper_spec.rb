@@ -12,7 +12,8 @@ describe UsersHelper do
 		end
 
 		it "returns the start time if current assignment is in progress" do
-			@assignment.update_attributes(:started_at => Time.now)
+			@assignment.update_attributes(:started_at => Time.now,
+																		:resumed_at => Time.now)
 			status_bar(@user).should eq "Started at #{@assignment.started_at.localtime.strftime("%l:%M %p, %-m/%d/%Y")}"
 		end
 
@@ -22,6 +23,7 @@ describe UsersHelper do
 
 		it "returns current assignment status for on hold assignments" do
 			@assignment.update_attributes(:started_at => Time.now,
+																		:resumed_at => Time.now,
 																		:hold => true)
 			status_bar(@user).should eq "on hold"
 		end
@@ -29,6 +31,7 @@ describe UsersHelper do
 
 	describe "#hold_resume" do
 		before(:each) { @assignment.update_attributes(:started_at => Time.now,
+																									:resumed_at => Time.now,
 																									:hold => true)}
 
 		it "returns a link to resume the assignment if no other assignment is in progress" do
@@ -38,7 +41,8 @@ describe UsersHelper do
 
 		it "returns nothing if another assignment is in progress" do
 			@other_assignment = FactoryGirl.create(:assignment, :user_id => @user.id,
-																													:started_at => Time.now)
+																													:started_at => Time.now,
+																													:resumed_at => Time.now)
 			hold_resume(@assignment).should eq ""
 		end
 

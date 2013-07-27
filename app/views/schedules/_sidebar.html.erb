@@ -1,9 +1,9 @@
-<div class="dropdown cityName" data-color="<%= @city.color if @city %>">
-	<%= link_to @city.name, "#" if @city %>
+<div class="dropdown projectName" data-color="<%= @project.color if @project %>">
+	<%= link_to @project.name, "#" if @project %>
 	<ul class="dropdownMenu">
-		<% @cities.each do |city| %>
-			<li data-color="<%= city.color %>" class="dropdownProject" data-city="<%= city.id %>">
-				<%= city.name %>
+		<% @projects.each do |project| %>
+			<li data-color="<%= project.color %>" class="dropdownProject" data-project="<%= project.id %>">
+				<%= project.name %>
 			</li>
 		<% end %>
 	</ul>
@@ -12,7 +12,7 @@
 <% if @tasks.any? %>
 <div>
 	<% @tasks.each do |task| %>
-	<%= render :partial => 'tasks/show', :locals => { :task => task, :city => @city } %>
+	<%= render :partial => 'tasks/show', :locals => { :task => task, :project => @project } %>
 	<% end %>
 </div>
 <% end %>

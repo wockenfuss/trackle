@@ -5,13 +5,13 @@
 			var addListener = function() {
 				$target.find('.taskBoxName').on('click', function(e) {
 					var taskId = $(this).parent().attr('data-task');
-					var cityId = $(this).parent().attr('data-city');
+					var projectId = $(this).parent().attr('data-project');
 					$.ajax({
 						url: '/tasks/' + taskId,
 						dataType: 'script',
 						type: 'get',
 						data: {
-							city_id: cityId
+							project_id: projectId
 						},
 						success: function(result) {
 

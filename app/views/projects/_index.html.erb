@@ -1,0 +1,18 @@
+<div class="resourceColumn">
+	<% if @projects.any? %>
+		<% @projects.each do |project| %>
+		<ul>
+			<li>
+				<%= project.name %>
+				|
+				<%= link_to "edit", edit_project_path(project) %>
+				|
+				<%= link_to "delete", project_path(project), :method => :delete, :confirm => "Are you sure you want to delete this project?" %>
+			</li>
+		</ul>
+		<% end %>
+	<% else %>
+		<p><%= "No projects yet." %></p>
+	<% end %>
+</div>
+	

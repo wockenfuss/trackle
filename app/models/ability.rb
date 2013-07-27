@@ -16,7 +16,7 @@ class Ability
       end
       cannot :index, User
       cannot :all, Schedule
-      cannot :all, City
+      cannot :all, Project
       cannot :all, Task
       cannot :all, Announcement
     end

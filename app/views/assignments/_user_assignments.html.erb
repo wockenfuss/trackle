@@ -12,7 +12,7 @@
 		<ul>
 			<% @user.on_hold.each do |item| %>
 				<li>
-					<%= "#{item.task.name}: #{item.city.name}" %></br>
+					<%= "#{item.task.name}: #{item.project.name}" %></br>
 					<!-- <#%= "Time Spent: #{Time.at(item.elapsed_time).utc.strftime("%H:%M:%S")}"%></br> -->
 				 <%= "Time Spent: #{distance_of_time_in_words(item.elapsed_time)}" if item.elapsed_time != 0 %></br>
 					<%= hold_resume(item) %>
@@ -26,7 +26,7 @@
 	<h3>Queue:</h3>
 	<ul>
 		<% @user.queued.each do |item| %>
-			<li><%= "#{item.task.name}: #{item.city.name}" %></li>
+			<li><%= "#{item.task.name}: #{item.project.name}" %></li>
 		<% end %>
 	</ul>
 	<% end %>

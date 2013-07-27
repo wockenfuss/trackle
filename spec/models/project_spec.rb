@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe City do
-  subject { FactoryGirl.create(:city) }
+describe Project do
+  subject { FactoryGirl.create(:project) }
 
   [:name, :color].each do |attr|
   	it { should validate_presence_of attr }

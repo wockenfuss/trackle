@@ -1,5 +1,5 @@
-class AddColorToCity < ActiveRecord::Migration
+class AddColorToProject < ActiveRecord::Migration
   def change
-    add_column :cities, :color, :string
+    add_column :projects, :color, :string
   end
 end

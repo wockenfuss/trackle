@@ -7,11 +7,11 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :comments, :allow_destroy => true, reject_if: proc { |attributes| attributes['content'].blank? }
 	belongs_to :user
 	belongs_to :task
-	belongs_to :city
+	belongs_to :project
 
   attr_accessible :amount_completed, :completed_at, :deadline, 
                   :duration, :hold, :started_at, 
-                  :user_id, :task_id, :city_id, :comments_attributes, 
+                  :user_id, :task_id, :project_id, :comments_attributes, 
                   :queue_index, :resumed_at, :elapsed_time
   before_save :check_elapsed_time
   before_save :update_queue

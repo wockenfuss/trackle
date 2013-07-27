@@ -7,11 +7,11 @@ describe Assignment do
 
 	it { should belong_to :user }
 	it { should belong_to :task }
-	it { should belong_to :city }
+	it { should belong_to :project }
 
 	[:amount_completed, :completed_at, :deadline, :duration, 
 		:hold, :started_at, :user_id, :task_id, 
-		:city_id, :queue_index].each do |attr|
+		:project_id, :queue_index].each do |attr|
 		it { should respond_to attr }
 	end	
 

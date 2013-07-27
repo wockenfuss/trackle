@@ -58,7 +58,7 @@ nav {
 	/*background-color: #aaa;*/
 	/*background: image-url('yellowtrans.png');*/
 	/*background-color: rgba(0, 128, 255, .2);*/
-	opacity: .8;
+	opaproject: .8;
 	border-bottom: 5px #333 solid;
 	a:hover {
 		/*color: #fff;*/
@@ -121,7 +121,7 @@ a {
 	}
 }
 
-#city {
+#project {
 	border-radius: 5px;
 	color: #fff;
 	width: 20%;
@@ -129,7 +129,7 @@ a {
 	background-color: #eee;
 	margin: 2% 0 3% 2%;
 	padding-bottom: 1%;
-	.cityName {
+	.projectName {
 		margin: 5%;
 		text-align: center;
 		/*background-color: #519a69;*/
@@ -203,7 +203,7 @@ a {
 			}
 		}
 		.taskAssignments {
-			opacity: .7;
+			opaproject: .7;
 			display: none;
 			background-color: #eee;
 			border-radius: 5px;
@@ -418,7 +418,7 @@ a {
 		}
 	}
 
-	.cityStripe {
+	.projectStripe {
 		font-size: 1em;
 		margin: 0;
 		padding: 2%;
@@ -569,7 +569,7 @@ form {
 }	
 
 .ui-state-hover {
-	opacity: .5;
+	opaproject: .5;
 }
 
 .available {
@@ -582,11 +582,11 @@ form {
 }
 
 .absent {
-	opacity: .3;
+	opaproject: .3;
 }
 
 .unselected {
-	opacity: .3;
+	opaproject: .3;
 }
 
 .assignmentShow {
@@ -689,7 +689,7 @@ form {
 
 .dropdownProject {
 	&:hover {
-		opacity: .5;
+		opaproject: .5;
 	}
 }
 

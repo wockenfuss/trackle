@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
 	validates :name, :presence => true
   attr_accessible :name, :color
 
-  def assignments_for_city(city)
-  	self.assignments.where(:city_id => city.id)
+  def assignments_for_project(project)
+  	self.assignments.where(:project_id => project.id)
   end
 end

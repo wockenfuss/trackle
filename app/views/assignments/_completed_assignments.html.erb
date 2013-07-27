@@ -3,7 +3,7 @@
 	<ul>
 		<% @user.completed_assignments.each do |item| %>
 			<div>
-				<li><strong><%= "#{item.task.name}: #{item.city.name}" %></strong></li>
+				<li><strong><%= "#{item.task.name}: #{item.project.name}" %></strong></li>
 				<li><em><%= "Completed: #{time_ago_in_words(item.completed_at)} ago" %></em></li>
 			</div>
 		<% end %>

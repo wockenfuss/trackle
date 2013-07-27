@@ -1,4 +1,4 @@
-class City < ActiveRecord::Base
+class Project < ActiveRecord::Base
 	has_many :assignments, :dependent => :destroy
 
 	validates :name, :presence => true

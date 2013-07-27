@@ -11,7 +11,7 @@ class TasksController < ApplicationController
 
 	def show
 		@task = Task.find(params[:id])
-		@city = City.find(params[:city_id])
+		@project = Project.find(params[:project_id])
 	end
 
 	def create

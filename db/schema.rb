@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726020541) do
+ActiveRecord::Schema.define(:version => 20130727170746) do
 
   create_table "announcements", :force => true do |t|
     t.text     "content",    :null => false
@@ -32,21 +32,12 @@ ActiveRecord::Schema.define(:version => 20130726020541) do
     t.integer  "amount_completed", :default => 0
     t.integer  "user_id",                             :null => false
     t.integer  "task_id",                             :null => false
-    t.integer  "city_id",                             :null => false
+    t.integer  "project_id",                          :null => false
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.integer  "queue_index"
     t.integer  "elapsed_time",     :default => 0
     t.datetime "resumed_at"
-  end
-
-  create_table "cities", :force => true do |t|
-    t.string   "name",                          :null => false
-    t.datetime "deadline"
-    t.boolean  "hold",       :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.string   "color"
   end
 
   create_table "comments", :force => true do |t|
@@ -55,6 +46,16 @@ ActiveRecord::Schema.define(:version => 20130726020541) do
     t.integer  "user_id",       :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name",                            :null => false
+    t.datetime "deadline"
+    t.boolean  "hold",         :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "color"
+    t.datetime "completed_at"
   end
 
   create_table "roles", :force => true do |t|

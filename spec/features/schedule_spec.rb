@@ -33,7 +33,7 @@ describe Schedule do
 			end
 
 			it "displays a list of tasks" do
-				@city = FactoryGirl.create(:city)
+				@project = FactoryGirl.create(:project)
 				@task = FactoryGirl.create(:task)
 				visit root_path
 				page.should have_content @task.name

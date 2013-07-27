@@ -58,7 +58,7 @@ describe User do
 		end
 
 		it "returns true if a user has an assignment on hold" do
-			@assignment.update_attributes(:hold => true)
+			@assignment.update_attributes(:resumed_at => Time.now, :hold => true)
 			@user.assigned?.should be_true
 		end
 	end
@@ -67,7 +67,8 @@ describe User do
 		before(:each) do 
 			@incomplete = FactoryGirl.create(:assignment, :user_id => @user.id)
 			@complete = FactoryGirl.create(:assignment, :user_id => @user.id, 
-																			:started_at => Time.now, 
+																			:started_at => Time.now,
+																			:resumed_at => Time.now, 
 																			:completed_at => Time.now)
 		end
 
@@ -84,11 +85,13 @@ describe User do
 		before(:each) do 
 			@on_hold = FactoryGirl.create(:assignment, 
 																		:user_id => @user.id, 
-																		:started_at => Time.now, 
+																		:started_at => Time.now,
+																		:resumed_at => Time.now, 
 																		:hold => true)
 			@assignment = FactoryGirl.create(:assignment, 
 																		:user_id => @user.id,
-																		:started_at => Time.now)
+																		:started_at => Time.now,
+																		:resumed_at => Time.now)
 		end
 
 		it "returns a list of assignments on hold" do
