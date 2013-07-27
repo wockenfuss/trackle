@@ -41,6 +41,18 @@
 		});
 
 		$('.dropdown a').on('mouseenter', myApp.dropdown); 
+		$('.dropdownProject').on('click', function(e) {
+			var cityId = $(this).attr('data-city');
+			var data = {
+				city_id: cityId
+			};
+			$.ajax({
+				url: '/',
+				dataType: 'script',
+				type: 'get',
+				data: data
+			});
+		});
 	}
 
 	myApp.setFlashAlerts = function() {
@@ -94,18 +106,19 @@
 		if ( $dropdown.hasClass('navbar') ) {
 			var position = $trigger.position().left + $trigger.width() - $menu.width() + parseInt($trigger.css('margin-right'), 10) - 10;
 			$menu.css('left', position);
+			$menu.css('top', '50px');
 		} else {
-			var top = $dropdown.position().top + $dropdown.height() + 10;
-			var left = $dropdown.position().left + 10;
+			var top = $dropdown.position().top + $dropdown.height() + 17;
+			var left = $dropdown.position().left + 13;
 			$menu.css('width', $dropdown.width());
 			$menu.css('top', top);
 			$menu.css('left', left);
 		}
 		
-		$menu.show();
+		$menu.slideToggle('fast');
 
 		$dropdown.on('mouseleave', function(e) {
-			$dropdown.find('.dropdownMenu').hide();
+			$dropdown.find('.dropdownMenu').slideToggle('fast');
 			$dropdown.off('mouseleave');
 			$('.dropdown a').on('mouseenter', myApp.dropdown);
 		})
