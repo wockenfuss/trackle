@@ -62,12 +62,9 @@
 		$.ajax({
 			url: '/',
 			type: 'get',
-			dataType: 'script',
+			dataType: 'json',
 			data: {
 				time_zone: timezone
-			},
-			success: function(result) {
-				console.log('timezone changed');
 			}
 		});
 	};
