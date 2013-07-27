@@ -4,7 +4,7 @@ if ( $('#userDisplay').is(':visible') ) {
 	$('#userDisplay').slideToggle('default', function() {
     $('#userDisplay').remove();
     $('.userBox').removeClass('unselected');
-    // $('.userBox').css('opaproject', 1);
+    // $('.userBox').css('opacity', 1);
   });
 } else {
 	$('.userBox').not($current).addClass('unselected');

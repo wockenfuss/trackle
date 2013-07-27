@@ -58,7 +58,7 @@ nav {
 	/*background-color: #aaa;*/
 	/*background: image-url('yellowtrans.png');*/
 	/*background-color: rgba(0, 128, 255, .2);*/
-	opaproject: .8;
+	opacity: .8;
 	border-bottom: 5px #333 solid;
 	a:hover {
 		/*color: #fff;*/
@@ -203,7 +203,7 @@ a {
 			}
 		}
 		.taskAssignments {
-			opaproject: .7;
+			opacity: .7;
 			display: none;
 			background-color: #eee;
 			border-radius: 5px;
@@ -569,7 +569,7 @@ form {
 }	
 
 .ui-state-hover {
-	opaproject: .5;
+	opacity: .5;
 }
 
 .available {
@@ -582,11 +582,11 @@ form {
 }
 
 .absent {
-	opaproject: .3;
+	opacity: .3;
 }
 
 .unselected {
-	opaproject: .3;
+	opacity: .3;
 }
 
 .assignmentShow {
@@ -689,7 +689,7 @@ form {
 
 .dropdownProject {
 	&:hover {
-		opaproject: .5;
+		opacity: .5;
 	}
 }
 
