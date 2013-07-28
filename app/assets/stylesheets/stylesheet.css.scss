@@ -17,6 +17,18 @@ $secondary-font: "Pontano Sans";
 	/*background-color: $color;*/
 }
 
+@mixin resourceBorder {
+	border: 3px solid #999;
+	margin: 2% 0 3% 2%;
+	float: left;
+	overflow: auto;
+	padding: 1%;
+	border-radius: 5px;
+	h2 {
+		margin-top: 0;
+	}
+}
+
 
 .navbar {
 	margin: 15px 30px 0 0;
@@ -227,7 +239,7 @@ a {
 #announcements {
 	border-radius: 5px;
 	/*float: left;*/
-	width: 55%;
+	width: 85%;
 	/*background-color: #ccc;*/
 	margin: 1% 1% 1% 2.5%;
 	padding: .5%;
@@ -278,9 +290,14 @@ a {
 	}
 }
 
+.announcementIndex {
+	@include resourceBorder;
+	width: 70%;
+}
+
 #editAnnouncementList {
 	margin: 2% 4%;
-	width: 60%;
+	width: 90%;
 	.editAnnouncement {
 		background-color: #ddd;
 		span {
@@ -665,32 +682,31 @@ form {
 }
 
 .resourceList {
-	border: 3px solid #999;
-	width: 30%;
-	margin: 1% 0 3% 4%;
-	float: left;
-	/*background-color: red;*/
-	overflow: auto;
-	padding: 2%;
-	border-radius: 5px;
-	h2 {
-		margin-top: 0;
-	}
+	@include resourceBorder;
+	width: 28%;
 }
 
 .resourceColumn {
-	/*border: 3px solid #999;*/
+
 	padding: 4%;
-	/*width: 35%;*/
-	/*float: left;*/
 	background-color: #eee;
 	margin: 2%;
-	/*border-radius: 5px;*/
 	a {
 		&:hover {
 			color: #fff;
 		}
 	}
+	ul {
+		margin-left: -7%;
+		li {
+			margin: 2% 0;
+		}
+	}
+}
+
+.resourceEdit {
+	@include resourceBorder;
+	width: 40%;
 }
 
 .resourceForm {
