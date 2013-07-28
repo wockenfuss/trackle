@@ -51,7 +51,7 @@ describe "Projects", :js => true do
 		end
 
 		it "allows admin to set deadline for project" do
-			deadline = "01/01/2013" 
+			deadline = Time.now.strftime("%m/%d/%Y") 
 			fill_in "Deadline", :with => deadline
 			click_button "Create Project"
 			page.should have_selector("#flash_notice", :text => "Project created")

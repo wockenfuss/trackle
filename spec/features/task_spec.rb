@@ -38,8 +38,10 @@ describe Task do
 		end
 
 		it "allows admin user to create tasks" do
-			fill_in "Name", :with => "Foo"
-			fill_in "Color", :with => "#fff"
+			within(:css, "#new_task") do 
+				fill_in "Name", :with => "Foo"
+				fill_in "Color", :with => "#fff"
+			end
 			expect do
 				click_button "Create Task"
 				page.should have_selector("#flash_notice", :text => "Task created")

@@ -39,7 +39,7 @@ describe Assignment, :js => true do
 			end
 
 			it "allows admin to set a deadline for the assignment" do
-				deadline = "01/01/2013"
+				deadline = Time.now.strftime("%m/%d/%Y") 
 				fill_in("Deadline", :with => deadline)
 				click_button("Assign task")
   			visit root_path
