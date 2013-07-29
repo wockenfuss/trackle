@@ -8,7 +8,8 @@ class TaskGroupsController < ApplicationController
 		@task_group = TaskGroup.new(params[:task_group])
 		if @task_group.save
 			@task = Task.new
-			@task_groups = TaskGroup.all
+			@task_groups = TaskGroup.order('LOWER(name)')
+			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
 			@notice = "Task Group created"
 			respond_with @task_groups, @notice
 		else
@@ -32,8 +33,10 @@ class TaskGroupsController < ApplicationController
 				js_alert(@task_group) and return
 			end
 		end
-		@task_groups = TaskGroup.all
+		@task_groups = TaskGroup.order('LOWER(name)')
 		@task_group = TaskGroup.new
+		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}		
+		@task = Task.new
 		respond_with @task_groups, @task_group	
 	end
 
@@ -43,6 +46,7 @@ class TaskGroupsController < ApplicationController
 			@task = Task.new
 			@task_groups = TaskGroup.all
 			@notice = "Task Group deleted"
+			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}		
 			respond_with @task_groups, @notice, @task
 		end
 	end

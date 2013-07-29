@@ -1,9 +1,8 @@
-var taskId = '<%= @task.id %>';
-var taskSelector = 'div[data-task=' + taskId + ']';
-var $target = $(taskSelector).find('.taskAssignments');
+$('#taskList').slideToggle('fast', function(e) {
+	$(this).html('<%= j render "tasks/form" %>')
+	$(this).find('.resourceFormDrawer').show();
+	$('.colorPicker').minicolors();
 
-if ( $target.is(':visible') ) {
-	$target.slideToggle();
-} else {
-	$(taskSelector).find('.taskAssignments').html('<%= j render :partial => "tasks/list", :locals => { :task => @task, :project => @project } %>').slideToggle();
-}
+	$(this).slideToggle();
+});
+	

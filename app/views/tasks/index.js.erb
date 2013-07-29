@@ -1,0 +1,9 @@
+var taskId = '<%= @task.id %>';
+var taskSelector = 'div[data-task=' + taskId + ']';
+var $target = $(taskSelector).find('.taskAssignments');
+
+if ( $target.is(':visible') ) {
+	$target.slideToggle();
+} else {
+	$(taskSelector).find('.taskAssignments').html('<%= j render :partial => "tasks/list", :locals => { :task => @task, :project => @project } %>').slideToggle();
+}

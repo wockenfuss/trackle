@@ -1,15 +1,34 @@
 <div class="resourceColumn" id="taskGroup">
-	<% @grouped_tasks.reverse_each do |group| %>
-	<ul>
-		<h3><%= TaskGroup.name_from_grouped_tasks(group) %></h3>
-		<% group.last.each do |task| %>
-			<li>
-				<%= task.name %>
-				<%= render "shared/resource_links", :resource => task %>
-			</li>
+	<% if Task.any? %>
+		<% if @task_groups.any? %>
+
+			<% @task_groups.each do |task_group| %>
+				<ul>
+					<h3><%= task_group.name %></h3>
+					<% if @grouped_tasks[[task_group.id]] %>
+						<% @grouped_tasks[[task_group.id]].each do |task| %>
+							<li>
+								<%= task.name %>
+								<%= render "shared/resource_links", :resource => task %>
+							</li>
+						<% end %>
+					<% end %>
+				</ul>
+			<% end %>
 		<% end %>
-	</ul>
-		
-		
+		<ul>
+			<h3>Ungrouped Tasks</h3>
+				<% @grouped_tasks[[]].each do |task| %>
+					<li>
+						<%= task.name %>
+						<%= render "shared/resource_links", :resource => task %>
+					</li>
+				<% end %>
+		</ul>
+				
+
+	<% else %>
+		<p>There are no tasks yet.</p>
 	<% end %>
+
 </div>	

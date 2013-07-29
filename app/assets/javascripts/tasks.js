@@ -7,11 +7,12 @@
 					var taskId = $(this).parent().attr('data-task');
 					var projectId = $(this).parent().attr('data-project');
 					$.ajax({
-						url: '/tasks/' + taskId,
+						url: '/tasks',
 						dataType: 'script',
 						type: 'get',
 						data: {
-							project_id: projectId
+							project_id: projectId,
+							task_id: taskId
 						},
 						success: function(result) {
 

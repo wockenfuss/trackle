@@ -41,6 +41,8 @@ class ApplicationController < ActionController::Base
       return '#announcementErrors'
     when @task_group
       return '#taskGroupErrors'
+    when @task
+      return '#taskErrors'
     else
       return '#alerts'
     end

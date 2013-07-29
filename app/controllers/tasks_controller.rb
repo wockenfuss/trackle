@@ -4,25 +4,35 @@ class TasksController < ApplicationController
 	respond_to :html, :js, :json
 
 	def index
-		@task = Task.new
-		# @task_group = TaskGroup.new
-		@task_groups = TaskGroup.all
-		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
-		@tasks = Task.all
-		respond_with @tasks, @task
+		@task = Task.find(params[:task_id])
+		@project = Project.find(params[:project_id])
+		respond_with @task, @project
+		# @task = Task.new
+		# @task_groups = TaskGroup.order('LOWER(name)')
+		# @grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
+		# @tasks = Task.all
+		# respond_with @tasks, @task
 	end
 
 	def show
-		@task = Task.find(params[:id])
-		@project = Project.find(params[:project_id])
+		if params[:project_id]
+			@task = Task.find(params[:id])
+			@project = Project.find(params[:project_id])
+			respond_with @task, @project
+		else
+
+		end
 	end
 
 	def create
 		@task = Task.create(params[:task])
 		if @task.save
-			redirect_to tasks_path, :notice => "Task created"
+			@task = Task.new
+			@task_groups = TaskGroup.order('LOWER(name)')
+			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
+			respond_with @task, @task_groups, @grouped_tasks
 		else
-			redirect_to tasks_path, :alert => "Something went wrong"
+			js_alert(@task)
 		end
 	end
 
@@ -31,18 +41,25 @@ class TasksController < ApplicationController
 	end
 
 	def update
-		@task = Task.find(params[:id])
-		if @task.update_attributes(params[:task])
-			redirect_to tasks_path, :notice => "Task updated"
-		else
-			redirect_to edit_task_path(@task), :alert => "Something went wrong"
+		if params[:commit] != 'Cancel'
+			@task = Task.find(params[:id])
+			unless @task.update_attributes(params[:task])
+				js_alert(@task) and return
+			end
 		end
+		@task_groups = TaskGroup.order('LOWER(name)')
+		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}		
+		@task = Task.new
+		respond_with @task_groups, @task_group, @task	
 	end
 
 	def destroy
 		@task = Task.find(params[:id])
 		if @task.destroy
-			redirect_to tasks_path, :notice => "Task deleted"
+			@task = Task.new
+			@task_groups = TaskGroup.order('LOWER(name)')
+			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
+			respond_with @task, @task_groups, @grouped_tasks
 		end
 	end
 

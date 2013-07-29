@@ -6,6 +6,6 @@
 	<li>
 		<%= button_to "Pause", assignment_path(assignment, :assignment => { :hold => true}), :method => 'put', :remote => true%>
 
-		<%= button_to "Finish", assignment_path(assignment, :assignment => { :completed_at => true }), :method => 'put', :remote => true %>
+		<%= button_to "Mark Completed", assignment_path(assignment, :assignment => { :completed_at => true }), :method => 'put', :remote => true %>
 	</li>
 <% end %>

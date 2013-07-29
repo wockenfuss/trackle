@@ -1,0 +1,10 @@
+var taskFormSelector = '#taskList .resourceFormDrawer';
+$('#taskList').html('<%= j render "tasks/form_and_index" %>');
+$(taskFormSelector).show();
+$('.colorPicker').minicolors();
+
+$('.formDisplayLink').off('click').on('click', function(e) {
+	$(this).next().slideToggle();
+});
+
+//re apply any listeners

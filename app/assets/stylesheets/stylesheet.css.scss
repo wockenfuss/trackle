@@ -721,6 +721,9 @@ form {
 .resourceColumn {
 	form {
 		margin-top: 3%;
+		input[type="submit"] {
+			margin: 5% 0 5% 10%;
+		}
 	}
 	padding: 2% 4% 4% 4%;
 	background-color: #eee;

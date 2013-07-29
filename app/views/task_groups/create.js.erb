@@ -8,12 +8,16 @@ $('#task_group_name').val('');
 $('#taskGroupIndex').html('<%= j render "task_groups/index" %>');
 
 
-var taskFormSelector = '#taskList .resourceFormDrawer';
-//render task form
-var visibility = $(taskFormSelector).is(':visible');
-$(taskFormSelector).replaceWith('<%= j render "tasks/form" %>');
+// $(taskFormSelector).replaceWith('<%= j render "tasks/form" %>');
 
+var taskFormSelector = '#taskList .resourceFormDrawer';
+var visibility = $(taskFormSelector).is(':visible');
+$('#taskList').html('<%= j render "tasks/form_and_index" %>');
 if ( visibility ) {
 	$(taskFormSelector).show();
 }
 $('.colorPicker').minicolors();
+
+$('.formDisplayLink').off('click').on('click', function(e) {
+	$(this).next().slideToggle();
+});
