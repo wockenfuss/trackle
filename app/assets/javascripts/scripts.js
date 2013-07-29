@@ -27,7 +27,15 @@
    		$(this).parent().remove();
    	});
 
-   	$('.hiddenFormLink').on('click', function(e) {
+   	// $('.hiddenFormLink').on('click', function(e) {
+   	// 	$(this).next().slideToggle();
+   	// });
+
+   	$('.formDisplayLink').on('click', function(e) {
+   		$(this).next().slideToggle();
+   	});
+
+   	$('.resourceList h2').on('click', function(e) {
    		$(this).next().slideToggle();
    	});
 	};

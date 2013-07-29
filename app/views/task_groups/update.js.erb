@@ -1,0 +1,7 @@
+$('#taskGroupList').slideToggle('fast', function(e) {
+	$(this).html('<%= j render "task_groups/form_and_index" %>')
+	$(this).slideToggle();
+  $('.formDisplayLink').off('click').on('click', function(e) {
+ 		$(this).next().slideToggle();
+ 	});
+});

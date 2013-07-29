@@ -58,6 +58,10 @@ describe "Projects", :js => true do
 			Project.first.deadline.strftime("%m/%d/%Y").should eq deadline
 		end
 
+		it "allows admin to associate task with project" do
+			pending
+		end
+
 		it "displays a warning if project creation fails" do
 			fill_in "Color", :with => ""
 			click_button "Create Project"

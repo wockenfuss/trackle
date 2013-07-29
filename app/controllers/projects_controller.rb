@@ -6,6 +6,10 @@ class ProjectsController < ApplicationController
 	def index
 		@projects = Project.all
 		@project = Project.new
+		@task = Task.new
+		@task_group = TaskGroup.new
+		@task_groups = TaskGroup.all
+		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
 	end
 
 	def edit

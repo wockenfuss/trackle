@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
 	def index
 		@task = Task.new
-		@task_group = TaskGroup.new
+		# @task_group = TaskGroup.new
 		@task_groups = TaskGroup.all
 		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
 		@tasks = Task.all

@@ -1,4 +1,4 @@
-<div class="resourceColumn">
+<div class="resourceColumn resourceFormDrawer">
 	<%= form_for @task_group, :remote => true do |f| %>
 		<div id="taskGroupErrors"></div>
 		<div>
@@ -7,5 +7,6 @@
 		</div>
 			
 		<%= f.submit %>
+		<%= f.submit :Cancel if !@task_group.new_record? %>	
 	<% end %>
 </div>

@@ -248,6 +248,14 @@ a {
 	}
 }
 
+#taskGroupList {
+	display: none;
+}
+
+#taskList {
+	display: none;
+}
+
 .comment {
 	width: 95%;
 	background-color: #eeeeee;
@@ -692,11 +700,29 @@ form {
 .resourceList {
 	@include resourceBorder;
 	width: 28%;
+	h2 {
+		&:hover {
+			cursor: pointer; cursor: hand;
+		}
+	}
 }
 
-.resourceColumn {
+.resourceLinks {
+	float: right;
+	margin: 0 2% 0 0;
+}
 
-	padding: 4%;
+.formDisplayLink {
+	&:hover {
+		cursor: pointer; cursor: hand;
+		color: #fff;
+	}
+}
+.resourceColumn {
+	form {
+		margin-top: 3%;
+	}
+	padding: 2% 4% 4% 4%;
 	background-color: #eee;
 	margin: 2%;
 	a {
@@ -708,8 +734,20 @@ form {
 		margin-left: -7%;
 		li {
 			margin: 2% 0;
+			/*border: solid 2px #555;*/
+			color: #fff;
+			background-color: #aaa;
+			border-radius: 5px;
+			padding-left: 3%;
+			a {
+				color: #444;
+			}
 		}
 	}
+}
+
+.resourceFormDrawer {
+	display: none;
 }
 
 .resourceEdit {
@@ -726,8 +764,4 @@ form {
 		opacity: .5;
 	}
 }
-
-/*.hiddenForm {
-	display: none;
-}*/
 

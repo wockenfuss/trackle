@@ -6,3 +6,14 @@ setTimeout(function() {
 $('#task_group_name').val('');
 
 $('#taskGroupIndex').html('<%= j render "task_groups/index" %>');
+
+
+var taskFormSelector = '#taskList .resourceFormDrawer';
+//render task form
+var visibility = $(taskFormSelector).is(':visible');
+$(taskFormSelector).replaceWith('<%= j render "tasks/form" %>');
+
+if ( visibility ) {
+	$(taskFormSelector).show();
+}
+$('.colorPicker').minicolors();

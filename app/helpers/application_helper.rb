@@ -7,4 +7,8 @@ module ApplicationHelper
       return user_path(user)
     end
   end
+
+  def edit_resource_path(resource)
+  	# "edit_#{resource.class.lowercase}_path"
+  end
 end

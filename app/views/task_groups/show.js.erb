@@ -1,0 +1,5 @@
+$('#taskGroupList').slideToggle('fast', function(e) {
+	$(this).html('<%= j render "task_groups/form" %>')
+	$(this).find('.resourceFormDrawer').show();
+	$(this).slideToggle();
+});

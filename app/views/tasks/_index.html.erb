@@ -1,12 +1,11 @@
 <div class="resourceColumn" id="taskGroup">
-	<% @grouped_tasks.each do |group| %>
+	<% @grouped_tasks.reverse_each do |group| %>
 	<ul>
-		<h3><%= TaskGroup.find(group.first).first.name if TaskGroup.find(group.first).first %></h3>
+		<h3><%= TaskGroup.name_from_grouped_tasks(group) %></h3>
 		<% group.last.each do |task| %>
 			<li>
-				<%= task.name %> |
-				<%= link_to "edit", edit_task_path(task) %> |	
-				<%= link_to "delete", task_path(task), :method => :delete, :confirm => "Are you sure you want to delete this task?" %>			
+				<%= task.name %>
+				<%= render "shared/resource_links", :resource => task %>
 			</li>
 		<% end %>
 	</ul>
