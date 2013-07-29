@@ -1,5 +1,4 @@
 <% if @announcements.size > 0 %>
-	<h3>Announcements</h3>
 	<% @announcements.each do |announcement| %>
 		<div class="editAnnouncement">
 			<div>
@@ -9,7 +8,7 @@
 				<span><em><%= "Begins: #{announcement.begin_date.localtime.to_date}" %></em></span>	
 				<span><em><%= "Ends: #{announcement.end_date.localtime.to_date}" %></em></span>	
 			</div>
-			<div>
+			<div class="announcementContent">
 				<%= announcement.content %></br>					
 			</div>
 			<div>

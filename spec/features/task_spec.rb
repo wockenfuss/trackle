@@ -28,6 +28,10 @@ describe Task do
 			it "displays a list of tasks" do
 				page.should have_content @task.name
 			end
+
+			it "groups the tasks by task group" do
+				pending
+			end
 		end
 	end
 
@@ -51,6 +55,19 @@ describe Task do
 		it "displays a warning if task creation fails" do
 			click_button "Create Task"
 			page.should have_selector("#flash_alert", :text => "Something went wrong")
+		end
+
+		it "allows admin to associate tasks with a task group" do
+			@task_group = FactoryGirl.create(:task_group)
+			visit tasks_path
+			within(:css, "#new_task") do 
+				fill_in "Name", :with => "Foo"
+				fill_in "Color", :with => "#fff"
+				select(@task_group.name, :from => 'task_task_group_ids')
+			end
+			click_button "Create Task"
+			page.should have_selector("#flash_notice", :text => "Task created")
+			Task.first.task_groups.first.should eq @task_group
 		end
 	end
 

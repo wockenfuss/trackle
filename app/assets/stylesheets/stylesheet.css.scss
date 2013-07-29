@@ -228,6 +228,26 @@ a {
 	}
 }
 
+#taskGroup {
+	ul {
+		h3 {
+			margin: 1% 0 1% -5%;
+			background-color: #999;
+			/*padding: 1%;*/
+			color: #fff;
+			border-radius: 5px;
+			padding-left: 2%;
+		}
+		margin: 2% 0;
+		border: solid 3px #999;
+		border-radius: 5px;
+		padding: 3% 7%;
+		li {
+			margin: 2% 0 0 5%;
+		}
+	}
+}
+
 .comment {
 	width: 95%;
 	background-color: #eeeeee;
@@ -239,7 +259,7 @@ a {
 #announcements {
 	border-radius: 5px;
 	/*float: left;*/
-	width: 85%;
+	width: 93%;
 	/*background-color: #ccc;*/
 	margin: 1% 1% 1% 2.5%;
 	padding: .5%;
@@ -254,39 +274,20 @@ a {
 		color: #000;
 		text-align: left;
 		display: none;
-		border: 4px solid #999;
-		background-color: #ddd;
-		border-radius: 5px;
-		padding: 4% 2% 2% 6%;
+		/*border: 4px solid #999;*/
+		background-color: #eee;
+		/*border-radius: 5px;*/
+		padding: 2% 1% 1% 2%;
 		margin-top: 2%;
-/*		textarea {
-			height: 75px;
-			width: 85%;
-			margin-top: 3%;
-			border: solid 4px #999;
-		}
-		input {
-			border: solid 4px #999;
-		}
-		input[type="submit"] {
-			margin: 3% 0;
-			padding: 1%;
-			font-size: .9em;
-			border-radius: 15px;
-			outline: none;
-			border: none;
-			color: #fff;
-			background-color: #777;
-			&:hover {
-				background-color: #bbb;
-				cursor: pointer; cursor: hand;
-			}
-			margin-left: 25%;
-		}*/
 		.announcementFields label {
 			margin-right: 3%;
 		}
-
+		input {
+			margin: 1%;
+		}
+		textarea {
+			margin-top: 1%;
+		}
 	}
 }
 
@@ -296,20 +297,25 @@ a {
 }
 
 #editAnnouncementList {
-	margin: 2% 4%;
-	width: 90%;
+	margin: 2% 1%;
+	width: 97%;
 	.editAnnouncement {
 		background-color: #ddd;
 		span {
 			margin: 0 3%;
 		} 
 		border-radius: 5px;
-		border: 3px solid #777;
+		/*border: 3px solid #777;*/
 		margin: 1%;
 		div {
-			margin: 2%;
+			/*margin: 2%;*/
+			padding: 1%;
 		}
 	}
+}
+
+.announcementContent {
+	background-color: #eee;
 }
 
 #userAnnouncements {
@@ -563,7 +569,9 @@ form {
 		border: solid 4px #999;
 		margin: 2% 0 ;
 	}
-
+	.formSelect {
+		margin-top: 2%;
+	}
 
 }
 

@@ -8,6 +8,10 @@
 		<div>
 			<%= f.label :color %>
 			<%= f.text_field :color, :class => "colorPicker" %>
+		</div>
+		<div class="formSelect">
+			<%= f.label :task_group %>
+			<%= f.collection_select 'task_group_ids', TaskGroup.all, :id, :name, { :include_blank => ""} %>
 		</div>	
 			
 		<%= f.submit %>

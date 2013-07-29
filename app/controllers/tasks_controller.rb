@@ -7,6 +7,7 @@ class TasksController < ApplicationController
 		@task = Task.new
 		@task_group = TaskGroup.new
 		@task_groups = TaskGroup.all
+		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
 		@tasks = Task.all
 		respond_with @tasks, @task
 	end
