@@ -12,4 +12,10 @@ $('#taskGroupList').slideToggle('fast', function(e) {
   $('.formDisplayLink').off('click').on('click', function(e) {
  		$(this).next().slideToggle();
  	});
+
+	myApp.draggable(".draggable");
+	myApp.droppable('.droppable');
+	myApp.droppable('.droppableGroup');
+
+
 });

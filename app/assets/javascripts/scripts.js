@@ -13,6 +13,8 @@
 		myApp.setDropdowns();
 		myApp.draggable(".draggable");
 		myApp.droppable('.droppable');
+		myApp.droppable('.droppableGroup');
+
     myApp.taskModal();
     $( ".datepicker" ).datepicker();
 
@@ -96,11 +98,21 @@
 	};
 
 	myApp.droppable = function( selector ) {
-		$(selector).droppable({
-      hoverClass: "ui-state-hover",
-      tolerance: "pointer",
-      drop: myApp.drop
-    });
+		if ( selector === ".droppableGroup" ) {
+			$(selector).droppable({
+				accept: ".groupDroppable",
+	      hoverClass: "ui-state-hover",
+	      tolerance: "pointer",
+	      drop: myApp.addToTaskGroup
+	    });
+		} else {
+			$(selector).droppable({
+	      hoverClass: "ui-state-hover",
+	      tolerance: "pointer",
+	      drop: myApp.drop
+	    });
+		}
+			
 	};
 
 	myApp.drop = function( event, ui ) {
@@ -109,7 +121,9 @@
 		} else if ( ui.draggable.attr('data-tasks') ) {
 			myApp.addTaskGroupToProject(event, ui);
 		} else if ( ui.draggable.attr('data-task-assign') ) {
-			myApp.addTaskToProject(event, ui.draggable.attr('data-task-assign'));
+			if ( $(event.target).attr('data-project') ) {
+				myApp.addTaskToProject(event, ui.draggable.attr('data-task-assign'));
+			}
 		}
 	};
 
@@ -126,6 +140,21 @@
 			url: '/projects/' + projectId,
 			dataType: 'script',
 			type: 'put',
+			data: {
+				task_id: taskId
+			}
+		});
+	};
+
+	myApp.addToTaskGroup = function( event, ui ) {
+		var taskGroupId = $(event.target).attr('data-task_group');
+		console.log(taskGroupId);
+		var taskId = ui.draggable.attr('data-task-assign');
+		console.log(taskId);
+		$.ajax({
+			url: '/task_groups/' + taskGroupId,
+			type: 'put',
+			dataType: 'script',
 			data: {
 				task_id: taskId
 			}

@@ -29,9 +29,14 @@ class TaskGroupsController < ApplicationController
 	def update
 		if params[:commit] != 'Cancel'
 			@task_group = TaskGroup.find(params[:id])
-			unless @task_group.update_attributes(params[:task_group])
-				js_alert(@task_group) and return
+			if params[:task_id]
+				@task_group.tasks << Task.find(params[:task_id])
+			else
+				unless @task_group.update_attributes(params[:task_group])
+					js_alert(@task_group) and return
+				end
 			end
+			
 		end
 		@task_groups = TaskGroup.order('LOWER(name)')
 		@task_group = TaskGroup.new
