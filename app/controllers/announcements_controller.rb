@@ -28,7 +28,7 @@ class AnnouncementsController < ApplicationController
 		@announcement = Announcement.find(params[:id])
 		if @announcement.update_attributes(params[:announcement])
 			flash[:notice] = "Announcement updated"
-			js_redirect_to announcements_path
+			js_redirect_to announcements_path and return
 		else
 			js_alert(@announcement)
 		end

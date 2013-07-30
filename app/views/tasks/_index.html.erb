@@ -4,10 +4,10 @@
 
 			<% @task_groups.each do |task_group| %>
 				<ul>
-					<h3><%= task_group.name %></h3>
+					<div class="draggable taskGroupName" data-tasks="<%= task_group.tasks.map(&:id).join(" ") %>"><%= task_group.name %></div>
 					<% if @grouped_tasks[[task_group.id]] %>
 						<% @grouped_tasks[[task_group.id]].each do |task| %>
-							<li>
+							<li class="draggable" data-task-assign="<%= task.id %>">
 								<%= task.name %>
 								<%= render "shared/resource_links", :resource => task %>
 							</li>
@@ -17,9 +17,9 @@
 			<% end %>
 		<% end %>
 		<ul>
-			<h3>Ungrouped Tasks</h3>
+			<div class="taskGroupName">Ungrouped Tasks</div>
 				<% @grouped_tasks[[]].each do |task| %>
-					<li>
+					<li class="draggable" data-task-assign="<%= task.id %>">
 						<%= task.name %>
 						<%= render "shared/resource_links", :resource => task %>
 					</li>

@@ -9,10 +9,14 @@
 	</ul>
 </div>
 
-<% if @tasks.any? %>
+
+
+<% if @project.tasks.any? %>
 <div>
-	<% @tasks.each do |task| %>
-	<%= render :partial => 'tasks/show', :locals => { :task => task, :project => @project } %>
-	<% end %>
+	<% @project.tasks.each do |task| %>
+		<%= render :partial => 'tasks/show', :locals => { :task => task, :project => @project } %>
+	<% end %>	
 </div>
+<% else %>
+	<p><%= "There are no tasks for this project" %></p>
 <% end %>

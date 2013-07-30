@@ -1,13 +1,27 @@
-<div class="resourceColumn">
+<div class="resourceColumn" id="projectGroup">
 	<% if @projects.any? %>
-		<ul>
-			<% @projects.each do |project| %>
-			<li>
-				<%= project.name %>
-				<%= render "shared/resource_links", :resource => project %>
-			</li>
-			<% end %>
-		</ul>
+
+		<% @projects.each do |project| %>
+			<ul class="droppable" data-project="<%= project.id %>">
+				<div class="projectGroupName">
+					<%= project.name %>
+					<%= render "shared/resource_links", :resource => project %>	
+				</div>
+				<div id="projectTasks">
+					<% if project.tasks.any? %>
+						<% project.tasks.each do |task| %>
+							<li>
+								<%= task.name %>
+								<%= link_to "x", project_path(project, :remove => task.id), :method => :put, :confirm => "Are you sure you want to remove this task?", :remote => true, :class => 'right' %>							
+							</li>
+						<% end %>
+					<% else %>
+						<p>No tasks for this project</p>	
+					<% end %>
+				</div>
+			</ul>
+		<% end %>
+
 	<% else %>
 		<p><%= "No projects yet." %></p>
 	<% end %>

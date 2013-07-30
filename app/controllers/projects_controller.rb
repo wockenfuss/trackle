@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 	before_filter :authenticate_user!
 	load_and_authorize_resource
 	before_filter :parse_params, :only => [:create, :update]
+	respond_to :js, :html, :json
 
 	def index
 		@projects = Project.all
@@ -12,32 +13,51 @@ class ProjectsController < ApplicationController
 		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
 	end
 
+	def show
+		@project = Project.find(params[:id])
+		respond_with @project
+	end
+
+	def create
+		@project = Project.create(params[:project])
+		if @project.save
+			@project = Project.new
+			@projects = Project.all
+			@notice = "Project created"
+			respond_with @project, @projects, @notice
+		else
+			js_alert(@project)
+		end
+	end
+
 	def edit
 		@project = Project.find(params[:id])
 	end
 
 	def update
 		@project = Project.find(params[:id])
-		if @project.update_attributes(params[:project])
-			redirect_to projects_path, :notice => "Project updated"
-		else 
-			redirect_to edit_project_path(@project), :alert => "Something went wrong"
+		if params[:remove]
+			@project.tasks.delete(Task.find(params[:remove]))
+		elsif params[:task_id]
+			@task = Task.find(params[:task_id])
+			@project.tasks << @task unless @project.tasks.include? @task
+			# js_redirect_to(projects_path) and return
+		elsif params[:commit] != 'Cancel'
+			unless @project.update_attributes(params[:project])
+				js_alert(@project) and return
+			end
 		end
-	end
-
-	def create
-		@project = Project.create(params[:project])
-		if @project.save
-			redirect_to projects_path, :notice => "Project created"
-		else
-			redirect_to projects_path, :alert => "Something went wrong"
-		end
+		@projects = Project.all
+		@project = Project.new
+		respond_with @projects, @project	
 	end
 
 	def destroy
 		@project = Project.find(params[:id])
 		if @project.destroy
-			redirect_to projects_path, :notice => "Project deleted"
+			@notice = "Project deleted"
+			@projects = Project.all 
+			respond_with @notic, @projects
 		end
 	end
 

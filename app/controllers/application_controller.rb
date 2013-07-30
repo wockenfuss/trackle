@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def js_redirect_to(path)
-    render js: %(window.location.href='#{path}') and return
+    render js: %(window.location.href='#{path}')
   end
   
   def js_alert(current_object)
@@ -43,6 +43,8 @@ class ApplicationController < ActionController::Base
       return '#taskGroupErrors'
     when @task
       return '#taskErrors'
+    when @project
+      return '#projectErrors'
     else
       return '#alerts'
     end

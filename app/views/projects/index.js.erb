@@ -1,0 +1,24 @@
+console.log('indexin');
+var projectFormSelector = '#projectList .resourceFormDrawer';
+var visibility = $(projectFormSelector).is(':visible');
+
+
+
+$('#projectList').html('<%= j render "projects/form_and_index" %>');
+$('.colorPicker').minicolors();
+$( ".datepicker" ).datepicker();
+
+
+if ( visibility ) {
+	$(projectFormSelector).show();
+}
+
+
+$('.formDisplayLink').off('click').on('click', function(e) {
+	$(this).next().slideToggle();
+});
+
+myApp.droppable('.droppable');
+$('.projectGroupName').on('click', function(e) {
+	$(this).next().slideToggle();
+});

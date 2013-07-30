@@ -1,0 +1,8 @@
+$('#projectList').slideToggle('fast', function(e) {
+	$(this).html('<%= j render "projects/form" %>')
+	$(this).find('.resourceFormDrawer').show();
+	$('.colorPicker').minicolors();
+  $( ".datepicker" ).datepicker();
+
+	$(this).slideToggle();
+});

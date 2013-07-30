@@ -9,3 +9,11 @@ $('.colorPicker').minicolors();
 $('.formDisplayLink').off('click').on('click', function(e) {
 	$(this).next().slideToggle();
 });
+
+myApp.draggable(".draggable");
+
+$.ajax({
+	url: '/projects',
+	type: 'get',
+	dataType: 'script'
+});

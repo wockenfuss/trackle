@@ -50,7 +50,9 @@ class TasksController < ApplicationController
 		@task_groups = TaskGroup.order('LOWER(name)')
 		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}		
 		@task = Task.new
-		respond_with @task_groups, @task_group, @task	
+		@project = Project.new
+		@projects = Project.all
+		respond_with @task_groups, @grouped_tasks, @task, @project, @projects	
 	end
 
 	def destroy
@@ -59,7 +61,9 @@ class TasksController < ApplicationController
 			@task = Task.new
 			@task_groups = TaskGroup.order('LOWER(name)')
 			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
-			respond_with @task, @task_groups, @grouped_tasks
+			@project = Project.new
+			@projects = Project.all
+			respond_with @task, @task_groups, @grouped_tasks, @project, @projects
 		end
 	end
 

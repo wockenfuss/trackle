@@ -2,7 +2,7 @@ Trackle::Application.routes.draw do
 
   resources :announcements, :only => [:create, :index, :edit, :destroy, :update]
   resources :assignments, :except => [:index, :show, :edit]
-  resources :projects, :except => [:show, :new]
+  resources :projects, :except => [:new]
   resources :tasks, :except => [:new]  
   resources :task_groups, :only => [:create, :show, :edit, :update, :destroy]
   devise_for :users

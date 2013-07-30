@@ -1,0 +1,22 @@
+$('#projectIndex').html('<%= j render "projects/index" %>');
+
+var projectFormSelector = '#projectList .resourceFormDrawer';
+var visibility = $(projectFormSelector).is(':visible');
+
+if ( visibility ) {
+	$(projectFormSelector).show();
+}
+
+$('.colorPicker').minicolors();
+$( ".datepicker" ).datepicker();
+
+
+$('.formDisplayLink').off('click').on('click', function(e) {
+	$(this).next().slideToggle();
+});
+
+$('#alerts').html("");
+$('#alerts').append('<%= j render "shared/messages", :locals => { :notice => @notice} %>').fadeIn('slow');
+setTimeout(function() {
+	$('#alerts').fadeOut('slow');
+}, 3000);

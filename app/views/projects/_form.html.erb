@@ -1,5 +1,7 @@
 <div class="resourceColumn resourceFormDrawer">
-	<%= form_for @project do |f| %>
+	<%= form_for @project, :remote => true do |f| %>
+	<div id="projectErrors"></div>
+
 	<div>
 		<%= f.label :name %>
 		<%= f.text_field :name %>
@@ -14,6 +16,8 @@
 	</div>	
 		
 		<%= f.submit %>
+		<%= f.submit :Cancel if !@project.new_record? %>	
+
 	<% end %>
 </div>
 	

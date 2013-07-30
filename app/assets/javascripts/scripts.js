@@ -27,15 +27,15 @@
    		$(this).parent().remove();
    	});
 
-   	// $('.hiddenFormLink').on('click', function(e) {
-   	// 	$(this).next().slideToggle();
-   	// });
-
    	$('.formDisplayLink').on('click', function(e) {
    		$(this).next().slideToggle();
    	});
 
    	$('.resourceList h2').on('click', function(e) {
+   		$(this).next().slideToggle();
+   	});
+
+   	$('.projectGroupName').on('click', function(e) {
    		$(this).next().slideToggle();
    	});
 	};
@@ -90,7 +90,7 @@
 	myApp.draggable = function( selector ) {
 		$(selector).draggable({
       appendTo: "body",
-      cursorAt: {top: 0, left: 0},
+      // cursorAt: {top: 0, left: 0},
       helper: "clone"
     });
 	};
@@ -104,7 +104,35 @@
 	};
 
 	myApp.drop = function( event, ui ) {
-    //ajax call to create assignment
+		if ( ui.draggable.attr('data-task') ) {
+			myApp.createAssignment(event, ui);
+		} else if ( ui.draggable.attr('data-tasks') ) {
+			myApp.addTaskGroupToProject(event, ui);
+		} else if ( ui.draggable.attr('data-task-assign') ) {
+			myApp.addTaskToProject(event, ui.draggable.attr('data-task-assign'));
+		}
+	};
+
+	myApp.addTaskGroupToProject = function( event, ui ) {
+		var tasks = ui.draggable.attr('data-tasks').split(" ");
+		$.each(tasks, function( index, value ) {
+			myApp.addTaskToProject( event, value );
+		});
+	};
+
+	myApp.addTaskToProject = function( event, taskId ) {
+		var projectId = $(event.target).attr('data-project');
+		$.ajax({
+			url: '/projects/' + projectId,
+			dataType: 'script',
+			type: 'put',
+			data: {
+				task_id: taskId
+			}
+		});
+	};
+
+	myApp.createAssignment = function( event, ui ) {
     var data = {
     	assignment: {
     		task_id: ui.draggable.attr('data-task'),
@@ -116,9 +144,7 @@
 			url: '/assignments/new',
 			dataType: 'script',
 			type: 'get',
-			data: data,
-			success: function(result) {
-			}
+			data: data
 		});
 	};
 

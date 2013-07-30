@@ -226,17 +226,26 @@ a {
 			}
 		}
 	}
+
+	p {
+		color: #000;
+		text-align: center;
+	}
 }
 
-#taskGroup {
+#taskGroup, #projectGroup {
 	ul {
-		h3 {
+		.taskGroupName, .projectGroupName {
+			font-size: 1.2em;
 			margin: 1% 0 1% -5%;
 			background-color: #999;
 			/*padding: 1%;*/
 			color: #fff;
 			border-radius: 5px;
 			padding-left: 2%;
+			.resourceLinks  {
+				font-size: .8em;
+			}
 		}
 		margin: 2% 0;
 		border: solid 3px #999;
@@ -248,12 +257,31 @@ a {
 	}
 }
 
+#projectTasks {
+	a {
+		font-size: .8em;
+		margin: 0 2% 0 0;
+	}
+	p {
+		text-align: right;
+	}
+}
+
+.projectGroupName {
+	&:hover {
+		cursor: pointer; cursor: hand;
+	}
+	.resourceLinks {
+		margin-top: 1%;
+	}
+}
+
 #taskGroupList {
-	display: none;
+	/*display: none;*/
 }
 
 #taskList {
-	display: none;
+	/*display: none;*/
 }
 
 .comment {
@@ -766,5 +794,9 @@ form {
 	&:hover {
 		opacity: .5;
 	}
+}
+
+.draggable {
+	cursor: pointer; cursor: hand;
 }
 
