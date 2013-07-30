@@ -1,21 +1,6 @@
 $('#taskGroupList').slideToggle('fast', function(e) {
 	$(this).html('<%= j render "task_groups/form_and_index" %>')
-
-	var taskFormSelector = '#taskList .resourceFormDrawer';
-	var visibility = $(taskFormSelector).is(':visible');
-	$('#taskList').html('<%= j render "tasks/form_and_index" %>');
-	if ( visibility ) {
-		$(taskFormSelector).show();
-	}
-	
 	$(this).slideToggle();
-  $('.formDisplayLink').off('click').on('click', function(e) {
- 		$(this).next().slideToggle();
- 	});
-
-	myApp.draggable(".draggable");
-	myApp.droppable('.droppable');
-	myApp.droppable('.droppableGroup');
-
-
+	myApp.Tasks('#taskList').renderIndex('<%= j render "tasks/form_and_index" %>');
+	myApp.setListeners();
 });

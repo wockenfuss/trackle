@@ -2,6 +2,7 @@ var projectFormSelector = '#projectList .resourceFormDrawer';
 $('#projectList').html('<%= j render "projects/form_and_index" %>');
 $(projectFormSelector).show();
 $('.colorPicker').minicolors();
+$( ".datepicker" ).datepicker();
 
 $('.formDisplayLink').off('click').on('click', function(e) {
 	$(this).next().slideToggle();

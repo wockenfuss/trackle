@@ -6,17 +6,13 @@
 	var bind = function() {
 		myApp.setTimezone();
 
-		$('.colorPicker').minicolors();
 		myApp.setProjectColor();
 
-		myApp.setFlashAlerts();
+		myApp.flashAlerts();
 		myApp.setDropdowns();
-		myApp.draggable(".draggable");
-		myApp.droppable('.droppable');
-		myApp.droppable('.droppableGroup');
+
 
     myApp.taskModal();
-    $( ".datepicker" ).datepicker();
 
    	$('#announcements span').on('click', function(e) {
    		$(e.target).parent().find('#announcementInterior').slideToggle();
@@ -29,18 +25,39 @@
    		$(this).parent().remove();
    	});
 
-   	$('.formDisplayLink').on('click', function(e) {
-   		$(this).next().slideToggle();
-   	});
+   	myApp.setListeners();
 
-   	$('.resourceList h2').on('click', function(e) {
-   		$(this).next().slideToggle();
-   	});
 
-   	$('.projectGroupName').on('click', function(e) {
-   		$(this).next().slideToggle();
-   	});
 	};
+
+	myApp.setListeners = function() {
+		$('.formDisplayLink').off('click').on('click', function(e) {
+   		$(this).next().slideToggle();
+   	});
+
+   	$('.resourceList h2').off('click').on('click', function(e) {
+   		$(this).next().slideToggle();
+   	});
+
+   	$('.projectGroupName').off('click').on('click', function(e) {
+   		$(this).next().slideToggle();
+   	});
+
+   	$( ".datepicker" ).datepicker();
+		$('.colorPicker').minicolors();
+		myApp.draggable(".draggable");
+		myApp.droppable('.droppable');
+		myApp.droppable('.droppableGroup');
+
+	};
+
+	myApp.alert = function( message ) {
+		$('#alerts').html("");
+		$('#alerts').append(message).fadeIn('slow');
+		setTimeout(function() {
+			$('#alerts').fadeOut('slow');
+		}, 3000);
+	}
 
 	myApp.addAssignmentListeners = function() {
 		$('.assignmentName').off('click');
@@ -83,7 +100,7 @@
 		});
 	};
 
-	myApp.setFlashAlerts = function() {
+	myApp.flashAlerts = function() {
 		$('#flash_alert, #flash_error, #flash_notice').fadeIn('normal', function() {
 			$(this).delay(2500).fadeOut('slow');
 		});

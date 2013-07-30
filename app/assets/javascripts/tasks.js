@@ -48,10 +48,20 @@
 				updateView();
 			};
 
+			var renderAdminIndex = function( html ) {
+				var taskFormSelector = '#taskList .resourceFormDrawer';
+				var visibility = $(taskFormSelector).is(':visible');
+				$target.html(html);
+				if ( visibility ) {
+					$(taskFormSelector).show();
+				}
+			};
+
 			return {
 				listen: addListener,
 				update: updateView, 
-				refresh: refresh
+				refresh: refresh,
+				renderIndex: renderAdminIndex
 			};
 		}
 	});

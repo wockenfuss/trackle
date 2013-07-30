@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 	respond_to :js, :html, :json
 
 	def index
-		@projects = Project.all
+		@projects = Project.order('updated_at desc')
 		@project = Project.new
 		@task = Task.new
 		@task_group = TaskGroup.new
@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
 		@project = Project.create(params[:project])
 		if @project.save
 			@project = Project.new
-			@projects = Project.all
+			@projects = Project.order('updated_at desc')
 			@notice = "Project created"
 			respond_with @project, @projects, @notice
 		else
@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
 				js_alert(@project) and return
 			end
 		end
-		@projects = Project.all
+		@projects = Project.order('updated_at desc')
 		@project = Project.new
 		respond_with @projects, @project	
 	end
@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		if @project.destroy
 			@notice = "Project deleted"
-			@projects = Project.all 
+			@projects = Project.order('updated_at desc')
 			respond_with @notic, @projects
 		end
 	end

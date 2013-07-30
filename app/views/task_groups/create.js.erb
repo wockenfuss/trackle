@@ -1,25 +1,5 @@
-$('#alerts').html("");
-$('#alerts').append('<%= j render "shared/messages", :locals => { :notice => @notice} %>').fadeIn('slow');
-setTimeout(function() {
-	$('#alerts').fadeOut('slow');
-}, 3000);
 $('#task_group_name').val('');
-
 $('#taskGroupIndex').html('<%= j render "task_groups/index" %>');
-
-
-// $(taskFormSelector).replaceWith('<%= j render "tasks/form" %>');
-
-var taskFormSelector = '#taskList .resourceFormDrawer';
-var visibility = $(taskFormSelector).is(':visible');
-$('#taskList').html('<%= j render "tasks/form_and_index" %>');
-if ( visibility ) {
-	$(taskFormSelector).show();
-}
-$('.colorPicker').minicolors();
-
-$('.formDisplayLink').off('click').on('click', function(e) {
-	$(this).next().slideToggle();
-});
-
-myApp.draggable(".draggable");
+myApp.Tasks('#taskList').renderIndex('<%= j render "tasks/form_and_index" %>');
+myApp.setListeners();
+myApp.alert('<%= j render "shared/messages", :locals => { :notice => @notice} %>');

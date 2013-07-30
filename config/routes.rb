@@ -4,7 +4,7 @@ Trackle::Application.routes.draw do
   resources :assignments, :except => [:index, :show, :edit]
   resources :projects, :except => [:new]
   resources :tasks, :except => [:new]  
-  resources :task_groups, :only => [:create, :show, :edit, :update, :destroy]
+  resources :task_groups, :except => [:new, :index]
   devise_for :users
   root :to => 'schedules#show'
 
