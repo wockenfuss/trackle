@@ -43,15 +43,20 @@ class TasksController < ApplicationController
 	def update
 		if params[:commit] != 'Cancel'
 			@task = Task.find(params[:id])
-			unless @task.update_attributes(params[:task])
-				js_alert(@task) and return
+			if params[:task_group_id]
+				@task.task_groups << TaskGroup.find(params[:task_group_id])
+			else
+				unless @task.update_attributes(params[:task])
+					js_alert(@task) and return
+				end
 			end
+				
 		end
 		@task_groups = TaskGroup.order('LOWER(name)')
 		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}		
 		@task = Task.new
 		@project = Project.new
-		@projects = Project.all
+		@projects = Project.order('updated_at desc')
 		respond_with @task_groups, @grouped_tasks, @task, @project, @projects	
 	end
 
@@ -62,8 +67,8 @@ class TasksController < ApplicationController
 			@task_groups = TaskGroup.order('LOWER(name)')
 			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
 			@project = Project.new
-			@projects = Project.all
-			respond_with @task, @task_groups, @grouped_tasks, @project, @projects
+			@projects = Project.order('updated_at desc')
+			respond_with @task, @task_groups, @grouped_tasks
 		end
 	end
 

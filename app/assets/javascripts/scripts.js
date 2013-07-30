@@ -169,11 +169,11 @@
 		var taskId = ui.draggable.attr('data-task-assign');
 		console.log(taskId);
 		$.ajax({
-			url: '/task_groups/' + taskGroupId,
+			url: '/tasks/' + taskId,
 			type: 'put',
 			dataType: 'script',
 			data: {
-				task_id: taskId
+				task_group_id: taskGroupId
 			}
 		});
 	};

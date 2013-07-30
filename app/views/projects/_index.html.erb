@@ -7,7 +7,7 @@
 					<%= project.name %>
 					<%= render "shared/resource_links", :resource => project %>	
 				</div>
-				<div id="projectTasks">
+				<div class="projectTasks">
 					<% if project.tasks.any? %>
 						<% project.tasks.each do |task| %>
 							<li>

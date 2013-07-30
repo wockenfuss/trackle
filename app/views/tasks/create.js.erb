@@ -1,13 +1,2 @@
-var taskFormSelector = '#taskList .resourceFormDrawer';
-$('#taskList').html('<%= j render "tasks/form_and_index" %>');
-$(taskFormSelector).show();
-$('.colorPicker').minicolors();
-
-$('.formDisplayLink').off('click').on('click', function(e) {
-	$(this).next().slideToggle();
-});
-
-myApp.draggable(".draggable");
-myApp.droppable('.droppable');
-myApp.droppable('.droppableGroup');
-//re apply any listeners
+myApp.Tasks('#taskList').renderIndex('<%= j render "tasks/form_and_index" %>');
+myApp.setListeners();

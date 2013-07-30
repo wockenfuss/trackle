@@ -1,17 +1,3 @@
-$('#taskList').slideToggle('fast', function(e) {
-	$(this).html('<%= j render "tasks/form_and_index" %>')
-	$('.colorPicker').minicolors();
-	$(this).slideToggle();
-  $('.formDisplayLink').off('click').on('click', function(e) {
- 		$(this).next().slideToggle();
- 	});
-
- 	myApp.draggable(".draggable");
-});
-
-
-$.ajax({
-	url: '/projects',
-	type: 'get',
-	dataType: 'script'
-});
+myApp.Tasks('#taskList').renderIndex('<%= j render "tasks/form_and_index" %>');
+$('#projectIndex').html('<%= j render "projects/index" %>');
+myApp.setListeners();
