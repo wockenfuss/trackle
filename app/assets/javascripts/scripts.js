@@ -206,7 +206,7 @@
 			$menu.css('left', position);
 			$menu.css('top', '50px');
 		} else {
-			var top = $dropdown.position().top + $dropdown.height() + 17;
+			var top = $dropdown.position().top + $dropdown.height() + 12;
 			var left = $dropdown.position().left + 13;
 			$menu.css('width', $dropdown.width());
 			$menu.css('top', top);
