@@ -41,7 +41,6 @@ class ProjectsController < ApplicationController
 		elsif params[:task_id]
 			@task = Task.find(params[:task_id])
 			@project.tasks << @task unless @project.tasks.include? @task
-			# js_redirect_to(projects_path) and return
 		elsif params[:commit] != 'Cancel'
 			unless @project.update_attributes(params[:project])
 				js_alert(@project) and return
@@ -57,7 +56,7 @@ class ProjectsController < ApplicationController
 		if @project.destroy
 			@notice = "Project deleted"
 			@projects = Project.order('updated_at desc')
-			respond_with @notic, @projects
+			respond_with @notice, @projects
 		end
 	end
 

@@ -1,15 +1,6 @@
-var projectFormSelector = '#projectList .resourceFormDrawer';
+var formSelector = '#projectList .resourceFormDrawer';
 $('#projectList').html('<%= j render "projects/form_and_index" %>');
-$(projectFormSelector).show();
-$('.colorPicker').minicolors();
-$( ".datepicker" ).datepicker();
+$(formSelector).show();
 
-$('.formDisplayLink').off('click').on('click', function(e) {
-	$(this).next().slideToggle();
-});
-
-$('#alerts').html("");
-$('#alerts').append('<%= j render "shared/messages", :locals => { :notice => @notice} %>').fadeIn('slow');
-setTimeout(function() {
-	$('#alerts').fadeOut('slow');
-}, 3000);
+myApp.setListeners();
+myApp.alert('<%= j render "shared/messages", :locals => { :notice => @notice} %>');
