@@ -4,5 +4,5 @@ class Project < ActiveRecord::Base
 
 	validates :name, :presence => true
 	validates :color, :presence => true
-  attr_accessible :deadline, :name, :color, :task_ids
+  attr_accessible :deadline, :name, :color, :task_ids, :completed_at
 end

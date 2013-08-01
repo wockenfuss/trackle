@@ -1,0 +1,29 @@
+<div class="resourceList">
+	<h2>Project</h2>
+<!-- 	<div id="projectList"> -->
+		<div id="projectIndex">
+			<ul class="droppable" data-project="<%= @project.id %>">
+				<div class="projectGroupName">
+					<%= @project.name %>
+					<!-- <#%= render "shared/resource_links", :resource => @project %>	 -->
+				</div>
+				<div class="projectTasks">
+					<% if @project.tasks.any? %>
+						<% @project.tasks.each do |task| %>
+							<li>
+								<%= task.name %>					
+							</li>
+						<% end %>
+					<% else %>
+						<p>No tasks for this project</p>	
+					<% end %>
+				</div>
+		</div>
+		<div>
+			<%= check_box_tag "project[completed]", "1", @project.completed_at?, :data => {:project => @project.id}, :confirm => "Are you sure you want to change the status of this project?" %>
+			<%= label_tag(:project_completed, "Project completed") %>
+		</div>
+			
+	<!-- </div> -->
+		
+</div>

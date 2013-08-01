@@ -119,7 +119,7 @@ a {
 	position: absolute;
 	right: 0;
 	padding: 1%;
-	border: 5px solid #444;
+	border: 2px solid #444;
 	background-color: #ccc;
 	list-style: none;
 	text-align: right;
@@ -498,7 +498,7 @@ a {
 }
 
 #error_explanation {
-	width: 75%;
+	width: 90%;
 	display: none;
 	background-color: #bc5656;
 	padding: 2% 2% 2% 6%;
@@ -519,6 +519,9 @@ a {
 			color: #fff;
 			cursor: hand; cursor: pointer;
 		}
+	}
+	li {
+		background-color: transparent;
 	}
 }
 
@@ -802,4 +805,27 @@ form {
 .draggable {
 	cursor: pointer; cursor: hand;
 }
+
+.ui-draggable-helper {
+	border-radius: 5px;
+	padding: 10px;
+	border: solid 3px #999;
+	font-family: $secondary-font;
+}
+
+/*.simpleColorChooser {
+	background-color: #fff;
+	padding: 3%;
+}
+
+.simpleColorContainer{
+	display: inline-block;
+	border: none;
+	outline: none;
+	div.simpleColorDisplay {
+		margin-top: 2%;
+		outline: none;
+		border: none;
+	}
+}*/
 

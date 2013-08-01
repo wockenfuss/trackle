@@ -16,5 +16,6 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery-minicolors
+//= require jquery.simple-color.min
 
 //= require_tree .

@@ -44,11 +44,33 @@
    	});
 
    	$( ".datepicker" ).datepicker();
+   	// $('.colorPicker').simpleColor();
 		$('.colorPicker').minicolors();
 		myApp.draggable(".draggable");
 		myApp.droppable('.droppable');
 		myApp.droppable('.droppableGroup');
 
+		$('#project_completed').on('change', function(e) {
+			var currentStatus = !this.checked;
+			var confirmation = confirm("Are you sure you want to change the status of this project?");
+			if ( confirmation ) {
+				myApp.updateProjectCompletion(this);
+			} else {
+				this.checked = currentStatus;
+			}
+		});
+	};
+
+	myApp.updateProjectCompletion = function(checkbox) {
+		var projectId = $(checkbox).attr('data-project');
+		$.ajax({
+			url: "/projects/" + projectId,
+			type: "put",
+			dataType: "script",
+			data: {
+				completed: checkbox.checked
+			}
+		})
 	};
 
 	myApp.alert = function( message ) {
@@ -108,9 +130,16 @@
 
 	myApp.draggable = function( selector ) {
 		$(selector).draggable({
+			distance: 10,
       appendTo: "body",
-      // cursorAt: {top: 0, left: 0},
-      helper: "clone"
+      cursorAt: {top: 12, left: 30},
+      // helper: "clone"
+      helper: function() {
+      	return $(this).find('.dragHandle').clone();
+      }, 
+      start: function(e, ui) {
+      	$(ui.helper).addClass('ui-draggable-helper');
+      }
     });
 	};
 
@@ -206,8 +235,10 @@
 			$menu.css('left', position);
 			$menu.css('top', '50px');
 		} else {
-			var top = $dropdown.position().top + $dropdown.height() + 12;
-			var left = $dropdown.position().left + 13;
+			var top = $dropdown.position().top + 17;
+			var left = $dropdown.position().left + $dropdown.width() + 10;			
+			// var top = $dropdown.position().top + $dropdown.height() + 12;
+			// var left = $dropdown.position().left + 13;
 			$menu.css('width', $dropdown.width());
 			$menu.css('top', top);
 			$menu.css('left', left);

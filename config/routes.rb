@@ -13,6 +13,8 @@ Trackle::Application.routes.draw do
   end
 
   resources :users, :only => [:index, :show, :edit, :update, :destroy]
+  # resources :archives, :only => [:show]
+  get "/archive" => "archives#show", :as => "archives"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

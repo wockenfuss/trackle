@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
 	load_and_authorize_resource
 	
 	def show
-		@projects = Project.order('deadline')
+		@projects = Project.where('completed_at is NULL').order('deadline')
 		@project = params[:project_id] ? Project.find(params[:project_id]) : @projects.first
 		@tasks = Task.order('created_at')
 		@users = User.non_admin

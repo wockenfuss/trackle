@@ -4,7 +4,7 @@
 		<% @projects.each do |project| %>
 			<ul class="droppable" data-project="<%= project.id %>">
 				<div class="projectGroupName">
-					<%= project.name %>
+					<%= link_to project.name, project %>
 					<%= render "shared/resource_links", :resource => project %>	
 				</div>
 				<div class="projectTasks">

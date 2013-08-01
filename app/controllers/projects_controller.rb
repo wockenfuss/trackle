@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 	respond_to :js, :html, :json
 
 	def index
-		@projects = Project.order('updated_at desc')
+		@projects = Project.where('completed_at is NULL').order('updated_at desc')
 		@project = Project.new
 		@task = Task.new
 		@task_group = TaskGroup.new
@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
 		@project = Project.create(params[:project])
 		if @project.save
 			@project = Project.new
-			@projects = Project.order('updated_at desc')
+			@projects = Project.where('completed_at is NULL').order('updated_at desc')
 			@notice = "Project created"
 			respond_with @project, @projects, @notice
 		else
@@ -41,12 +41,22 @@ class ProjectsController < ApplicationController
 		elsif params[:task_id]
 			@task = Task.find(params[:task_id])
 			@project.tasks << @task unless @project.tasks.include? @task
+		elsif params[:completed]
+			if params[:completed] == "true"
+				@project.update_attributes(:completed_at => Time.now)
+				flash[:notice] = "Project completed"
+				js_redirect_to archives_path and return
+			else
+				@project.update_attributes(:completed_at => nil)
+				flash[:notice] = "Project marked incomplete"
+				js_redirect_to projects_path and return
+			end
 		elsif params[:commit] != 'Cancel'
 			unless @project.update_attributes(params[:project])
 				js_alert(@project) and return
 			end
 		end
-		@projects = Project.order('updated_at desc')
+		@projects = Project.where('completed_at is NULL').order('updated_at desc')
 		@project = Project.new
 		respond_with @projects, @project	
 	end
@@ -55,7 +65,7 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		if @project.destroy
 			@notice = "Project deleted"
-			@projects = Project.order('updated_at desc')
+			@projects = Project.where('completed_at is NULL').order('updated_at desc')
 			respond_with @notice, @projects
 		end
 	end

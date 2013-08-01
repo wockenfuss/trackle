@@ -1,5 +1,5 @@
 <div class="dropdown projectName" data-color="<%= @project.color if @project %>">
-	<%= link_to @project.name, "#" if @project %>
+	<%= link_to @project.name, project_path(@project) if @project %>
 	<ul class="dropdownMenu">
 		<% @projects.each do |project| %>
 			<li data-color="<%= project.color %>" class="dropdownProject" data-project="<%= project.id %>">

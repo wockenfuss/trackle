@@ -38,6 +38,10 @@ class Assignment < ActiveRecord::Base
     Time.now - self.resumed_at + read_attribute(:elapsed_time)
   end
 
+  # def project_completed?
+  #   self.
+  # end
+
   private
   def check_elapsed_time
     if self.hold == true || !!self.completed_at

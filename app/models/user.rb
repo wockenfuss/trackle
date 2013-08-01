@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   end
 
   def incomplete_assignments
-    self.assignments.where(:completed_at => nil, :hold => false)
+    assignments = self.assignments.where(:completed_at => nil, :hold => false)
+    assignments.select { |a| !a.project.completed_at? }
   end
 
   def current_assignment
