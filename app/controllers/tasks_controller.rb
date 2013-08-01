@@ -7,11 +7,6 @@ class TasksController < ApplicationController
 		@task = Task.find(params[:task_id])
 		@project = Project.find(params[:project_id])
 		respond_with @task, @project
-		# @task = Task.new
-		# @task_groups = TaskGroup.order('LOWER(name)')
-		# @grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
-		# @tasks = Task.all
-		# respond_with @tasks, @task
 	end
 
 	def show
@@ -57,7 +52,7 @@ class TasksController < ApplicationController
 		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}		
 		@task = Task.new
 		@project = Project.new
-		@projects = Project.order('updated_at desc')
+		@projects = Project.incomplete
 		respond_with @task_groups, @grouped_tasks, @task, @project, @projects	
 	end
 
@@ -68,7 +63,7 @@ class TasksController < ApplicationController
 			@task_groups = TaskGroup.order('LOWER(name)')
 			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
 			@project = Project.new
-			@projects = Project.order('updated_at desc')
+			@projects = Project.incomplete
 			@notice = "Task deleted"
 			respond_with @task, @task_groups, @grouped_tasks
 		end

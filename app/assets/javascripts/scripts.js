@@ -68,7 +68,9 @@
 			type: "put",
 			dataType: "script",
 			data: {
-				completed: checkbox.checked
+				project: {
+					completed: checkbox.checked
+				}
 			}
 		})
 	};
@@ -187,7 +189,10 @@
 			dataType: 'script',
 			type: 'put',
 			data: {
-				task_id: taskId
+				project: {
+					task_id: taskId,
+					update_type: 'add'
+				}
 			}
 		});
 	};

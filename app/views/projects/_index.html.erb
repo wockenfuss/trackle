@@ -12,7 +12,7 @@
 						<% project.tasks.each do |task| %>
 							<li>
 								<%= task.name %>
-								<%= link_to "x", project_path(project, :remove => task.id), :method => :put, :confirm => "Are you sure you want to remove this task?", :remote => true, :class => 'right' %>							
+								<%= link_to "x", project_path(project, :project => {:task_id => task.id, :update_type => 'delete'}), :method => :put, :confirm => "Are you sure you want to remove this task?", :remote => true, :class => 'right' %>							
 							</li>
 						<% end %>
 					<% else %>

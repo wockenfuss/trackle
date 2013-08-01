@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 	respond_to :js, :html, :json
 
 	def index
-		@projects = Project.where('completed_at is NULL').order('updated_at desc')
+		@projects = Project.incomplete
 		@project = Project.new
 		@task = Task.new
 		@task_group = TaskGroup.new
@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
 		@project = Project.create(params[:project])
 		if @project.save
 			@project = Project.new
-			@projects = Project.where('completed_at is NULL').order('updated_at desc')
+			@projects = Project.incomplete
 			@notice = "Project created"
 			respond_with @project, @projects, @notice
 		else
@@ -36,27 +36,17 @@ class ProjectsController < ApplicationController
 
 	def update
 		@project = Project.find(params[:id])
-		if params[:remove]
-			@project.tasks.delete(Task.find(params[:remove]))
-		elsif params[:task_id]
-			@task = Task.find(params[:task_id])
-			@project.tasks << @task unless @project.tasks.include? @task
-		elsif params[:completed]
-			if params[:completed] == "true"
-				@project.update_attributes(:completed_at => Time.now)
-				flash[:notice] = "Project completed"
-				js_redirect_to archives_path and return
+		if params[:commit] != 'Cancel'
+			if @project.update_attributes(params[:project])
+				if @project.completed
+					flash[:notice] = @project.update_notice
+					js_redirect_to @project.redirect_path and return
+				end
 			else
-				@project.update_attributes(:completed_at => nil)
-				flash[:notice] = "Project marked incomplete"
-				js_redirect_to projects_path and return
-			end
-		elsif params[:commit] != 'Cancel'
-			unless @project.update_attributes(params[:project])
 				js_alert(@project) and return
 			end
 		end
-		@projects = Project.where('completed_at is NULL').order('updated_at desc')
+		@projects = Project.incomplete
 		@project = Project.new
 		respond_with @projects, @project	
 	end
@@ -65,7 +55,7 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		if @project.destroy
 			@notice = "Project deleted"
-			@projects = Project.where('completed_at is NULL').order('updated_at desc')
+			@projects = Project.incomplete
 			respond_with @notice, @projects
 		end
 	end
