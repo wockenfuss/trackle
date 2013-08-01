@@ -13,7 +13,7 @@ describe TaskGroup do
 
 		context "for unauthorized users" do
 			it_behaves_like "authentication" do 
-				let(:path) { tasks_path }
+				let(:path) { projects_path }
 				let(:user) { @user }
 			end
 		end
@@ -21,11 +21,12 @@ describe TaskGroup do
 		context "for admin users" do
 			before(:each) do
 				login_as @admin, :scope => :user
-				visit tasks_path
+				visit projects_path
 			end
 
 			it "allows admin to create new project group", :js => true do
-				within(:css, "#new_task_group") do
+				within(:css, "#taskGroupList") do
+					find('span.formDisplayLink').click
 					fill_in "Name", :with => "Foo"
 				end
 				expect do
@@ -41,7 +42,7 @@ describe TaskGroup do
 			before(:each) do
 				@task_group = FactoryGirl.create(:task_group)
 				login_as @admin, :scope => :user
-				visit tasks_path
+				visit projects_path
 			end
 
 			it "allows admin to delete task group" do
@@ -55,7 +56,14 @@ describe TaskGroup do
 			end
 
 			it "doesn't delete associated tasks" do
-				pending
+				@task = FactoryGirl.create(:task)
+				@task_group.tasks << @task
+				within(:css, "#taskGroupIndex") do
+					click_link "delete"
+				end
+				click_button("OK")
+				page.should have_content "Task Group deleted"
+				Task.count.should eq 1
 			end
 		end
 	end
@@ -63,24 +71,21 @@ describe TaskGroup do
 	describe "editing task groups", :js => true do
 		before(:each) { @task_group = FactoryGirl.create(:task_group) }
 
-		context "for unauthorized users" do
-			it_behaves_like "authentication" do 
-				let(:path) { edit_task_group_path(@task_group) }
-				let(:user) { @user }
-			end
-		end
-
 		context "for authorized users" do
 			before(:each) do
 				login_as @admin, :scope => :user
-				visit edit_task_group_path @task_group
+				visit projects_path
+				within(:css, "#taskGroupIndex") do
+					click_link "edit"
+				end
 			end
 
 			it "allows admin to edit task group" do
-				fill_in "Name", :with => "Foo"
-				click_button "Update Task group"
-				page.should have_content "Task Group updated"
-				TaskGroup.find(@task_group.id).name.should eq "Foo"
+				within(:css, "#taskGroupList") do
+					fill_in "Name", :with => "Foo"
+					click_button "Update Task group"
+				end
+				page.should have_content "Foo"
 			end
 		end
 

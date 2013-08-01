@@ -30,6 +30,7 @@ class TasksController < ApplicationController
 			@task = Task.new
 			@task_groups = TaskGroup.order('LOWER(name)')
 			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
+			@notice = "Task created"
 			respond_with @task, @task_groups, @grouped_tasks
 		else
 			js_alert(@task)
@@ -68,6 +69,7 @@ class TasksController < ApplicationController
 			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
 			@project = Project.new
 			@projects = Project.order('updated_at desc')
+			@notice = "Task deleted"
 			respond_with @task, @task_groups, @grouped_tasks
 		end
 	end

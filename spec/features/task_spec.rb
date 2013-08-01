@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Task do
+describe Task, :js => true do
 	include Warden::Test::Helpers
 
 	before(:each) do 
@@ -13,7 +13,7 @@ describe Task do
 				
 		context "for unauthorized users" do
 			it_behaves_like "authentication" do 
-				let(:path) { tasks_path }
+				let(:path) { projects_path }
 				let(:user) { @user }
 			end
 		end
@@ -22,7 +22,7 @@ describe Task do
 			before(:each) do 
 				@task = FactoryGirl.create(:task)
 				login_as @admin, :scope => :user
-				visit tasks_path
+				visit projects_path
 			end
 
 			it "displays a list of tasks" do
@@ -38,43 +38,47 @@ describe Task do
 	describe "creating tasks" do
 		before(:each) do
 			login_as @admin, :scope => :user
-			visit tasks_path
+			visit projects_path
 		end
 
 		it "allows admin user to create tasks" do
-			within(:css, "#new_task") do 
+			within(:css, "#taskList") do
+				find('span.formDisplayLink').click
 				fill_in "Name", :with => "Foo"
-				fill_in "Color", :with => "#fff"
 			end
 			expect do
 				click_button "Create Task"
-				page.should have_selector("#flash_notice", :text => "Task created")
+				page.should have_content "Task created"
 			end.to change(Task, :count).by 1
 		end
 
 		it "displays a warning if task creation fails" do
-			click_button "Create Task"
-			page.should have_selector("#flash_alert", :text => "Something went wrong")
+			within(:css, "#taskList") do
+				find('span.formDisplayLink').click
+				click_button "Create Task"
+				page.should have_content "error prohibited this Task from being saved"
+			end
 		end
 
 		it "allows admin to associate tasks with a task group" do
 			@task_group = FactoryGirl.create(:task_group)
-			visit tasks_path
-			within(:css, "#new_task") do 
+			visit projects_path
+			within(:css, "#taskList") do
+				find('span.formDisplayLink').click			
 				fill_in "Name", :with => "Foo"
-				fill_in "Color", :with => "#fff"
 				select(@task_group.name, :from => 'task_task_group_ids')
 			end
 			click_button "Create Task"
-			page.should have_selector("#flash_notice", :text => "Task created")
+			page.should have_content "Task created"
 			Task.first.task_groups.first.should eq @task_group
 		end
 	end
 
-	describe "#show", :js => true do
+	describe "#show" do
 		before(:each) do
 			@project = FactoryGirl.create(:project)
 			@task = FactoryGirl.create(:task)
+			@project.tasks << @task
 			@assignment = FactoryGirl.create(:assignment, 
 																				:user_id => @user.id,
 																				:project_id => @project.id,
@@ -96,20 +100,26 @@ describe Task do
 		before(:each) do
 			@task = FactoryGirl.create(:task)
 			login_as @admin, :scope => :user
-			visit edit_task_path @task
+			visit projects_path
 		end
 
 		it "allows admin to update task" do
-			fill_in "Name", :with => "blab"
+			within(:css, "#taskList") do
+				click_link "edit"		
+				fill_in "Name", :with => "blab"
+			end
 			click_button "Update Task"
-			page.should have_selector("#flash_notice", :text => "Task updated")
+			page.should have_content "blab"
 			Task.find(@task.id).name.should eq "blab"
 		end
 
 		it "displays a message if update fails" do
-			fill_in "Name", :with => ""
+			within(:css, "#taskList") do
+				click_link "edit"			
+				fill_in "Name", :with => ""
+			end
 			click_button "Update Task"
-			page.should have_selector("#flash_alert", :text => "Something went wrong")
+			page.should have_content "error prohibited this Task from being saved"
 		end
 	end
 
@@ -117,13 +127,16 @@ describe Task do
 		before(:each) do
 			@task = FactoryGirl.create(:task)
 			login_as @admin, :scope => :user
-			visit tasks_path
+			visit projects_path
 		end
 
 		it "allows admin to delete task" do
 			expect do
-				click_link "delete"
-				page.should have_selector("#flash_notice", :text => "Task deleted")
+				within(:css, "#taskGroup") do
+					click_link "delete"
+				end
+				click_button "OK"
+				page.should have_content "Task deleted"
 			end.to change(Task, :count).by -1
 		end
 	end

@@ -1,3 +1,4 @@
 myApp.Tasks('#taskList').renderIndex('<%= j render "tasks/form_and_index" %>');
 $('#projectIndex').html('<%= j render "projects/index" %>');
 myApp.setListeners();
+myApp.alert('<%= j render "shared/messages", :locals => { :notice => @notice} %>');

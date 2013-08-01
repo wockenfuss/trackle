@@ -31,32 +31,20 @@ class User < ActiveRecord::Base
     elsif self.on_hold
       return self.on_hold.first
     else
-      return "none"
+      return nil
     end
   end
 
   def current_project_color
-  	if assigned?
-			return current_assignment.project.color 
-		else 
-			return 'lightgreen'
-		end
+    assigned? ? (return current_assignment.project.color) : (return 'lightgreen')
   end
 
   def task_color
-  	if assigned?
-			return current_assignment.task.color
-		else 
-			return 'lightgreen'
-		end
+    assigned? ? (return current_assignment.task.color) : (return 'lightgreen')
   end
 
   def project_name
-  	if assigned?
-  		return current_assignment.project.name
-  	else
-  		return "none"
-  	end
+    assigned? ? (return current_assignment.project.name) : (return nil)
   end
 
   def assigned?
@@ -68,30 +56,14 @@ class User < ActiveRecord::Base
   end
 
   def update_admin(params)
-    if params[:admin]
-      self.add_role :admin
-    else
-      self.remove_role :admin
-    end
+    params[:admin] ? self.add_role(:admin) : self.remove_role(:admin) 
   end
 
   def self.non_admin
-    @users = []
-    User.find_each do |user|
-      if !user.has_role? :admin
-        @users << user
-      end
-    end
-    @users
+    User.select { |user| !user.has_role? :admin }
   end
 
   def self.admin
-    @users = []
-    User.find_each do |user|
-      if user.has_role? :admin
-        @users << user
-      end
-    end
-    @users
+    User.select { |user| user.has_role? :admin }
   end
 end
