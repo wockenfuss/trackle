@@ -23,7 +23,7 @@
 				<% if @grouped_tasks[[]] %>
 					<% @grouped_tasks[[]].each do |task| %>
 						<li class="draggable groupDroppable" data-task-assign="<%= task.id %>">
-							<%= task.name %>
+							<span class="dragHandle"><%= task.name %></span>
 							<%= render "shared/resource_links", :resource => task %>
 						</li>
 					<% end %>

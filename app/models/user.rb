@@ -13,26 +13,27 @@ class User < ActiveRecord::Base
   attr_accessor :admin
 
   def on_hold
-    self.assignments.where(:hold => true)
+    @on_hold ||= self.assignments.where(:hold => true)
   end
 
   def completed_assignments
-    self.assignments.where('completed_at is NOT NULL')
+    @completed_assignments ||= self.assignments.where('completed_at is NOT NULL')
   end
 
   def incomplete_assignments
-    assignments = self.assignments.where(:completed_at => nil, :hold => false)
-    assignments.select { |a| !a.project.completed_at? }
+    @incomplete_assignments ||= self.assignments.where(:completed_at => nil, :hold => false)
+    @incomplete_assignments.select { |a| !a.project.completed_at? }
   end
 
   def current_assignment
-    if self.incomplete_assignments.first
-      return self.incomplete_assignments.first
-    elsif self.on_hold
-      return self.on_hold.first
-    else
-      return nil
+    if @current_assignment.nil?
+      if self.incomplete_assignments.first
+        @current_assignment =  self.incomplete_assignments.first
+      elsif self.on_hold
+        @current_assignment =  self.on_hold.first
+      end
     end
+    @current_assignment
   end
 
   def current_project_color
