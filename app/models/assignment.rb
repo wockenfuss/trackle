@@ -17,19 +17,10 @@ class Assignment < ActiveRecord::Base
   before_save :update_queue
 
   def status
-  	if self.completed_at?
-  		return "completed"
-  	else
-  		if started_at
-	  		if !hold
-					return "in progress"  			
-	  		else
-	  			return "on hold"
-	  		end
-	  	else
-	  		return "not yet begun"
-	  	end
-  	end
+    return "completed" if self.completed_at?
+    return "in progress" if started_at && !hold
+    return "on hold" if started_at
+    "not yet begun"
   end
 
   def elapsed_time

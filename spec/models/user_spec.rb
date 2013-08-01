@@ -12,6 +12,7 @@ describe User do
 
 	before(:each) do
 		@user = FactoryGirl.create(:user)
+		@project = FactoryGirl.create(:project)
 	end
 
 	describe ".non_admin" do
@@ -47,6 +48,7 @@ describe User do
 		before(:each) do 
 			@other_user = FactoryGirl.create(:user)
 			@assignment = FactoryGirl.create(:assignment, :user_id => @user.id)
+			@project.assignments << @assignment
 		end
 
 		it "returns true if a user has an assignment" do
@@ -70,6 +72,7 @@ describe User do
 																			:started_at => Time.now,
 																			:resumed_at => Time.now, 
 																			:completed_at => Time.now)
+			@project.assignments << @incomplete << @complete
 		end
 
 		it "returns a list of completed assignments" do

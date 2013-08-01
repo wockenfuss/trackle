@@ -15,6 +15,7 @@ describe Assignment, :js => true do
 			before(:each) do 
 				@project = FactoryGirl.create(:project)
 				@task = FactoryGirl.create(:task)
+				@project.tasks << @task
 				login_as @admin, :scope => :user
 				visit root_path
 				#create phantom target so capybara will drag fully onto target
@@ -53,6 +54,7 @@ describe Assignment, :js => true do
 		before(:each) do
 				@project = FactoryGirl.create(:project)
 				@task = FactoryGirl.create(:task)
+				@project.tasks << @task
 				@assignment = FactoryGirl.create(:assignment, 
 																					:project_id => @project.id,
 																					:task_id => @task.id,

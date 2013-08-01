@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
 	validates :color, :presence => true
   attr_accessible :deadline, :name, :color, :task_ids, :completed_at, :task_id, :update_type, :completed
   attr_accessor :task_id, :update_type, :completed
-  before_save :update_task
+  before_save :handle_task
   before_save :check_for_completion
 
   def self.incomplete
@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
   end
 
   private 
-  def update_task
+  def handle_task
   	if self.update_type
   		task = Task.find(self.task_id)
   		self.tasks.delete(task) if self.update_type == "delete"

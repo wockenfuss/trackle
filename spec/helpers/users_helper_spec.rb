@@ -5,6 +5,8 @@ describe UsersHelper do
 	before(:each) do 
 		@user = FactoryGirl.create(:user) 
 		@assignment = FactoryGirl.create(:assignment, :user_id => @user.id)
+		@project = FactoryGirl.create(:project)
+		@project.assignments << @assignment
 	end
 
 	describe "#status_bar" do

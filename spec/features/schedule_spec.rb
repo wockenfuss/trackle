@@ -35,6 +35,7 @@ describe Schedule do
 			it "displays a list of tasks" do
 				@project = FactoryGirl.create(:project)
 				@task = FactoryGirl.create(:task)
+				@project.tasks << @task
 				visit root_path
 				page.should have_content @task.name
 			end
