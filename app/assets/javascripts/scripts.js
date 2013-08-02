@@ -135,7 +135,6 @@
 			distance: 10,
       appendTo: "body",
       cursorAt: {top: 12, left: 30},
-      // helper: "clone"
       helper: function() {
       	return $(this).find('.dragHandle').clone();
       }, 
