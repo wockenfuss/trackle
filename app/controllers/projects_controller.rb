@@ -10,21 +10,19 @@ class ProjectsController < ApplicationController
 		@task = Task.new
 		@task_group = TaskGroup.new
 		@task_groups = TaskGroup.order('LOWER(name)')
-		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
+		@grouped_tasks = Task.in_task_groups
 	end
 
 	def show
 		@project = Project.find(params[:id])
-		respond_with @project
 	end
 
 	def create
-		@project = Project.create(params[:project])
+		@project = Project.new(params[:project])
 		if @project.save
 			@project = Project.new
 			@projects = Project.incomplete
 			@notice = "Project created"
-			respond_with @project, @projects, @notice
 		else
 			js_alert(@project)
 		end
@@ -48,7 +46,6 @@ class ProjectsController < ApplicationController
 		end
 		@projects = Project.incomplete
 		@project = Project.new
-		respond_with @projects, @project	
 	end
 
 	def destroy
@@ -56,7 +53,6 @@ class ProjectsController < ApplicationController
 		if @project.destroy
 			@notice = "Project deleted"
 			@projects = Project.incomplete
-			respond_with @notice, @projects
 		end
 	end
 

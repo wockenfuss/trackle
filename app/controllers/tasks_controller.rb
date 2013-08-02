@@ -6,27 +6,21 @@ class TasksController < ApplicationController
 	def index
 		@task = Task.find(params[:task_id])
 		@project = Project.find(params[:project_id])
-		respond_with @task, @project
 	end
 
 	def show
 		if params[:project_id]
-			@task = Task.find(params[:id])
 			@project = Project.find(params[:project_id])
-			respond_with @task, @project
-		else
-
 		end
 	end
 
 	def create
-		@task = Task.create(params[:task])
+		@task = Task.new(params[:task])
 		if @task.save
 			@task = Task.new
 			@task_groups = TaskGroup.order('LOWER(name)')
-			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
+			@grouped_tasks = Task.in_task_groups
 			@notice = "Task created"
-			respond_with @task, @task_groups, @grouped_tasks
 		else
 			js_alert(@task)
 		end
@@ -39,21 +33,15 @@ class TasksController < ApplicationController
 	def update
 		if params[:commit] != 'Cancel'
 			@task = Task.find(params[:id])
-			if params[:task_group_id]
-				@task.task_groups << TaskGroup.find(params[:task_group_id])
-			else
-				unless @task.update_attributes(params[:task])
-					js_alert(@task) and return
-				end
-			end
-				
+			unless @task.update_attributes(params[:task])
+				js_alert(@task) and return
+			end				
 		end
 		@task_groups = TaskGroup.order('LOWER(name)')
-		@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}		
+		@grouped_tasks = Task.in_task_groups
 		@task = Task.new
 		@project = Project.new
 		@projects = Project.incomplete
-		respond_with @task_groups, @grouped_tasks, @task, @project, @projects	
 	end
 
 	def destroy
@@ -61,11 +49,10 @@ class TasksController < ApplicationController
 		if @task.destroy
 			@task = Task.new
 			@task_groups = TaskGroup.order('LOWER(name)')
-			@grouped_tasks = Task.all.group_by { |task| task.task_group_ids}
+			@grouped_tasks = Task.in_task_groups
 			@project = Project.new
 			@projects = Project.incomplete
 			@notice = "Task deleted"
-			respond_with @task, @task_groups, @grouped_tasks
 		end
 	end
 

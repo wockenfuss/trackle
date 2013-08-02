@@ -40,7 +40,9 @@
    	});
 
    	$('.projectGroupName').off('click').on('click', function(e) {
-   		$(this).next().slideToggle();
+   		if ( e.target === this ) {
+	   		$(this).next().slideToggle();
+   		}
    	});
 
    	$( ".datepicker" ).datepicker();
@@ -198,15 +200,15 @@
 
 	myApp.addToTaskGroup = function( event, ui ) {
 		var taskGroupId = $(event.target).attr('data-task_group');
-		console.log(taskGroupId);
 		var taskId = ui.draggable.attr('data-task-assign');
-		console.log(taskId);
 		$.ajax({
 			url: '/tasks/' + taskId,
 			type: 'put',
 			dataType: 'script',
 			data: {
-				task_group_id: taskGroupId
+				task: {
+					task_group_id: taskGroupId
+				}
 			}
 		});
 	};
