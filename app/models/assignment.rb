@@ -29,6 +29,11 @@ class Assignment < ActiveRecord::Base
     Time.now - self.resumed_at + read_attribute(:elapsed_time)
   end
 
+  def self.incomplete
+    incomplete = Assignment.where('completed_at is NULL')
+    incomplete.select { |assignment| assignment.project.completed_at.nil? }
+  end
+
   private
   def check_elapsed_time
     if self.hold == true || !!self.completed_at

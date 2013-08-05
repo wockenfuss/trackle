@@ -27,7 +27,15 @@
 
    	myApp.setListeners();
 
-
+   	// $.ajax({
+   	// 	url: 'assignments',
+   	// 	type: 'get',
+   	// 	dataType: 'json',
+   	// 	success: function(result) {
+   	// 		myApp.assignmentFactory.createAssignments(result);
+   	// 		console.log(myApp.findByUserId(169));
+   	// 	}
+   	// });
 	};
 
 	myApp.setListeners = function() {
@@ -243,8 +251,6 @@
 		} else {
 			var top = $dropdown.position().top + 17;
 			var left = $dropdown.position().left + $dropdown.width() + 10;			
-			// var top = $dropdown.position().top + $dropdown.height() + 12;
-			// var left = $dropdown.position().left + 13;
 			$menu.css('width', $dropdown.width());
 			$menu.css('top', top);
 			$menu.css('left', left);

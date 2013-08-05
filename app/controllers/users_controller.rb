@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :authenticate_user!, :except => [:create, :new]
 	load_and_authorize_resource
+	before_filter :check_for_cancel
 	respond_to :js, :json, :html
 
 	def index
@@ -34,6 +35,13 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		if @user.destroy
 			redirect_to users_path, :notice => "User deleted"
+		end
+	end
+
+	private
+	def check_for_cancel
+		if params[:commit] == 'Cancel'
+	 		redirect_to users_path
 		end
 	end
 end

@@ -12,6 +12,11 @@ class AssignmentsController < ApplicationController
 		respond_with @assignment, @comment, @queue_index
 	end
 
+	def index
+		@assignments = Assignment.incomplete
+		respond_with @assignments		
+	end
+
 	def create
 		@assignment = Assignment.new(params[:assignment])
 		if @assignment.save

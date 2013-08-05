@@ -119,7 +119,6 @@ a {
 	position: absolute;
 	right: 0;
 	padding: 1%;
-	border: 2px solid #444;
 	background-color: #ccc;
 	list-style: none;
 	text-align: right;
@@ -132,6 +131,11 @@ a {
 		margin: 5px 0;
 	}
 }
+
+.dropdownNav {
+	border: solid 5px #444;
+}
+
 
 #project {
 	border-radius: 5px;
