@@ -10,3 +10,8 @@ A project management tool for assigning project tasks and tracking team progress
 
 ##To do 
 * Expand data visualization for completed projects
+
+
+View the website [here](http://sheltered-basin-1217.herokuapp.com/).
+
+:login => { :email => "foo@foo.com", :password => "password" }
