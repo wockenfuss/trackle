@@ -63,11 +63,17 @@ class User < ActiveRecord::Base
   def self.non_admin
     User.joins("LEFT OUTER JOIN users_roles 
                 ON users.id = user_id 
-                WHERE user_id is NULL")
+                WHERE role_id is NULL 
+                OR role_id !=
+                (SELECT roles.id FROM roles
+                WHERE roles.name = 'admin')")
+                .order('LOWER(name)')
                 .includes(:assignments)
   end
 
   def self.admin
-    User.joins(:roles).where("roles.name = ?", :admin)
+    User.joins(:roles)
+        .where("roles.name = ?", :admin)
+        .order('LOWER(users.name)')
   end
 end
