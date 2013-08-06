@@ -5,7 +5,6 @@ class SchedulesController < ApplicationController
 	def show
 		@projects = Project.where('completed_at is NULL').order('deadline')
 		@project = params[:project_id] ? Project.find(params[:project_id]) : @projects.first
-		@tasks = Task.order('created_at')
 		@users = User.non_admin
 		@announcements = Announcement.current
 		if params[:time_zone]

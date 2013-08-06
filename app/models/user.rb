@@ -61,10 +61,13 @@ class User < ActiveRecord::Base
   end
 
   def self.non_admin
-    User.select { |user| !user.has_role? :admin }
+    User.joins("LEFT OUTER JOIN users_roles 
+                ON users.id = user_id 
+                WHERE user_id is NULL")
+                .includes(:assignments)
   end
 
   def self.admin
-    User.select { |user| user.has_role? :admin }
+    User.joins(:roles).where("roles.name = ?", :admin)
   end
 end
