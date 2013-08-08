@@ -2,10 +2,10 @@
 	<div id="userTaskBar">
 		<h2><%= @user.name %></h2>
 		<div id="userAssignments">
-			<%= render "assignments/user_assignments" %>	
+			<%= render :partial => "assignments/user_assignments", :locals => { :user => @user } %>	
 		</div>
 		<div id="completedAssignments">
-			<%= render "assignments/completed_assignments" %>
+			<%= render :partial => "assignments/completed_assignments", :locals => { :user => @user } %>
 		</div>	
 	</div>
 

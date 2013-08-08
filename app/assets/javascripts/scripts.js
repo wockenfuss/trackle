@@ -301,7 +301,7 @@
 	myApp.updateText = function(result) {
 		var $target = $('div[data-id=' + result.assignment.id + ']');
 		var number = result.assignment.queue_index;
-		$target.find('.assignmentQueue').html("Queue: " + number);
+		$target.find('.assignmentQueue').html("Priority: " + number);
 	};
 
 	myApp.taskModal = function() {

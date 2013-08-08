@@ -1,7 +1,7 @@
 <h3>Completed Tasks: </h3>
-<% if @user.completed_assignments.count > 0 %>
+<% if user.completed_assignments.count > 0 %>
 	<ul>
-		<% @user.completed_assignments.each do |item| %>
+		<% user.completed_assignments.each do |item| %>
 			<div>
 				<li><strong><%= "#{item.task.name}: #{item.project.name}" %></strong></li>
 				<li><em><%= "Completed: #{time_ago_in_words(item.completed_at)} ago" %></em></li>

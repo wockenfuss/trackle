@@ -1,13 +1,20 @@
 var target = $('.userBox')['<%= @location %>'];
-var $current = $('.userBox[data-user=' + '<%= @user.id %>' + ']');
+var $currentBox = $('.userBox[data-user=' + '<%= @user.id %>' + ']');
 if ( $('#userDisplay').is(':visible') ) {
+	hideAssignments();
+} else {
+	showAssignments();
+}
+
+function hideAssignments() {
 	$('#userDisplay').slideToggle('default', function() {
     $('#userDisplay').remove();
     $('.userBox').removeClass('unselected');
-    // $('.userBox').css('opacity', 1);
   });
-} else {
-	$('.userBox').not($current).addClass('unselected');
+}
+
+function showAssignments() {
+	$('.userBox').not($currentBox).addClass('unselected');
 	$(target).before('<%= j render :partial => "users/show", :locals => { :user => @user } %>');	
 	myApp.addAssignmentListeners();
 }

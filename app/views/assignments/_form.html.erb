@@ -1,7 +1,9 @@
 <% if @assignment %>
+
 	<p><%= "Assigning #{@assignment.task.name} to #{@assignment.user.name} for #{@assignment.project.name}"%></p>
 
 	<%= form_for @assignment, :remote => true do |f| %>
+	<div id="assignmentErrors"></div>
 
 	<div>
 		<%= f.label :duration %>
@@ -20,13 +22,13 @@
 	</div>
 
 	<div>
-		<%= f.submit "Assign task" %>
+		<%= f.submit assignment_submit_label(@assignment) %>
 	</div>
 
 	<%= f.hidden_field :user_id %>
 	<%= f.hidden_field :task_id %>
 	<%= f.hidden_field :project_id %>
-	<%= f.hidden_field :queue_index, :value => @queue_index %>
+	<%= f.hidden_field :queue_index, :value => assignment_queue_index(@assignment) %>
 
 	<% end %>
 <% end %>

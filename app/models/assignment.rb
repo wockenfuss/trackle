@@ -15,6 +15,7 @@ class Assignment < ActiveRecord::Base
                   :queue_index, :resumed_at, :elapsed_time
   before_save :check_elapsed_time
   before_save :update_queue
+  before_save :test
 
   def status
     return "completed" if self.completed_at?
@@ -39,6 +40,10 @@ class Assignment < ActiveRecord::Base
     if self.hold == true || !!self.completed_at
       self.elapsed_time = Time.now - self.resumed_at + read_attribute(:elapsed_time)
     end
+  end
+
+  def test
+    p self
   end
 
   def update_queue

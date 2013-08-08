@@ -1,2 +1,2 @@
-$('#userAssignments').html('<%= j render "assignments/user_assignments" %>');
-$('#completedAssignments').html('<%= j render "assignments/completed_assignments" %>');
+$('#userAssignments').html('<%= j render :partial => "assignments/user_assignments", :locals => { :user => @assignment.user } %>');
+$('#completedAssignments').html('<%= j render :partial => "assignments/completed_assignments", :locals => { :user => @assignment.user } %>');

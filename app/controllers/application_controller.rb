@@ -45,6 +45,8 @@ class ApplicationController < ActionController::Base
       return '#taskErrors'
     when @project
       return '#projectErrors'
+    when @assignment
+      return '#assignmentErrors'
     else
       return '#alerts'
     end

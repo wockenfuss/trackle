@@ -7,7 +7,7 @@ class AssignmentsController < ApplicationController
 
 	def new
 		@assignment = Assignment.new(params[:assignment])
-		@queue_index = @assignment.user.assignments.count + 1
+		# @queue_index = @assignment.user.assignments.count + 1
 		@assignment.comments.build
 		respond_with @assignment, @comment, @queue_index
 	end
@@ -24,20 +24,24 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	def edit
+		@assignment = Assignment.find(params[:id])
+	end
+
 	def update
 		@assignment = Assignment.find(params[:id])
 		@user = @assignment.user
 		if @assignment.update_attributes(params[:assignment])
-			@assignment = @user.current_assignment
-			@queue = @user.queued
-			@on_hold = @user.on_hold
+			if params[:commit] == "Update"
+				flash[:notice] = "Assignment updated"
+				js_redirect_to(root_path) and return
+			end
 			respond_to do |format|
 	      format.js
 	      format.json { render :json => { :assignment => Assignment.find(params[:id])} }
 	    end
 		else
-			puts "error"
-			# handle error
+			js_alert(@assignment) and return
 		end
 	end
 
