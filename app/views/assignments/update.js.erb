@@ -1,2 +1,3 @@
 $('#userAssignments').html('<%= j render :partial => "assignments/user_assignments", :locals => { :user => @assignment.user } %>');
 $('#completedAssignments').html('<%= j render :partial => "assignments/completed_assignments", :locals => { :user => @assignment.user } %>');
+myApp.setListeners();

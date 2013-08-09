@@ -1,11 +1,16 @@
-<% if assignment.status == "not yet begun" %>
-	<li>
-		<%= button_to "Begin", assignment_path(assignment, :assignment => {:started_at => true, :resumed_at => true}), :method => 'put', :remote => true %>
-	</li>
-<% elsif assignment.status == "in progress" %>
-	<li>
-		<%= button_to "Pause", assignment_path(assignment, :assignment => { :hold => true}), :method => 'put', :remote => true%>
+<% if assignment == assignment.user.current_assignment %>
+	<% if assignment.status == "not yet begun" %>
+		<%= link_to "Begin", assignment_path(assignment, :assignment => {:started_at => true, :resumed_at => true}), :method => 'put', :remote => true, :class => 'right' %> 
+	<% elsif assignment.status == "in progress" %>
+		<%= link_to "Mark Completed", assignment_path(assignment, :assignment => { :completed_at => true }), :method => 'put', :remote => true, :class => 'right' %>
+		<%= link_to "Pause", assignment_path(assignment, :assignment => { :hold => true}), :method => 'put', :remote => true, :class => 'right'%>
+	<% end %>
+<% else %>
+	
+	<% if assignment.status == "on hold" && assignment.user.current_assignment.status != "in progress" %>
+		<%= link_to 'resume', assignment_path(assignment, :assignment => 
+				{:hold => false, :resumed_at => true}), :method => 'put', :remote => true, :class => 'right' %>
+	<% end %>
 
-		<%= button_to "Mark Completed", assignment_path(assignment, :assignment => { :completed_at => true }), :method => 'put', :remote => true %>
-	</li>
 <% end %>
+

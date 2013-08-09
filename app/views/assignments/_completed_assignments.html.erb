@@ -1,13 +1,11 @@
 <h3>Completed Tasks: </h3>
 <% if user.completed_assignments.count > 0 %>
-	<ul>
-		<% user.completed_assignments.each do |item| %>
-			<div>
-				<li><strong><%= "#{item.task.name}: #{item.project.name}" %></strong></li>
-				<li><em><%= "Completed: #{time_ago_in_words(item.completed_at)} ago" %></em></li>
-			</div>
-		<% end %>
-	</ul>
+	<% user.completed_assignments.each do |item| %>
+		<div class="completeAssignment">
+			<strong><%= "#{item.task.name}: #{item.project.name}" %></strong>
+			<span class="right"><em><%= "Completed: #{time_ago_in_words(item.completed_at)} ago" %></em></span>
+		</div>
+	<% end %>
 <% else %>
 	There are no completed tasks.
 <% end %>

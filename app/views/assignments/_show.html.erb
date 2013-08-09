@@ -1,10 +1,15 @@
 <div class="assignmentShow" data-sort="<%= assignment.queue_index %>" data-id="<%= assignment.id %>">
 	<a href="#" class="assignmentName"><%= "#{assignment.task.name}: #{assignment.project.name}" %></a>
 	
-	<span class="assignmentStatus"><em><%= assignment.status %></em></span>
-	<span class="assignmentQueue"><%= "Priority: #{assignment.queue_index}" %></span>
-	<%= link_to "x", assignment_path(assignment), :method => :delete, :confirm => "Are you sure you want to delete this assignment?", :remote => true, :class => 'right' %>
-	<%= link_to "edit", edit_assignment_path(assignment), :class => 'right' %>
+
+	<% if params[:appendLocation] %>
+		<%= render "assignments/manage_header", :assignment => assignment%>
+	<% else %>
+		<%= render "assignments/user_header", :assignment => assignment %>
+	<% end %>
+
+
+	
 
 	<ul class="assignmentDetails">
 		<li><%= "Deadline: #{parse_time(assignment.deadline) || 'None set'}" %></li>

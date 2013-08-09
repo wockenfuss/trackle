@@ -530,16 +530,16 @@ a {
 }
 
 #userTaskBar {
-	float: left;
+	/*float: left;*/
 	h2 {
 		margin: 0;
 	}
-	width: 20%;
-	margin: 1%;
+	width: 30%;
+	margin: 1% auto;
 	border-radius: 5px;
-	padding: 1%;
-	background-color: #eee;
-
+	padding: 2%;
+	/*background-color: #aaa;*/
+	border: 3px solid #555;
 	#currentTask {
 		background-color: #ccc;
 		padding: .5% 1% .5% 3%;
@@ -553,26 +553,6 @@ a {
 			margin-top: 5%;
 			margin-left: 10%;
 		}
-/*		.button_to {
-			display: inline-block;
-		}*/
-
-/*		input[type="submit"] {
-			width: 25%;
-			margin: 3% 0;
-			padding: 2%;
-			font-size: .9em;
-			border-radius: 15px;
-			outline: none;
-			border: none;
-			color: #fff;
-			background-color: #999;
-			&:hover {
-				background-color: #aaa;
-				cursor: pointer; cursor: hand;
-			}
-		}*/
-
 
 	}
 
@@ -580,10 +560,13 @@ a {
 		margin-top: 15%;	
 	}
 
-	a {
-		color: #999;
-		&:hover {
-			color: #555;
+	.completeAssignment {
+		font-size: .9em;
+		border: solid #eee 3px;
+		background-color: #aaa;
+		padding: 1%;
+		.right {
+			margin: 1px 1% 0 0;
 		}
 	}
 	

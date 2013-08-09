@@ -4,6 +4,8 @@
 	});
 
 	var bind = function() {
+		$('.assignmentShow').first().find('.assignmentDetails').show();
+
 		myApp.setTimezone();
 
 		myApp.setProjectColor();
@@ -39,6 +41,8 @@
 	};
 
 	myApp.setListeners = function() {
+		myApp.addAssignmentListeners();
+
 		$('.formDisplayLink').off('click').on('click', function(e) {
    		$(this).next().slideToggle();
    	});
